@@ -1,0 +1,47 @@
+# Git
+.git
+.gitignore
+
+# 文档
+*.md
+!README.md
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Node.js
+web/node_modules
+web/.npm
+web/.cache
+
+# Go
+server/remote-server
+server/*.exe
+
+# 构建产物
+web/dist
+
+# 日志
+*.log
+logs/
+
+# 环境变量（包含敏感信息）
+.env
+.env.local
+.env.*.local
+
+# Android（不需要打包到 Docker）
+android/
+*.apk
+
+# 测试
+*_test.go
+__tests__
+coverage/

@@ -1,0 +1,140 @@
+# ============================================
+# 舒舒远程控制系统 - Git 忽略文件
+# ============================================
+
+# ==================== 通用 ====================
+
+# 操作系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE 和编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*~
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# 日志文件
+*.log
+logs/
+*.log.*
+
+# 环境变量（包含敏感信息）
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# ==================== Android ====================
+
+# Gradle
+android/.gradle/
+android/build/
+android/app/build/
+android/captures/
+android/.externalNativeBuild/
+android/.cxx/
+
+# Android Studio
+android/*.iml
+android/local.properties
+android/.idea/
+
+# APK 和 AAB 文件
+*.apk
+*.aab
+*.ap_
+
+# Native
+android/.externalNativeBuild/
+android/.cxx/
+
+# Keystore（敏感文件）
+*.jks
+*.keystore
+
+# ==================== Server (Go) ====================
+
+# 编译产物
+server/remote-server
+server/*.exe
+server/*.exe~
+server/*.dll
+server/*.so
+server/*.dylib
+
+# 测试文件
+server/*.test
+server/*.out
+
+# 依赖目录
+server/vendor/
+
+# 覆盖率报告
+server/coverage.out
+server/coverage.html
+
+# ==================== Web (Vue/Node.js) ====================
+
+# 依赖目录
+web/node_modules/
+
+# 构建产物
+web/dist/
+web/.vite/
+
+# 本地配置
+web/*.local
+
+# 缓存
+web/.cache/
+web/.npm/
+web/.eslintcache
+
+# 测试覆盖率
+web/coverage/
+
+# TypeScript 缓存
+web/*.tsbuildinfo
+
+# ==================== Docker ====================
+
+# Docker Compose 覆盖文件
+docker-compose.override.yml
+docker-compose.*.yml
+!docker-compose.yml
+
+# ==================== 其他 ====================
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# 压缩文件（避免误提交大文件）
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# 证书和密钥（敏感文件）
+*.pem
+*.key
+*.crt
+*.p12

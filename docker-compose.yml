@@ -1,0 +1,57 @@
+# ============================================
+# 舒舒远程控制系统 - Docker Compose 配置
+# ============================================
+#
+# 使用方法:
+#   构建并启动: docker compose up -d --build
+#   查看日志:   docker compose logs -f
+#   停止服务:   docker compose down
+#   重启服务:   docker compose restart
+#
+# 重要: 请修改 AUTH_TOKEN 为你的安全密钥！
+# ============================================
+
+version: '3.8'
+
+services:
+  shushu-remote:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shushu-remote:latest
+    container_name: shushu-remote
+    ports:
+      - "${SERVER_PORT:-9222}:9222"
+    environment:
+      - TZ=Asia/Shanghai
+    # 修改 token 为你的安全密钥（建议16位以上随机字符串）
+    command:
+      - "-port"
+      - "9222"
+      - "-token"
+      - "${AUTH_TOKEN:-shushu123}"
+      - "-web"
+      - "./web/dist"
+    restart: unless-stopped
+    # 日志配置
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:9222/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    # 资源限制（可选，根据实际情况调整）
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 256M
