@@ -181,7 +181,6 @@ let mouseDownPos = { x: 0, y: 0 }
 let mouseDownTime = 0
 const LONG_PRESS_DURATION = 500 // 长按阈值 500ms
 const MOVE_THRESHOLD = 10 // 移动阈值，超过则视为滑动
-let hasMoved = false // 是否发生了移动
 
 onMounted(() => {
   ws = new WebSocketService()
@@ -290,22 +289,13 @@ function getRelativePosition(e: MouseEvent | Touch): { x: number; y: number } {
 
 function onMouseDown(e: MouseEvent) {
   isMouseDown = true
-  hasMoved = false
   const pos = getRelativePosition(e)
   mouseDownPos = pos
   mouseDownTime = Date.now()
 }
 
-function onMouseMove(e: MouseEvent) {
-  if (!isMouseDown) return
-  const pos = getRelativePosition(e)
-
-  // 如果移动超过阈值，标记为已移动
-  const dx = Math.abs(pos.x - mouseDownPos.x)
-  const dy = Math.abs(pos.y - mouseDownPos.y)
-  if (dx > MOVE_THRESHOLD || dy > MOVE_THRESHOLD) {
-    hasMoved = true
-  }
+function onMouseMove(_e: MouseEvent) {
+  // 鼠标移动时不做处理，松开时根据位置判断
 }
 
 function onMouseUp(e: MouseEvent) {
@@ -362,7 +352,7 @@ function onTouchStart(e: TouchEvent) {
   touchStartTime = Date.now()
 }
 
-function onTouchMove(e: TouchEvent) {
+function onTouchMove(_e: TouchEvent) {
   // 触摸移动时不做处理，等松开时判断
 }
 
@@ -472,14 +462,6 @@ function sendKey(keyCode: number) {
     type: 'input.key',
     keyCode: keyCode,
     action: 'down'
-  })
-}
-
-// 隐藏设备键盘 - 发送专门的命令
-function hideKeyboard() {
-  ws?.send({
-    type: 'input.command',
-    command: 'hide_keyboard'
   })
 }
 
