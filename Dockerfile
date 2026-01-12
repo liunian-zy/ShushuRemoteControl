@@ -1,5 +1,6 @@
 # ============================================
 # 舒舒远程控制系统 - Docker 构建文件
+# 针对国内网络优化，使用国内镜像源
 # ============================================
 
 # ============================================
@@ -8,6 +9,9 @@
 FROM node:18-alpine AS web-builder
 
 WORKDIR /app/web
+
+# 设置 npm 国内镜像源
+RUN npm config set registry https://registry.npmmirror.com
 
 # 复制 package.json 并安装依赖（利用 Docker 缓存）
 COPY web/package*.json ./
@@ -23,6 +27,13 @@ RUN npm run build
 FROM golang:1.21-alpine AS server-builder
 
 WORKDIR /app/server
+
+# 设置 Alpine 国内镜像源
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+
+# 设置 Go 国内代理
+ENV GOPROXY=https://goproxy.cn,direct
+ENV GO111MODULE=on
 
 # 安装构建依赖
 RUN apk add --no-cache git
@@ -42,6 +53,9 @@ FROM alpine:3.19
 
 LABEL maintainer="Shushu Remote Control"
 LABEL description="工业设备远程维护解决方案"
+
+# 设置 Alpine 国内镜像源
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 # 安装运行时依赖
 RUN apk --no-cache add ca-certificates tzdata wget
