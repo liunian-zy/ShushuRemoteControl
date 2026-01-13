@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "jmuxer": "^2.1.0",
+    "mux.js": "^6.3.0",
     "vue": "^3.4.0",
     "vue-router": "^4.2.5"
   },

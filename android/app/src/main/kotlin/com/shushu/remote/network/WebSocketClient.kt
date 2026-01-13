@@ -187,5 +187,14 @@ class WebSocketClient(
         }
     }
 
+    /**
+     * 发送原始 JSON 字符串（用于 WebRTC 信令）
+     */
+    fun sendRaw(message: String) {
+        if (isConnected.get()) {
+            webSocket?.send(message)
+        }
+    }
+
     fun isConnected(): Boolean = isConnected.get()
 }

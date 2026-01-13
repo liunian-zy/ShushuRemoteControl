@@ -14,6 +14,16 @@ class MessageHandler(
         private const val TAG = "MessageHandler"
     }
 
+    // WebRTC 信令处理回调
+    private var webRTCSignalingHandler: ((String, Map<*, *>) -> Unit)? = null
+
+    /**
+     * 设置 WebRTC 信令处理器
+     */
+    fun setWebRTCSignalingHandler(handler: (type: String, data: Map<*, *>) -> Unit) {
+        webRTCSignalingHandler = handler
+    }
+
     fun handleMessage(type: String, msg: Map<*, *>) {
         Log.d(TAG, "Received message type: $type")
         when (type) {
@@ -24,15 +34,32 @@ class MessageHandler(
             "input.text" -> handleText(msg)
             "input.command" -> handleCommand(msg)
             "clipboard.set" -> handleClipboardSet(msg)
+            // WebRTC 信令消息
+            "webrtc.offer", "webrtc.answer", "webrtc.ice", "webrtc.ready" -> {
+                webRTCSignalingHandler?.invoke(type, msg)
+            }
             else -> Log.w(TAG, "Unknown message type: $type")
         }
     }
 
     private fun handleStreamStart(msg: Map<*, *>) {
-        val quality = (msg["quality"] as? Double)?.toInt() ?: 80
-        val maxFps = (msg["maxFps"] as? Double)?.toInt() ?: 30
-        Log.d(TAG, "Starting stream: quality=$quality, maxFps=$maxFps")
-        screenCapture.startCapture(quality, maxFps)
+        val mode = msg["mode"] as? String ?: "mjpeg"
+
+        when (mode) {
+            "h264" -> {
+                val bitrate = (msg["bitrate"] as? Double)?.toInt() ?: 2_000_000
+                val fps = (msg["fps"] as? Double)?.toInt() ?: 30
+                Log.d(TAG, "Starting H264 stream: bitrate=$bitrate, fps=$fps")
+                screenCapture.startH264Capture(bitrate, fps)
+            }
+            else -> {
+                // MJPEG 模式（默认）
+                val quality = (msg["quality"] as? Double)?.toInt() ?: 80
+                val maxFps = (msg["maxFps"] as? Double)?.toInt() ?: 30
+                Log.d(TAG, "Starting MJPEG stream: quality=$quality, maxFps=$maxFps")
+                screenCapture.startCapture(quality, maxFps)
+            }
+        }
     }
 
     private fun handleStreamStop() {

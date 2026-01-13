@@ -3,28 +3,34 @@ package protocol
 // 消息类型常量
 const (
 	// 设备消息
-	TypeDeviceRegister   = "device.register"
-	TypeDeviceHeartbeat  = "device.heartbeat"
-	TypeScreenFrame      = "screen.frame" // 二进制消息用 0x01 标识
-	TypeClipboardUpdate  = "clipboard.update"
+	TypeDeviceRegister  = "device.register"
+	TypeDeviceHeartbeat = "device.heartbeat"
+	TypeScreenFrame     = "screen.frame" // 二进制消息用 0x01 标识
+	TypeClipboardUpdate = "clipboard.update"
 
 	// 控制端消息
-	TypeControlRequest   = "control.request"
-	TypeControlRelease   = "control.release"
-	TypeInputTouch       = "input.touch"
-	TypeInputKey         = "input.key"
-	TypeInputText        = "input.text"
-	TypeClipboardSet     = "clipboard.set"
-	TypeStreamStart      = "stream.start"
-	TypeStreamStop       = "stream.stop"
+	TypeControlRequest = "control.request"
+	TypeControlRelease = "control.release"
+	TypeInputTouch     = "input.touch"
+	TypeInputKey       = "input.key"
+	TypeInputText      = "input.text"
+	TypeClipboardSet   = "clipboard.set"
+	TypeStreamStart    = "stream.start"
+	TypeStreamStop     = "stream.stop"
 
 	// 服务端消息
-	TypeControlGranted   = "control.granted"
-	TypeControlDenied    = "control.denied"
-	TypeDeviceList       = "device.list"
-	TypeDeviceOnline     = "device.online"
-	TypeDeviceOffline    = "device.offline"
-	TypeError            = "error"
+	TypeControlGranted = "control.granted"
+	TypeControlDenied  = "control.denied"
+	TypeDeviceList     = "device.list"
+	TypeDeviceOnline   = "device.online"
+	TypeDeviceOffline  = "device.offline"
+	TypeError          = "error"
+
+	// WebRTC 信令消息
+	TypeWebRTCOffer  = "webrtc.offer"
+	TypeWebRTCAnswer = "webrtc.answer"
+	TypeWebRTCIce    = "webrtc.ice"
+	TypeWebRTCReady  = "webrtc.ready"
 )
 
 // 二进制消息类型
@@ -107,8 +113,11 @@ type ClipboardMessage struct {
 // StreamControlMessage 推流控制消息
 type StreamControlMessage struct {
 	Type    string `json:"type"`
-	Quality int    `json:"quality,omitempty"` // JPEG 质量 1-100
-	MaxFPS  int    `json:"maxFps,omitempty"`
+	Mode    string `json:"mode,omitempty"`    // 流模式: "h264" | "mjpeg"
+	Quality int    `json:"quality,omitempty"` // JPEG 质量 1-100 (MJPEG模式)
+	MaxFPS  int    `json:"maxFps,omitempty"`  // 最大帧率 (MJPEG模式)
+	Bitrate int    `json:"bitrate,omitempty"` // 码率 (H264模式)
+	FPS     int    `json:"fps,omitempty"`     // 帧率 (H264模式)
 }
 
 // ErrorMessage 错误消息

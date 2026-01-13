@@ -79,10 +79,11 @@ class MainActivity : AppCompatActivity() {
         val deviceId = savedDeviceId ?: generateDeviceId()
         Log.d(TAG, "Final device_id: $deviceId")
 
-        etServerUrl.setText(prefs.getString("server_url", "ws://192.168.50.174:9222/ws/device"))
+        etServerUrl.setText(prefs.getString("server_url", "ws://rc.local-test.sqaigc.com/ws/device"))
+//        etServerUrl.setText(prefs.getString("server_url", "wss://rc.photo.sqaigc.com/ws/device"))
         etDeviceId.setText(deviceId)
         etDeviceName.setText(prefs.getString("device_name", "工业设备-${android.os.Build.MODEL}"))
-        etToken.setText(prefs.getString("token", "shushu123"))
+        etToken.setText(prefs.getString("token", "Vh2Zzjtb3NIUk1X6rbfzKAEsFGk/ASX3"))
     }
 
     private fun saveConfig() {

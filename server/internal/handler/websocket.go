@@ -127,12 +127,18 @@ func (h *WebSocketHandler) handleDeviceMessages(device *model.Device) {
 		log.Printf("设备断开: %s", device.ID)
 	}()
 
+	// 启动 ping 协程
+	go h.pingLoop(device.Conn)
+
 	for {
 		messageType, message, err := device.Conn.ReadMessage()
 		if err != nil {
 			log.Printf("读取设备消息失败: %v", err)
 			return
 		}
+
+		// 收到任何消息都重置读取超时
+		device.Conn.SetReadDeadline(time.Now().Add(pongWait))
 
 		// 二进制消息 - 屏幕帧
 		if messageType == websocket.BinaryMessage {
@@ -155,6 +161,23 @@ func (h *WebSocketHandler) handleDeviceMessages(device *model.Device) {
 			var clipMsg protocol.ClipboardMessage
 			json.Unmarshal(message, &clipMsg)
 			h.handleClipboardFromDevice(device, clipMsg)
+
+		// WebRTC 信令转发（设备 -> 控制端）
+		case protocol.TypeWebRTCOffer, protocol.TypeWebRTCAnswer, protocol.TypeWebRTCIce, protocol.TypeWebRTCReady:
+			h.forwardWebRTCSignalingToController(device, message)
+		}
+	}
+}
+
+// pingLoop 定期发送 ping 保持连接
+func (h *WebSocketHandler) pingLoop(conn *websocket.Conn) {
+	ticker := time.NewTicker(pingPeriod)
+	defer ticker.Stop()
+
+	for range ticker.C {
+		conn.SetWriteDeadline(time.Now().Add(writeWait))
+		if err := conn.WriteMessage(websocket.PingMessage, nil); err != nil {
+			return
 		}
 	}
 }
@@ -163,11 +186,15 @@ func (h *WebSocketHandler) handleDeviceMessages(device *model.Device) {
 func (h *WebSocketHandler) handleScreenFrame(device *model.Device, frame []byte) {
 	session := h.sessionMgr.GetByDevice(device.ID)
 	if session == nil || session.Controller == nil {
+		// 没有活跃会话，丢弃帧
 		return
 	}
 
-	// 直接转发给控制端
-	session.Controller.SendBinary(frame)
+	// 转发给控制端
+	err := session.Controller.SendBinary(frame)
+	if err != nil {
+		log.Printf("转发帧到控制端失败: %v", err)
+	}
 }
 
 // handleClipboardFromDevice 处理来自设备的剪贴板更新
@@ -185,6 +212,14 @@ func (h *WebSocketHandler) handleClipboardFromDevice(device *model.Device, msg p
 
 // HandleController 处理控制端连接
 func (h *WebSocketHandler) HandleController(c *gin.Context) {
+	// 验证 token
+	token := c.Query("token")
+	if token != h.authToken {
+		log.Printf("控制端认证失败: token=%s", token)
+		c.JSON(401, gin.H{"error": "unauthorized"})
+		return
+	}
+
 	conn, err := upgrader.Upgrade(c.Writer, c.Request, nil)
 	if err != nil {
 		log.Printf("控制端WebSocket升级失败: %v", err)
@@ -227,12 +262,18 @@ func (h *WebSocketHandler) handleControllerMessages(controller *model.Controller
 		log.Printf("控制端断开: %s", controller.ID)
 	}()
 
+	// 启动 ping 协程
+	go h.pingLoop(controller.Conn)
+
 	for {
 		_, message, err := controller.Conn.ReadMessage()
 		if err != nil {
 			log.Printf("读取控制端消息失败: %v", err)
 			return
 		}
+
+		// 收到任何消息都重置读取超时
+		controller.Conn.SetReadDeadline(time.Now().Add(pongWait))
 
 		var baseMsg protocol.BaseMessage
 		if err := json.Unmarshal(message, &baseMsg); err != nil {
@@ -269,6 +310,10 @@ func (h *WebSocketHandler) handleControllerMessages(controller *model.Controller
 
 		case protocol.TypeStreamStart, protocol.TypeStreamStop:
 			h.forwardToDevice(controller, message)
+
+		// WebRTC 信令转发（控制端 -> 设备）
+		case protocol.TypeWebRTCOffer, protocol.TypeWebRTCAnswer, protocol.TypeWebRTCIce, protocol.TypeWebRTCReady:
+			h.forwardWebRTCSignalingToDevice(controller, message)
 		}
 	}
 }
@@ -304,11 +349,12 @@ func (h *WebSocketHandler) handleControlRequest(controller *model.Controller, ms
 		ScreenHeight: device.ScreenHeight,
 	})
 
-	// 通知设备开始推流
+	// 通知设备开始推流（默认使用 H264 模式）
 	device.SendJSON(protocol.StreamControlMessage{
 		Type:    protocol.TypeStreamStart,
-		Quality: 80,
-		MaxFPS:  30,
+		Mode:    "h264",
+		Bitrate: 2000000, // 2Mbps
+		FPS:     30,
 	})
 
 	log.Printf("控制会话建立: %s -> %s", controller.ID, device.ID)
@@ -362,10 +408,59 @@ func (h *WebSocketHandler) handleClipboardFromController(controller *model.Contr
 func (h *WebSocketHandler) forwardToDevice(controller *model.Controller, message []byte) {
 	session := h.sessionMgr.GetByController(controller.ID)
 	if session == nil || session.Device == nil {
+		log.Printf("forwardToDevice: no session for controller %s", controller.ID)
 		return
 	}
 
+	// 使用线程安全的发送方法
+	err := session.Device.SendText(message)
+	if err != nil {
+		log.Printf("forwardToDevice error: %v", err)
+	}
+}
+
+// forwardWebRTCSignalingToDevice 转发 WebRTC 信令给设备
+func (h *WebSocketHandler) forwardWebRTCSignalingToDevice(controller *model.Controller, message []byte) {
+	session := h.sessionMgr.GetByController(controller.ID)
+	if session == nil || session.Device == nil {
+		log.Printf("WebRTC signaling: no session for controller %s", controller.ID)
+		return
+	}
+
+	// 添加发送者信息
+	var msg map[string]interface{}
+	if err := json.Unmarshal(message, &msg); err == nil {
+		msg["fromId"] = controller.ID
+		if newMsg, err := json.Marshal(msg); err == nil {
+			session.Device.Conn.WriteMessage(websocket.TextMessage, newMsg)
+			log.Printf("WebRTC signaling forwarded to device: %s", session.Device.ID)
+			return
+		}
+	}
+
 	session.Device.Conn.WriteMessage(websocket.TextMessage, message)
+}
+
+// forwardWebRTCSignalingToController 转发 WebRTC 信令给控制端
+func (h *WebSocketHandler) forwardWebRTCSignalingToController(device *model.Device, message []byte) {
+	session := h.sessionMgr.GetByDevice(device.ID)
+	if session == nil || session.Controller == nil {
+		log.Printf("WebRTC signaling: no session for device %s", device.ID)
+		return
+	}
+
+	// 添加发送者信息
+	var msg map[string]interface{}
+	if err := json.Unmarshal(message, &msg); err == nil {
+		msg["fromId"] = device.ID
+		if newMsg, err := json.Marshal(msg); err == nil {
+			session.Controller.Conn.WriteMessage(websocket.TextMessage, newMsg)
+			log.Printf("WebRTC signaling forwarded to controller: %s", session.Controller.ID)
+			return
+		}
+	}
+
+	session.Controller.Conn.WriteMessage(websocket.TextMessage, message)
 }
 
 // GetDeviceManager 获取设备管理器（供API使用）

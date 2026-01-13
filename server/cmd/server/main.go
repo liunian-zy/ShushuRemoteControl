@@ -24,7 +24,7 @@ func main() {
 
 	// 创建处理器
 	wsHandler := handler.NewWebSocketHandler(*token)
-	apiHandler := handler.NewAPIHandler(wsHandler)
+	apiHandler := handler.NewAPIHandler(wsHandler, *token)
 
 	// 设置Gin
 	gin.SetMode(gin.ReleaseMode)
@@ -42,14 +42,18 @@ func main() {
 		c.Next()
 	})
 
-	// API路由
+	// 公开API（无需认证）
+	r.POST("/api/auth/login", apiHandler.Login)
+	r.GET("/api/health", apiHandler.HealthCheck)
+
+	// 需要认证的API
 	api := r.Group("/api")
+	api.Use(apiHandler.AuthMiddleware())
 	{
-		api.GET("/health", apiHandler.HealthCheck)
 		api.GET("/devices", apiHandler.GetDevices)
 	}
 
-	// WebSocket路由
+	// WebSocket路由（带token验证）
 	r.GET("/ws/device", wsHandler.HandleDevice)
 	r.GET("/ws/controller", wsHandler.HandleController)
 

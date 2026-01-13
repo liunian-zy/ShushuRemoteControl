@@ -9,6 +9,16 @@ export interface DeviceInfo {
 type MessageHandler = (data: any) => void
 type BinaryHandler = (data: ArrayBuffer) => void
 
+// 获取存储的 token
+export function getAuthToken(): string | null {
+  return localStorage.getItem('auth_token')
+}
+
+// 清除 token（登出）
+export function clearAuthToken() {
+  localStorage.removeItem('auth_token')
+}
+
 export class WebSocketService {
   private ws: WebSocket | null = null
   private handlers: Map<string, MessageHandler[]> = new Map()
@@ -39,10 +49,11 @@ export class WebSocketService {
   }
 
   connect(path: string) {
-    // 构建WebSocket URL
+    // 构建WebSocket URL，携带 token
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
     const host = window.location.host
-    this.url = `${protocol}//${host}${path}`
+    const token = getAuthToken()
+    this.url = `${protocol}//${host}${path}${token ? `?token=${encodeURIComponent(token)}` : ''}`
     this.shouldReconnect = true
     this.reconnectAttempts = 0
 
@@ -60,9 +71,17 @@ export class WebSocketService {
         this.emit('open')
       }
 
-      this.ws.onclose = () => {
-        console.log('WebSocket closed')
+      this.ws.onclose = (event) => {
+        console.log('WebSocket closed', event.code, event.reason)
         this.emit('close')
+
+        // 如果是认证失败（4001），不重连，跳转到登录页
+        if (event.code === 4001) {
+          clearAuthToken()
+          window.location.href = '/login'
+          return
+        }
+
         this.scheduleReconnect()
       }
 
