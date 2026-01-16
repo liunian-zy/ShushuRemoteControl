@@ -435,7 +435,6 @@ const MOVE_THRESHOLD = 10 // 移动阈值，超过则视为滑动
 let frameCount = 0
 let frameBytesTotal = 0
 let lastFrameCountTime = 0
-let lastFrameNumber = -1  // 用于检测丢帧
 let droppedFrames = 0     // 丢帧计数
 
 onMounted(() => {
