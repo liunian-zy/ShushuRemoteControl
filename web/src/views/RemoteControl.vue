@@ -19,6 +19,81 @@
       </div>
     </div>
 
+    <!-- 连接质量监控 - 简洁版 -->
+    <div
+      v-if="status === 'connected' && statsDisplayMode === 'compact'"
+      class="stats-compact"
+      @click="statsDisplayMode = 'detailed'"
+      title="点击查看详情"
+    >
+      <span class="stats-mode" :class="streamMode">{{ streamMode.toUpperCase() }}</span>
+      <span class="stats-fps" v-if="connectionStats.fps > 0">{{ connectionStats.fps }} FPS</span>
+      <span class="stats-bitrate" v-if="connectionStats.bitrate > 0">{{ formatBitrate(connectionStats.bitrate) }}</span>
+      <span class="stats-latency" :class="getLatencyClass(connectionStats.latency)" v-if="connectionStats.latency > 0">{{ connectionStats.latency }}ms</span>
+    </div>
+
+    <!-- 连接质量监控 - 详情版 -->
+    <div
+      v-if="status === 'connected' && statsDisplayMode === 'detailed'"
+      class="stats-detailed"
+    >
+      <div class="stats-header">
+        <span>连接质量监控</span>
+        <div class="stats-actions">
+          <button class="stats-btn" @click="statsDisplayMode = 'compact'" title="简洁模式">−</button>
+          <button class="stats-btn" @click="statsDisplayMode = 'hidden'" title="隐藏">×</button>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stats-item">
+          <span class="stats-label">传输模式</span>
+          <span class="stats-value" :class="streamMode">{{ streamMode === 'webrtc' ? 'WebRTC' : streamMode === 'h264' ? 'H264' : 'MJPEG' }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">分辨率</span>
+          <span class="stats-value">{{ connectionStats.resolution || `${screenWidth}x${screenHeight}` }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">帧率</span>
+          <span class="stats-value" :class="getFpsClass(connectionStats.fps)">{{ connectionStats.fps }} FPS</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">码率</span>
+          <span class="stats-value">{{ formatBitrate(connectionStats.bitrate) }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">延迟</span>
+          <span class="stats-value" :class="getLatencyClass(connectionStats.latency)">{{ connectionStats.latency || '-' }} ms</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">丢包</span>
+          <span class="stats-value" :class="connectionStats.packetsLost > 0 ? 'warning' : ''">{{ connectionStats.packetsLost }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">已解码帧</span>
+          <span class="stats-value">{{ connectionStats.framesDecoded }}</span>
+        </div>
+        <div class="stats-item">
+          <span class="stats-label">丢弃帧</span>
+          <span class="stats-value" :class="connectionStats.framesDropped > 0 ? 'warning' : ''">{{ connectionStats.framesDropped }}</span>
+        </div>
+        <div class="stats-item full-width">
+          <span class="stats-label">连接状态</span>
+          <span class="stats-value" :class="getConnectionStateClass()">{{ getConnectionStateText() }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 隐藏时的小按钮 -->
+    <button
+      v-if="status === 'connected' && statsDisplayMode === 'hidden'"
+      class="stats-show-btn"
+      @click="statsDisplayMode = 'compact'"
+      title="显示连接状态"
+    >
+      📊
+    </button>
+
     <!-- 连接信息栏 -->
     <div v-show="status === 'connected'" class="connection-bar">
       <div class="conn-info">
@@ -144,10 +219,6 @@
         <button class="tool-btn" @click="sendKey(26)" title="电源键">
           <span class="icon">⏻</span>
           <span class="label">电源</span>
-        </button>
-        <button class="tool-btn" @click="sendKey(223)" title="锁屏">
-          <span class="icon">🔒</span>
-          <span class="label">锁屏</span>
         </button>
         <button class="tool-btn" @click="sendKey(220)" title="亮度-">
           <span class="icon">🔅</span>
@@ -321,8 +392,14 @@ const connectionStats = ref({
   latency: 0,
   resolution: '',
   packetsLost: 0,
-  bytesReceived: 0
+  bytesReceived: 0,
+  framesDecoded: 0,
+  framesDropped: 0,
+  jitterBuffer: 0
 })
+
+// 质量监控显示模式
+const statsDisplayMode = ref<'hidden' | 'compact' | 'detailed'>('compact')
 
 // 画质设置
 const currentQuality = ref('medium')
@@ -353,6 +430,13 @@ let lastBytesReceived = 0
 let lastStatsTime = 0
 const LONG_PRESS_DURATION = 500 // 长按阈值 500ms
 const MOVE_THRESHOLD = 10 // 移动阈值，超过则视为滑动
+
+// 帧统计（用于 H264/MJPEG 模式）
+let frameCount = 0
+let frameBytesTotal = 0
+let lastFrameCountTime = 0
+let lastFrameNumber = -1  // 用于检测丢帧
+let droppedFrames = 0     // 丢帧计数
 
 onMounted(() => {
   ws = new WebSocketService()
@@ -416,6 +500,10 @@ onMounted(() => {
 
   // MJPEG 回退
   ws.onBinary(async (data: ArrayBuffer) => {
+    // 统计帧数据
+    frameCount++
+    frameBytesTotal += data.byteLength
+
     // 使用 MSE 播放器处理二进制消息
     const bytes = new Uint8Array(data)
 
@@ -828,6 +916,8 @@ function rotateScreen() {
   })
 }
 
+// 移除隐私模式函数
+
 // Android KeyCode 映射 - 键盘按键到 Android KeyCode
 const keyCodeMap: Record<string, number> = {
   'Backspace': 67,    // KEYCODE_DEL
@@ -879,6 +969,13 @@ function formatBitrate(bps: number): string {
     return (bps / 1000).toFixed(0) + ' Kbps'
   }
   return bps + ' bps'
+}
+
+// 获取帧率等级样式
+function getFpsClass(fps: number): string {
+  if (fps >= 25) return 'good'
+  if (fps >= 15) return 'medium'
+  return 'poor'
 }
 
 // 获取延迟等级样式
@@ -1010,11 +1107,19 @@ function switchStreamMode() {
 function startStatsUpdate() {
   if (statsInterval) return
 
+  // 初始化帧统计时间
+  lastFrameCountTime = Date.now()
+  frameCount = 0
+  frameBytesTotal = 0
+  droppedFrames = 0
+
   statsInterval = window.setInterval(async () => {
+    const now = Date.now()
+
     if (streamMode.value === 'webrtc' && webrtcClient) {
+      // WebRTC 模式：从 WebRTC 统计获取数据
       const stats = await webrtcClient.getStats()
       if (stats) {
-        const now = Date.now()
         const timeDiff = (now - lastStatsTime) / 1000
 
         if (lastStatsTime > 0 && timeDiff > 0) {
@@ -1032,6 +1137,37 @@ function startStatsUpdate() {
 
         lastBytesReceived = stats.bytesReceived
         lastStatsTime = now
+      }
+    } else if (streamMode.value === 'h264' || streamMode.value === 'mjpeg') {
+      // H264/MJPEG 模式：从帧计数计算统计数据
+      const timeDiff = (now - lastFrameCountTime) / 1000
+
+      if (timeDiff > 0) {
+        // 计算 FPS
+        connectionStats.value.fps = Math.round(frameCount / timeDiff)
+
+        // 计算码率 (bits per second)
+        connectionStats.value.bitrate = Math.round((frameBytesTotal * 8) / timeDiff)
+
+        // 累计已解码帧数
+        connectionStats.value.framesDecoded += frameCount
+
+        // 丢帧统计
+        connectionStats.value.framesDropped = droppedFrames
+
+        // 设置分辨率（使用设备屏幕尺寸）
+        if (!connectionStats.value.resolution) {
+          connectionStats.value.resolution = `${screenWidth.value}x${screenHeight.value}`
+        }
+
+        // 测量延迟（发送 ping）
+        ws?.ping()
+        connectionStats.value.latency = ws?.latency || 0
+
+        // 重置计数器
+        frameCount = 0
+        frameBytesTotal = 0
+        lastFrameCountTime = now
       }
     }
   }, 1000)
@@ -1052,6 +1188,235 @@ function stopStatsUpdate() {
   display: flex;
   flex-direction: column;
   background-color: #0a0a0a;
+}
+
+/* 连接质量监控 - 简洁版 */
+.stats-compact {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 16px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s;
+}
+
+.stats-compact:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stats-mode {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+.stats-mode.webrtc {
+  background-color: #22c55e;
+  color: #000;
+}
+
+.stats-mode.h264 {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+.stats-mode.mjpeg {
+  background-color: #f59e0b;
+  color: #000;
+}
+
+.stats-fps, .stats-bitrate {
+  color: #ccc;
+}
+
+.stats-latency {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.stats-latency.good {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.stats-latency.medium {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.stats-latency.poor {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* 连接质量监控 - 详情版 */
+.stats-detailed {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  background-color: rgba(22, 33, 62, 0.95);
+  border-radius: 12px;
+  border: 1px solid #1f3460;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.stats-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.stats-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1px;
+}
+
+.stats-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  background-color: rgba(15, 15, 35, 0.8);
+}
+
+.stats-item.full-width {
+  grid-column: span 2;
+}
+
+.stats-label {
+  font-size: 10px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stats-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #eee;
+}
+
+.stats-value.webrtc {
+  color: #22c55e;
+}
+
+.stats-value.h264 {
+  color: #3b82f6;
+}
+
+.stats-value.mjpeg {
+  color: #f59e0b;
+}
+
+.stats-value.good {
+  color: #22c55e;
+}
+
+.stats-value.medium {
+  color: #f59e0b;
+}
+
+.stats-value.poor, .stats-value.warning {
+  color: #ef4444;
+}
+
+.stats-value.connected {
+  color: #22c55e;
+}
+
+.stats-value.connecting {
+  color: #f59e0b;
+}
+
+.stats-value.disconnected, .stats-value.failed {
+  color: #ef4444;
+}
+
+/* 显示按钮 */
+.stats-show-btn {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 36px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #aaa;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 50;
+  transition: all 0.2s;
+}
+
+.stats-show-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+  .stats-detailed {
+    width: calc(100% - 20px);
+    left: 10px;
+    right: 10px;
+    transform: none;
+  }
+
+  .stats-compact {
+    font-size: 11px;
+    padding: 4px 12px;
+    gap: 8px;
+  }
 }
 
 /* 顶部标题栏 */
@@ -1201,6 +1566,11 @@ function stopStatsUpdate() {
 .tool-btn:active {
   background-color: #4a4a7c;
   transform: scale(0.95);
+}
+
+.tool-btn.active {
+  background-color: #3b82f6;
+  border-color: #60a5fa;
 }
 
 .tool-btn .icon {

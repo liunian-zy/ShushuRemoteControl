@@ -19,9 +19,13 @@
     <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />
     <uses-permission android:name="android.permission.CAPTURE_SECURE_VIDEO_OUTPUT" />
     <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 系统窗口权限 (用于 TYPE_SYSTEM_ERROR 等系统级窗口) -->
+    <uses-permission android:name="android.permission.INTERNAL_SYSTEM_WINDOW" />
 
     <application
         android:name=".RemoteApplication"
+        android:persistent="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -55,6 +59,18 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 跨应用服务控制接收器 -->
+        <receiver
+            android:name=".receiver.ServiceControlReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.shushu.remote.ACTION_START_SERVICE" />
+                <action android:name="com.shushu.remote.ACTION_STOP_SERVICE" />
+                <action android:name="com.shushu.remote.ACTION_QUERY_STATUS" />
             </intent-filter>
         </receiver>
 

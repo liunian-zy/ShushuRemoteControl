@@ -1,0 +1,5188 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="applicable-device" content="pc,mobile">
+  	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+  	<meta name="location" content="province=广东;city=广州">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="广州定昌电子">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/laohongseo/css/bootstrap.min.css?t=1768466257">
+    <link href="/laohongseo/css/font-awesome.min.css?t=1768466257" rel="stylesheet" type="text/css">
+    <script src="/laohongseo/js/jquery.min.js?t=1768466257"></script>
+    <link href="/laohongseo/css/gzdc.css?t=1768466257" rel="stylesheet">
+    <link rel="stylesheet" href="/laohongseo/css/texiao.css?t=1768466257">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a1f16808bd4f841d833d5c70e8d63217";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+<title>定昌Android软件API文档</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta property="og:type" content="定昌电子"/>
+<meta property="og:image" content="/uploads/scimg/20250427/09ec8ecad45e5a4ac4e1ebd767d3349b.png"/>
+<meta property="og:release_date" content="1970-01-01 08:00"/>
+<link href="/laohongseo/css/wendang.css?t=1768466257" rel="stylesheet">
+
+<link rel="stylesheet" href="/laohongseo/editormd/css/editormd.preview.css?t=1768466257" />
+<script src="/laohongseo/editormd/lib/marked.min.js?t=1768466257"></script>
+<script src="/laohongseo/editormd/lib/prettify.min.js?t=1768466257">"></script>
+<script src="/laohongseo/editormd/editormd.js?t=1768466257"></script>
+<link rel="stylesheet" href="/laohongseo/layui/css/admin.css?t=1768466257">
+<script src="/laohongseo/layui/admin.js?t=1768466257"></script>
+<script>
+    //初始化数量
+    var mdnum=0;
+    var mdoknum=0;
+    var mdsidenum=0;
+    var mdsidenums=0;
+    var glarticlecount=3;
+    var allhbnum=3;
+</script>
+
+<style>
+.layui-layer.layui-layer-page{
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
+.layui-layer.layui-layer-page .layui-layer-title{
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    padding: 0 15px;
+    font-size: 14px;
+    background-color: #505050;
+    position: relative;
+}
+.layui-layer-setwin{
+    top:12px;
+}
+.layui-layer-ico {
+    filter: invert(100%);
+}
+</style>
+</head>
+
+<body class="gzdc-body-for-nav">
+  <div class="gzdc-grid-for-nav-big">
+  <div class="gzdc-grid-for-nav">
+    <nav data-toggle="gzdc-nav-shift" class="gzdc-nav-side">
+      <div class="gzdc-side-scroll">
+        <div class="gzdc-side-nav-search">
+          <a href="/" class="logo_a">
+                			<img src="/uploads/scimg/20250109/3e49864e6a83fd79146cf13b5e12c535.png" class="logo" alt="定昌电子logo">
+    			          </a>
+                    <!--<a href="javascript:void(0)" onclick="return returnmain()" class="icon icon-home">定昌Android软件API文档</a>-->
+          <a href="/wendang_id_11.html"  class="icon icon-home">定昌Android软件API文档</a>
+          <!--<div class="version">-->
+          <!--  版本更新于： 2025-08-20-->
+          <!--</div>-->
+                    <div role="search">
+              <form id="gzdcsearch-form" class="gzdc-form" action="#" method="post">
+                <input type="text" name="key" placeholder="Search">
+              </form>
+          </div>
+        </div>
+
+        <div class="gzdc-menu gzdc-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            <div id="mainsidebar">
+                                <p class="caption ctcaption fastmulutop " style="cursor: pointer;"><span class="ctoc-icon"></span><span class="caption-text" title="前言">前言</span></p>
+                                <div id="fastmulu" class="ctcaptions" style=""></div>
+            </div>
+            <div class="hbmenu" id="hbmenu">
+                                <div class="glarticlebar" id="glarticlebar">
+                                        <p class="caption ctcaption " style="cursor: pointer;"><span class="ctoc-icon"></span><span class="caption-text" title="Android API接口">Android API接口</span></p>
+                    <div class="glarticleul ctcaptions" id="glarticlebar0" style=""></div>
+                                        </div>
+                                    <div class="glarticlebar" id="glarticlebar">
+                                        <p class="caption ctcaption " style="cursor: pointer;"><span class="ctoc-icon"></span><span class="caption-text" title="ZTLConfig文件使用说明">ZTLConfig文件使用说明</span></p>
+                    <div class="glarticleul ctcaptions" id="glarticlebar1" style=""></div>
+                                        </div>
+                                    <div class="glarticlebar" id="glarticlebar">
+                                        <p class="caption ctcaption " style="cursor: pointer;"><span class="ctoc-icon"></span><span class="caption-text" title="助手使用说明">助手使用说明</span></p>
+                    <div class="glarticleul ctcaptions" id="glarticlebar2" style=""></div>
+                                        </div>
+                            </div>
+            <div id="downloadbk">
+                <p class="caption" style="cursor: pointer;padding-left: calc(1.618em + 14.91px);"><span class="caption-text">资源下载</span></p>
+            </div>
+        </div>
+      </div>
+    </nav>
+    <section data-toggle="gzdc-nav-shift" class="gzdc-nav-content-wrap">
+        <nav class="gzdc-nav-top" aria-label="top navigation">
+        <i data-toggle="gzdc-nav-top" class="fa fa-bars"></i>
+        <a href="#">定昌Android软件API文档 手册</a>
+    </nav>
+        <div class="gzdc-nav-content">
+        <div class="wdqhlangbk loginbar" id="main-menu-user">
+            <div class="language" style="display: inline-flex;align-items: center;">
+                <div href="" class="new-btn-default">
+                                            <a href="http://wikien.gzdcsmt.com/" class="nb-en">EN</a>
+                                                <div class="nb-line">/</div>
+                        <a href="http://wikicn.gzdcsmt.com/wendang_id_11.html" class="nb-ch">中文</a>
+                        <script>
+                        $.ajax({
+                            type: "POST",
+                            data:{
+                                id:0,
+                                lang:'en',
+                            },
+                            dataType:'json',
+                            url: "/index_wendang_getstatus.html", 
+                            success: function (response) {
+                              console.log('response',response); 
+                            //   layer.msg(response.msg);
+                               if(response.code!=='200'){
+                                  $('.nb-en').attr('href', 'http://wikien.gzdcsmt.com/');
+                               }
+                            }
+                        });
+                        </script>
+                                    </div>
+            </div>
+        </div>
+        <div class="wendang-content">
+            <div class="prodcut-show-main clearboth">
+                　
+                <div class="fa-pull-left prodcut-show-main-left">
+                    <div class="prodcut-show-img">
+                                                <img src="/uploads/scimg/20250427/09ec8ecad45e5a4ac4e1ebd767d3349b.png" alt="定昌Android软件API文档">
+                                            </div>
+                </div>
+                <div class="fa-pull-right prodcut-show-main-right">
+                    <div class="product-show-name clearboth">
+                        <div class="fa-pull-left ">定昌Android软件API文档<span></span>
+                        </div>
+            
+                        <div class="fa-pull-right">
+                                                    </div>
+                    </div>
+                    <p>软件API文档，包含了Android系统相关，时间相关，显示相关，网络相关，文件相关，媒体相关，其他相关的API使用描述。ztlconfig文件的使用还包含jar支持库和助手的文档下载。</p>
+                </div>
+                            </div>
+            
+            <div role="navigation" aria-label="breadcrumbs navigation">
+                                  <ul class="gzdc-breadcrumbs">
+                      <li><a href="/">Docs</a> »</li>
+                      <li>Welcome to 定昌Android软件API文档</li>
+                      <!--<li class="gzdc-breadcrumbs-aside">-->
+                      <!--      <a href="/" rel="nofollow"> View page source</a>-->
+                      <!--</li>-->
+                  </ul>
+                                <hr>
+            </div>
+    
+            <div role="main" class="document keyindiv" id="mainsidebarnr">
+                <div itemprop="articleBody">
+                    <div class="section" id="welcome-to-roc-rk3588-rt-manual">
+                                                <div class="boxx fdpic01" id="boxx-nr-control">
+                            <div class="cnt" id="fastmulunr">
+                                <textarea style="display:None;" id="contentTextarea"># 1. 定昌Android软件API文档 简介
+## 1.1 概述
+本文档主要介绍基于定昌电子 Android 平台的API文档。
+
+对应的视频教程路径：
+
+定昌Android软件API使用_视频教程_01：
+https://www.bilibili.com/video/BV1noMvz6E7E/?vd_source=514bc9d60fa0f0ca505828c20aaa3d42
+
+定昌Android软件API使用_视频教程_02：
+https://www.bilibili.com/video/BV1rdMvz3Eg8/?vd_source=514bc9d60fa0f0ca505828c20aaa3d42
+
+定昌Android软件API使用_视频教程_03：
+https://www.bilibili.com/video/BV1fFMizqEu4/?vd_source=514bc9d60fa0f0ca505828c20aaa3d42
+
+定昌Android软件API使用_视频教程_04：
+https://www.bilibili.com/video/BV1ffMvzMEeV/?vd_source=514bc9d60fa0f0ca505828c20aaa3d42
+
+备注：请跳转到以上网站进行观看。
+
+## 1.2 安卓版本
+|  安卓版本 | 维护版本 | 支持情况  | 维护情况 |
+| ------------ | ------------ | ------------ | ------------ |
+|  Android4.0以上 | v6.3 | √ | 维护 |
+
+
+![](/uploads/mdwendangimages/20250507/c72d8827851a7e0df009634714d416f2.png#width:100%;height:auto "")</textarea>
+                            </div>
+                            <script>
+                            mdnum=mdnum+1;
+                                                        console.log('mdnum='+mdnum);
+                            function mainwendangnrfc(){
+                                var testEditor;
+                                testEditor = editormd("fastmulunr", {
+                                        height        :"100%",
+                                        path : '../laohongseo/editormd/lib/',
+                                        tocDropdown          : false,          // Enable/disable Table Of Contents dropdown menu
+                                        tocContainer         : "#fastmulu",             // Custom Table Of Contents Container Selector
+                                        tocStartLevel        : 1,  
+                                        htmlDecode : true,
+                                        onload : function() {
+                                            const imgElement = document.querySelectorAll('#fastmulunr .markdown-body.editormd-preview-container img');
+                                            imgElement.forEach((li) => {
+                                                    // 获取src属性值
+                                                li.setAttribute('loading', 'lazy');
+                                                // console.log(li);
+                                            });
+                                            mdoknum=mdoknum+1;
+                                                                                        console.log('mdoknum='+mdoknum);
+                                            glarticlenr0fc();                                            // if(mdoknum>3){
+                                            //     pushforeach();
+                                            // }
+                                        },
+                                        onpreviewed : function() {
+                                            
+                                        }
+                                });
+                            }
+                            </script>
+                        </div>
+                                            </div>
+                </div>
+            
+                
+            
+            </div>
+            
+            <div class="hbcontent">
+                            <div class="glarticlebarnr keyindiv" id="glarticlebarnr">
+                                        <div id="glarticlenr0">
+                        <textarea style="display:None;"># 1.初始化使用
+**描述：**下载ZtlManager.jar包，导入到项目工程并初始化单例对象。
+**使用示例：**
+1.导入ZtlManager包
+```java 
+import ZtlApi.ZtlManager;
+```
+
+2.声明并实例化 ZtlManager 对象，注意，在实例化对象时需要传入参数 Context。
+```java
+ZtlManager.GetInstance().setContext(MainActivity.this);
+```
+或
+```java
+ZtlManager.GetInstance().setContext(getApplicationContext());
+```
+
+# 2.系统相关API
+## 2.1.获取jar版本
+**描述：**获取 jar 版本号。
+**用途：**当用户拿到的 jar 版本和厂家公布的 jar 不一致时，建议更新。
+**函数：**
+```java
+public String getJARVersion()
+```
+
+**使用示例：**
+```java
+String JARVersion = ZtlManager.GetInstance().getJARVersion();
+```
+
+## 2.2.获取设备型号
+**描述：**获取 Android 设备型号。
+**用途：**可以通过读取这个 api 适配不同的板子，写不同的功能代码。
+**函数：**
+```java
+public static String getDeviceVersion()
+```
+
+**使用示例：**
+```java
+String DeviceVersion = ZtlManager.GetInstance().getDeviceVersion();
+```
+
+## 2.3.获取系统版本
+**描述：**获取 Android 设备系统版本号。
+**用途：**可以通过读取这个 api 适配不同的操作系统版本，写不同的功能代码。
+**函数：**
+```java
+public static String getAndroidVersion()
+```
+
+**使用示例：**
+```java
+String AndroidVersion = ZtlManager.GetInstance().getAndroidVersion();
+```
+
+## 2.4.获取系统SDK版本
+**描述：**获取 Android 设备系统版本号。
+**用途：**可以通过读取这个 api 适配不同的操作系统版本，写不同的功能代码。
+**函数：**
+```java
+public int getSDKVersion()
+```
+
+**使用示例：**
+```java
+String getSDKVersion = ZtlManager.GetInstance().getSDKVersion();
+```
+
+## 2.5.获取设备唯一ID
+**描述：**获取 Android 设备唯一序列号。
+**用途：**可以通过读取这个 api 获取 Android 设备唯一序列号。
+**函数：**
+```java
+public String getDeviceID()
+```
+
+**使用示例：**
+```java
+String DeviceID = ZtlManager.GetInstance().getDeviceID();
+```
+
+## 2.6.获取内部存储大小
+**描述：**获取内部存储空间总大小，相当于电脑的硬盘空间大小。
+**用途：**可以写一些监听内存的代码，转换 GB 需要将返回的结果/1024/1024/1024。
+**函数：**
+```java
+public long getTotalInternalMemorySize()
+```
+
+**使用示例：**
+```java
+long MemorySize = ZtlManager.GetInstance().getTotalInternalMemorySize();
+```
+
+## 2.7.获取剩余存储大小
+**描述：**获取内部剩余存储空间大小。
+**用途：**可以写一些监听内存的代码，转换 GB 需要将返回的结果/1024/1024/1024。
+**函数：**
+```java
+public long getFreeMemory()
+```
+
+**使用示例：**
+```java\
+long freeMemory = ZtlManager.GetInstance().getFreeMemory();
+```
+
+## 2.8.获取剩余运行内存
+**描述：**获取剩余的运行内存。
+**用途：**可用于监听 app 内存使用情况，用来查看是否有内存泄漏。接口返回的是字节，转换 GB 需要/1024/1024/1024。
+**函数：**
+```java
+public long getFreeMemorySize()
+```
+
+**使用示例：**
+```java
+long FreeMemorySize = ZtlManager.GetInstance().getFreeMemorySize();
+```
+
+## 2.9.获取内部SD卡路径
+**描述：**获取 Android 设备内部 sdcard 路径。
+**用途：**
+**函数：**
+```java
+public String getInternalSDCardPath()
+```
+
+**使用示例：**
+```java
+String sdcardPath = ZtlManager.GetInstance().getInternalSDCardPath();
+```
+
+## 2.10.获取外部SD卡路径
+**描述：**获取 Android 设备外部 sdcard 路径，比如说 TF 卡。
+**用途：**
+**函数：**
+```java
+public String getExternalSDCardPath()
+```
+
+**使用示例：**
+```java
+String externalSDCardPath = ZtlManager.GetInstance().getExternalSDCardPath();
+```
+
+## 2.11.获取插入U盘个数
+**描述：**获取 Android 设备插入U盘个数。
+**用途：**
+**函数：**
+```java
+public int getUSBDiskCount()
+```
+
+**使用示例：**
+```java
+int USBDiskCunt = ZtlManager.GetInstance().getUSBDiskCount();
+```
+
+## 2.12.获取指定索引U盘路径
+**描述：**获取 Android 设备指定索引U盘路径，适用于有多个U盘时使用。
+**参数：**
+
+|参数|参数类型|说明|
+|:--|:--|:--|
+|index|int|指定索引|
+
+**函数：**
+```java
+public String getUSBDisk(int index)
+```
+
+**使用示例：**
+```java
+String USBPath = ZtlManager.GetInstance().getUSBDisk(1);
+```
+
+## 2.13.获取U盘路径
+**描述：**获取 Android 设备 USB 储存器路径。
+**备注：**因为监听系统广播的 media_mounted 返回的路径各个平台都不统一，所以如果想获取精确的U盘路径，推荐使用此接口。当U盘插入一段时间后，才能够返回正确的值。不插入U盘则返回 null。
+**函数：**
+```java
+public String getUsbStoragePath()
+```
+
+**使用示例：**
+```java
+String usbPath = ZtlManager.GetInstance().getUsbStoragePath();
+```
+
+## 2.14.休眠
+**描述：**设置 Android 系统进入休眠状态。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**说明：**使用该接口不需要权限。在休眠状态下需定时执行唤醒语句，否则需要重启机器才能唤醒。
+**注意：**如果需要休眠后，要使当前 activity 继续运行，
+则需添加权限：
+```java
+android:name="android.permission.WAKE_LOCK"
+```
+然后在 activity 里写：
+```java
+getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+```
+
+**函数：**
+```java
+public void sleep()
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().sleep();
+```
+
+## 2.15.唤醒
+**描述：**设置 Android 系统从休眠状态进入唤醒状态。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**函数：**
+```java
+public void awake()
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().awake();
+```
+
+## 2.16.关机
+**描述：**使 Android 系统进入关机状态。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**注意：**<span style="color:#ff4000;">在 OTG 连接到电脑的情况下，会导致关机变重启</span>。
+**函数：**
+```java
+public void shutdown()
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().shutdown();
+```
+
+## 2.17.重启
+**描述：**重启 Android 系统。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数|参数类型|说明|
+|:--|:--|:--|
+|delay|int|传入延迟时间，如不需要延迟，传入0即可|
+**函数：**
+```java
+public void reboot(int delay)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().reboot(10);//10 秒后进入重启
+```
+
+## 2.18.截取当前屏幕
+**描述：**截取当前屏幕并保存到指定路径。
+**用途：**
+**参数：**
+
+|参数|参数类型|说明|
+|:--|:--|:--|
+|path|String|保存截图路径|
+|fileName|String|文件名，后缀名需要为.png|
+**函数：**
+```java
+public void startScreenShot(String path,String fileName)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().startScreenShot("/sdcard/","1.png")//截取当前屏幕保存到/sdcard/1.png
+```
+
+## 2.19.设置系统桌面
+**描述：**设置 Android 系统桌面，需要设置的 APP 必须已存在，否则设置不成功，且不报错。如果需要恢复成默认桌面，参数传入 null 即可。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数|参数类型|说明|
+|:--|:--|:--|
+|pkgage|String|需要设置桌面的APP包名|
+|Activity|String|需要设置桌面的APP类名|
+**函数：**
+```java
+public void setLauncher(String pkgage,String Activity)
+```
+**注意：**设置的程序AndroidManifest.xml需要有以下属性成为桌面程序：
+```java
+<category android:name="android.intent.category.HOME"/>
+<category android:name="android.intent.category.DEFAULT"/>
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setLauncher("com.ztl.test","com.ztl.test.MainActivity")//替换Android系统桌面
+```
+
+## 2.20.设置普通APP为系统桌面
+**描述：**设置 Android 系统桌面，需要设置的 APP 必须已存在，否则设置不成功，且不报错。如果需要恢复成默认桌面，参数传入 null 即可。
+**用途：**
+**参数：**
+
+|参数|参数类型|说明|
+|:--|:--|:--|
+|pkgage|String|需要设置桌面的APP包名|
+**函数：**
+```java
+public void setDesktop(String pkgage)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().setDesktop("com.ztl.test");
+```
+
+## 2.21.获取设置的系统桌面包名
+**描述：**获取设置的系统桌面包名。
+**用途：**
+**函数：**
+```java
+public String getDesktop()
+```
+
+**使用示例：**
+```java
+String desktop = ZtlManager.GetInstance().getDesktop();
+```
+**返回值：**
+
+|参数类型|说明|
+|:--|:--|
+|String|返回设置的系统桌面包名|
+
+## 2.22.判断包名对应的APP是否存在
+**描述：**判断包名对应的 APP 是否存在设备中。
+**用途：**
+**参数：**
+
+|参数|参数类型|说明|
+|:--|:--|:--|
+|pkgName|String|需要判断的APP包名|
+**函数：**
+```java
+public boolean isAppExist(String pkgName)
+```
+
+**使用示例：**
+```java
+boolean isAPPExist = ZtlManager.GetInstance().isAppExist(pkgName);
+```
+**返回值：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true = 存在； false = 不存在|
+
+## 2.23.恢复出厂设置
+**描述：**Android 系统恢复出厂设置。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**函数：**
+```java
+public void resetSystem()
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().resetSystem();
+```
+
+## 2.24.打开设置界面
+**描述：**打开系统设置界面。
+**用途：**
+**函数：**
+```java
+public void startSettings()
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().startSettings();
+```
+
+## 2.25.打开wifi界面
+**描述：**打开系统 Wifi 设置界面。
+**用途：**
+**函数：**
+```java
+public void startWifiSettings()
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().startWifiSettings();
+```
+
+## 2.26.打开或关闭导航栏与状态栏
+**描述：**是否已打开 Android 设备导航栏与状态栏。
+**用途：**
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true(显示)或 false(隐藏)|
+**函数：**
+```java
+public void openSystemBar(boolean bOpen)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().openSystemBar(true);
+```
+
+## 2.27.获取当前导航栏状态
+**描述：**是否已打开 Android 设备导航栏与状态栏。
+**用途：**
+**函数：**
+```java
+public boolean isSystemBarOpen()
+```
+
+**使用示例：**
+```java
+boolean isSystemBarOpen = ZtlManager.GetInstance().isSystemBarOpen();
+```
+**返回值：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true(显示)或 false(隐藏)|
+
+## 2.28.设置USB调试状态
+**描述：**设置 Android 设备 USB 调试状态。
+**说明：**cmd窗口可通过设置节点值实现：adb shell settings put global adb_enabled 0 ；0代表关闭，1代表打开(可用网络adb连接后设置)。
+**官方标准接口：**Settings.Secure.putInt(mContext.getContentResolver(), Settings.Secure.ADB_ENABLED, 0);该接口需要程序设置为系统程序。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：打开USB调试；false：关闭USB调试|
+**函数：**
+```java
+public void openUsbDebug(boolean bOpen)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().openUsbDebug(true);
+```
+
+## 2.29.获取USB调试状态
+**描述：**判断 Android 系统 USB 调试是否已打开。
+**用途：**
+**函数：**
+```java
+public boolean isUsbDebugOpen()
+```
+
+**使用示例：**
+```java
+boolean isUsbDebugOpen = ZtlManager.GetInstance().isUsbDebugOpen();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：USB调试已打开；false：USB调试未打开|
+
+## 2.30.OTG功能开关
+**描述：**设置 Android 设备 OTG 口连接状态。开，电脑才能识别这个设备。关就没有。开的时候可以通过 android studio 或者别的方式看 logcat，方便调试，发布等。但是发布后，推荐关闭。避免第三方 apk 安装或者系统信息被非法读取。如电脑识别不到 USB 连接时，请连续点击设备中的：设置/关于设备/版本号，开启开发者模式，当屏幕下方提示您已处于开发者模式时，返回设置界面，在下方会开启一个开发者选项，进入开发者选项，在调试中开启 USB 调试状态即可。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：连接到PC；false：不连接PC|
+**函数：**
+```java
+public boolean setUSBtoPC(boolean toPC)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().setUSBtoPC(true);
+```
+
+## 2.31.获取OTG口连接状态
+**描述：**获取 Android 设备 OTG 口连接状态。
+**用途：**
+**函数：**
+```java
+public boolean getUSBtoPC()
+```
+**使用示例：**
+```java
+boolean USBconnectPC = ZtlManager.GetInstance().getUSBtoPC();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|OTG口已打开；false：OTG口未打开|
+
+## 2.32.设置生成序列号
+**描述：**设置 Android 设备序列号。这个对应的是 Build.SERIAL。一般用于微信刷脸设置主板序列号用。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|设置Android设备序列号|
+**函数：**
+```java
+public void setBuildSerial(String sn)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().setBuildSerial("ztl-dz-test");
+```
+
+## 2.33.获取生成的序列号
+**描述：**获取 Android 设备生成的序列号。
+**注意：**获取到的序列号不保证唯一，如需唯一设备识别码，请使用CPUID，接口为：getDeviceID()。
+**函数：**
+```java
+public String getBuildSerial()
+```
+
+**使用示例：**
+```java
+String sn = ZtlManager.GetInstance().getBuildSerial();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|Android设备生成的序列号|
+
+## 2.34.判断4G网络故障代码
+**描述：**判断4G网络故障代码，可用于获取到故障代码时，代码添加处理代码。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|Context|传入上下文，如：MainActivity.this等|
+**函数：**
+```java
+public static String get4gStatic(Context context)
+```
+
+**使用示例：**
+```java
+String state = ZtlManager.GetInstance().get4gStatic(this);
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|null：需要更新助手。-101：助手没有可获取这个关键字值。0：4G网络正常。1：没网络，但以注册。-1002：4G的GPIO错误。-2：4G模块断电状态。-3：4G模块上电状态。-4：没有注册，没有搜索到运营商。-5：没有注册，正在搜索或正在注册。-6：拒绝注册。-7：信号错误或没插卡。-8：未知错误。-9：CGREG未知错误。+CGREG 1：启用网络注册未经请求的结果代码。+CGREG 2：启用网络注册和位置信息未经请求的结果代码。|
+
+## 2.35.判断系统是否支持看门狗功能
+**描述：**判断系统是否支持看门狗功能。
+**用途：**
+**函数：**
+```java
+public boolean hasWatchDog()
+```
+
+**使用示例：**
+```java
+boolean isHas = ZtlManager.GetInstace().hasWatchDog();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：支持 false：不支持|
+
+## 2.36.打开看门狗并喂狗
+**描述：**打开看门狗，并且进行喂狗，默认一分钟喂3次狗.
+**用途：**
+**函数：**
+```java
+public boolean openWatchDog()
+```
+
+**使用示例：**
+```java
+boolean isOpen = ZtlManager.GetInstace().openWatchDog();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：打开成功 false：打开失败|
+
+## 2.37.关闭看门狗
+**描述：**关闭看门狗，停止喂狗。
+**用途：**
+**函数：**
+```java
+public boolean closeWatchDog()
+```
+
+**使用示例：**
+```java
+boolean isClose = ZtlManager.GetInstace().closeWatchDog();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：关闭成功 false：关闭失败|
+
+## 2.38.判断看门狗是否正在运行
+**描述：**判断看门狗是否正在运行。
+**用途：**
+**函数：**
+```java
+public boolean isRunWatchDog()
+```
+
+**使用示例：**
+```java
+boolean isRun = ZtlManager.GetInstace().isRunWatchDog();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：看门狗正在运行 false：看门狗未运行|
+
+## 2.39.读取看门狗的值
+**描述：**判断看门狗是否正在运行。
+**用途：**
+**函数：**
+```java
+public String watchDogValue()
+```
+
+**使用示例：**
+```java
+String value = ZtlManager.GetInstace().watchDogValue();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|1:打开看门狗 2：看门狗喂狗 3：关闭看门狗|
+
+## 2.40.设置锁屏
+**描述：**设置安卓系统锁屏密码，设置完成后不会直接锁屏，需要调用lockScreen()接口。需要固件支持。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：启用锁屏 false：不启用|
+|String|设置锁屏密码|
+**函数：**
+```java
+public void lockScreenSettings(boolean bEnable, String password)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstace().lockScreenSettings(true, "123456");
+```
+
+## 2.41.锁屏
+**描述：**使用lockScreenSettings()接口设置密码后，调用此接口即可设置锁屏，需要固件支持。
+**用途：**
+**函数：**
+```java
+public void lockScreen()
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstace().lockScreen();
+```
+
+## 2.42.执行cmd命令并获取返回值
+**描述：**执行cmd命令并获取命令返回值。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|需要执行的命令|
+**函数：**
+```java
+public static String execRootCmd(String cmd)
+```
+
+**使用示例：**
+```java
+String strCmd = ZtlManager.GetInstace().execRootCmd("pm path com.ztl.test");
+```
+
+## 2.43.执行命令行
+**描述：**su执行命令行，如su失效，则执行testsu。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|需要执行的命令|
+**函数：**
+```java
+public int execRootCmdSilent(String cmd)
+```
+
+**使用示例：**
+```java
+int result = ZtlManager.GetInstace().execRootCmdSilent("reboot");
+```
+
+## 2.44.设置开机自启动
+**描述：**设置 Android 系统开机自启动 APP 包名和 类名。
+**用途：**如果嫌广播自启动麻烦，则可调用此接口。此 api 只支持一个 app。多次设置，只有最后一次设置有效。但这个接口和广播自启动一样，需要程序启动一次。
+
+如果是生产环境中需要大批量多机器部署，则不现实。此时，可通过厂家发布固件内置 app，并将该 app 自启动。弊端：修改 build.prop 内置成系统应用(system/app 目录下)无法通过正常安装更新版本。
+**build.prop修改方法：**
+```java
+persist.sys.bootPkgName=com.ztl.test(填入需要自启动的包名)
+persist.sys.bootPkgActivity=com.ztl.test.MainActivity(填入需要自启动的类名)
+```
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|APP包名|
+|String|APP类名|
+**函数：**
+```java
+public void setBootPackageActivity(String pkgName,String pkgActivity)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().setBootPackageActivity("com.android.settings","com.android.settings.Settings");
+```
+
+## 2.45.获取设置的开机自启动APP的包名
+**描述：**获取 Android 设备开机自启动的 APP 包名。
+**函数：**
+```java
+public String getBootPackageName()
+```
+
+**使用示例：**
+```java
+String pkgName = ZtlManager.GetInstance().getBootPackageName();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|自启动APP包名|
+
+## 2.46.获取设置的开机自启动APP的类名
+**描述：**获取 Android 设备开机自启动的 APP 中的类名。
+**函数：**
+```java
+public String getBootPackageActivity()
+```
+
+**使用示例：**
+```java
+String pkgActivity = ZtlManager.GetInstance().getBootPackageActivity();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|自启动APP类名|
+
+## 2.47.启动另一个APP
+**描述：**启动另一个 APP，标准做法的一种封装，更易于使用。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|要启动的APP包名|
+|String|要启动的APP类名|
+**函数：**
+```java
+public void startActivity(String pkgName,String pkgActivity)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().startActivity("com.android.settings","com.android.settings.Settings")
+```
+
+## 2.48.静默安装APK
+**描述：**静默安装指定路径的 APK 文件。
+**备注：**仅限于有 root 权限的固件使用。比如微信刷脸就不适用。没有 root 权限的用户可以调用如下接口完成此功能：InstallApp()、installAppAndStartUp()、installAppSilentAndRebootSystem()。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|APK文件路径|
+**函数：**
+```java
+public void installAppSilent(String filePath)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().installAppSilent("/sdcard/test.apk");
+```
+
+## 2.49.无需root权限静默安装APK
+**描述：**静默安装指定路径的 APK 文件。
+**备注：**此接口无需系统权限，但需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|APK文件路径|
+**函数：**
+```java
+public void installApp(String filePath)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().installApp("/sdcard/test.apk");
+```
+
+## 2.50.卸载APP
+**描述：**卸载指定包名的 APP。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|指定APP包名|
+**函数：**
+```java
+public void uninstallAppSilent(String packageName)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().uninstallAppSilent("com.dc.test");
+```
+
+## 2.51.静默安装APK并且重启系统
+**描述：**静默安装 APK 并且重启 Android 系统。如果是广播自启动的程序， 有 可 能 会 重 启 后 无 法 正 常 启 动 。 所 以 除 非 必 须 重 启 系 统 ， 否 则 推 荐 使 用 installAppAndStartUp()。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|APK所在路径|
+|int|安装成功后延迟多少秒后重启系统|
+**函数：**
+```java
+public void installAppSilentAndRebootSystem(String filePath,int reboot_in_sec)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().installAppSilentAndRebootSystem("/sdcard/test.apk", "10");
+```
+
+## 2.52.安装APP并启动安装的APP
+**描述：**安装 APK，并且在安装完成后启动所安装的 APP。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|APK所在路径|
+|String|要启动的APP包名|
+**函数：**
+```java
+public void installAppAndStartUp(String filePath,String pkgName)
+```
+
+**使用示例：**
+```java
+long MemorySize = ZtlManager.GetInstance().getTotalInternalMemorySize();
+```
+
+## 2.53.守护进程1
+**描述：**保持APP置顶状态。在程序被切换到后台或关闭时，自动返回或启动该 app。保持该 app 在前端。用于售货机 ATM 广告机 等必须保活的应用。当需要打开系统设置界面或运行其他 app 暂时进行其他设置时，请先调用取消接口。否则会一直保持 app 置顶导致无法操作。
+**备注：**需要验证系统是否支持；验证方法：adb shell pm path com.ztl.appservice。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|需要保持置顶的APP|
+**函数：**
+```java
+public void keepActivity(String pkgName)
+```
+
+**使用示例：**
+```java
+ZtlManager.GetInstance().keepActivity("com.dc.test");
+```
+
+## 2.54.守护进程2
+**描述：**保持APP置顶状态。在程序被切换到后台或关闭时，自动返回或启动该 app。保持该 app 在前端。用于售货机 ATM 广告机 等必须保活的应用。当需要打开系统设置界面或运行其他 app 暂时进行其他设置时，请先调用取消接口。否则会一直保持 app 置顶导致无法操作。
+**备注：**需要验证系统是否支持；验证方法：adb shell pm path com.ztl.appservice。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|需要保持置顶的APP|
+|int|保活时间，最低为2，如设置为2，会在守护程序退出后2s后进行拉起|
+**函数：**
+```java
+public void keepActivity(String pkgName, int sec)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().keepActivity("com.dc.test", 2);
+```
+## 2.55.取消守护进程
+**描述：**取消守护进程，取消置顶状态。
+**备注：**需要验证系统是否支持；验证方法：adb shell pm path com.ztl.appservice。
+**函数：**
+```java
+public void unKeepActivity()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().unKeepActivity();
+```
+## 2.56.保活某个服务1
+**描述：**保活某个服务，不被系统回收。
+**备注：**需要验证系统是否支持；验证方法：adb shell pm path com.ztl.appservice。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|保活服务的APP包名|
+|String|需要保活的服务|
+**函数：**
+```java
+public void keepService(String packageName, String service)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().keepService("com.dc.test", "com.dc.test.testService");
+```
+## 2.57.保活某个服务2
+**描述：**保活某个服务，不被系统回收。
+**备注：**需要验证系统是否支持；验证方法：adb shell pm path com.ztl.appservice。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|保活服务的APP包名|
+|String|需要保活的服务|
+|int|设置保活时间，最低为2s|
+**函数：**
+`public void keepService(String packageName, String service, int sec)`
+
+**使用示例：**
+`ZtlManager.GetInstance().keepService("com.dc.test", "com.dc.test.testService", 2);`
+
+## 2.58.取消保活某个服务
+**描述：**取消保活某个服务，此操作并不会杀死这个服务。
+**备注：**需要验证系统是否支持；验证方法：adb shell pm path com.ztl.appservice。
+**函数：**
+```java
+public void unKeepService()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().unKeepService();
+```
+## 2.59.APP使用硬件看门狗
+**描述：**APP使用硬件看门狗，自动禁止系统喂狗。
+**备注：**
+<span style="color:#ff6600;">1.硬件要支持
+2.系统要支持（设置-其他设置 版本号大于等于 20211029）
+3.系统开机默认是系统自动喂狗
+4.调用此接口，系统自动停止喂狗，由用户自己喂狗，不继续喂狗，系统会自动重启（200秒左右，具体时间按实际为准）
+5.调此接口就是喂狗一次，需要重复调用，建议20秒喂一次
+6.要把板子的跳线帽拔掉，才启用看门狗，不拔，看门狗无效，不会重启系统</span>
+**说明：**调用此接口后，继续调用feedHardwareWatchDog();即可进行app喂狗
+**函数：**
+```java
+public void WatchDog()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().WatchDog();
+```
+# 3.时间相关API
+## 3.1.获取系统日期
+**描述：**获取 Android 设备系统日期。
+**函数：**
+```java
+public String getSystemDate()
+```
+**使用示例：**
+```java
+String systemDate = ZtlManager.GetInstance().getSystemDate();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|Android系统日期，格式为 yyyy/MM/dd|
+
+## 3.2.获取系统时间
+**描述：**获取 Android 设备系统时间。
+**函数：**
+```java
+public String getSystemTime()
+```
+**使用示例：**
+```java
+String systemTime = ZtlManager.GetInstance().getSystemTime();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|Android系统时间，格式为HH:MM:ss|
+
+## 3.3.立刻同步网络时间
+**描述：**获取 Android 设备系统日期。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**用途：**一般来说，系统联网的情况下，时间都会同步。但如果应用程序对时间精度有更高要 求，可以通过此接口强行同步时间。
+**函数：**
+```java
+public void syncNetworkTime()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().syncNetworkTime();
+```
+## 3.4.设置同步时间的间隔
+**描述：**设置同步网络时间间隔。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|同步时间周期，分钟制|
+**函数：**
+```java
+public void syncNetworkTimePeroid(int peroidInMinute)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().syncNetworkTimePeroid(10);
+```
+## 3.5.设置系统日期与时间1
+**描述：**设置 Android 设备系统日期与时间。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|Calendar|传入需要设置的时间|
+**函数：**
+```java
+public void setSystemTime(Calendar cal)
+```
+**使用示例：**
+```java
+Calendar cal = Calendar.getInstance();
+cal.set(2020,10,10,10,10);`
+ZtlManager.GetInstance().setSystemTime(cal);
+```
+
+## 3.6.设置系统日期与时间2
+**描述：**设置 Android 设备系统日期与时间。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|long |传入需要设置的时间即可(毫秒)|
+**函数：**
+```java
+public void setSystemTime(long timeinmili)
+```
+**使用示例：**
+```java
+long setTime = 1602295800000;
+ZtlManager.GetInstance().setSystemTime(setTime);
+```
+
+## 3.7.判断系统的时区是否为自动获取
+**描述：**判断 Android 系统的时区是否为自动获取。
+**用途：**可以写一些监听内存的代码，转换 GB 需要将返回的结果/1024/1024/1024。
+**函数：**
+```java
+public boolean isAutoTimezone()
+```
+**使用示例：**
+```java
+boolean isAutoTimezone = ZtlManager.GetInstance().isAutoTimezone();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean |true：自动获取；false：手动设置|
+
+## 3.8.设置系统时区开关
+**描述：**设置 Android 系统的自动选择时区开关。
+**备注：**需要程序成为系统程序或申请相关权限：
+```java
+android:sharedUserId="android.uid.system"
+android:name="android.permission.WRITE_SETTINGS"
+android:name="android.permission.WRITE_SECURE_SETTINGS"
+android:name="android.permission.SET_TIME_ZONE"
+```
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean |true：自动获取；false：手动设置|
+**函数：**
+```java
+public void setAutoTimezone(boolean bAuto)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setAutoTimezone(true);
+```
+## 3.9.判断系统的时间是否自动获取
+**描述：**判断 Android 系统的时间是否为自动获取。
+**函数：**
+```java
+public boolean isAutoDateTime()
+```
+**使用示例：**
+```java
+boolean autoDateTime = ZtlManager.GetInstance().isAutoDateTime();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean |true：自动获取；false：手动设置|
+
+## 3.10.设置系统的自动确定日期与时间开关
+**描述：**设置Android系统的自动确定日期与时间的开关。
+**备注：**需要程序成为系统程序或申请相关权限
+```java
+android:sharedUserId="android.uid.system"
+android:name="android.permission.WRITE_SETTINGS"
+android:name="android.permission.WRITE_SECURE_SETTINGS"
+android:name="android.permission.SET_TIME_ZONE"
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean |true：自动获取；false：手动设置|
+**函数：**
+```java
+public void setAutoDateTime(boolean bAuto)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setAutoDateTime(true);
+```
+## 3.11.定时关机
+**描述：**设置 Android 系统定时关机，有效期为每天。
+**备注：**使能或者关闭定时开关机功能，直接设置第三个参数为true(使能)/false(关闭)---该接口已废弃，推荐使用新接口：setPoweroffEveryday()；参数不变。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |时(0 <= hour < 24)|
+|int |分(0 <= minute < 60)|
+|boolean |true(使能)/false(关闭)|
+**函数：**
+```java
+public void setSchedulePowerOff(int hour, int minute, boolean enableSchedulPowerOff)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setSchedulePowerOff(12,10,true);
+```
+## 3.12.定时开机
+**描述：**设置 Android 系统定时开机，有效期为每天。
+**备注：**使能或者关闭定时开关机功能，直接设置第三个参数为true(使能)/false(关闭)---该接口已废弃，推荐使用新接口：setPoweroffEveryday()；参数不变。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |时(0 <= hour < 24)|
+|int |分(0 <= minute < 60)|
+|boolean |true(使能)/false(关闭)|
+**函数：**
+```java
+public void setSchedulePowerOn(int hour, int minute, boolean enableSchedulPowerOn)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setSchedulePowerOn(12,11,true);
+```
+## 3.13.设置系统指定某天定时关机
+**描述：**设置 Android 系统定时关机，有效期为一次性。
+**备注：**该接口已废弃，推荐使用新接口：setPoweroffOnce()；参数不变。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |年|
+|int |月|
+|int |日|
+|int |时(0 <= hour  < 24)|
+|int |分(0 <= minute < 60)|
+|boolean |true(使能)/false(关闭)|
+**函数：**
+```java
+public void setPowerOffAlarm(int year, int month, int day, int hour, int minute, boolean enableSchedulPowerOff)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setPowerOffAlarm(2020,7,12,12,12,true);
+```
+## 3.14.设置系统指定某天定时开机
+**描述：**设置 Android 系统定时开机，有效期为一次性。
+**备注：**该接口已废弃，推荐使用新接口：setPoweronOnce()；参数不变。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |年|
+|int |月|
+|int |日|
+|int |时(0 <= hour  < 24)|
+|int |分(0 <= minute < 60)|
+|boolean |true(使能)/false(关闭)|
+**函数：**
+```java
+public void setPowerOnAlarm(int year, int month, int day, int hour, int minute, boolean enableSchedulPowerOn)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setPowerOnAlarm(2020, 7, 12, 12, 13, true);
+```
+## 3.15.自定义周期定时关机
+**描述：**设置 Android 系统自定义定时关机。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |时(0 <= hour < 24)|
+|int |分(0 <= minute < 60)|
+|int |周期，计算周期方式：计算器-程序员-按位计算，一周为七天，第一位为周日(数值为1)，第二位为周一(数值为2)，第三位为周二(数值为4)，第四位为周三(数值为8)，第五位为周四(数值为16)，第六位为周五(数值为32)，第七位为周六(数值为64)，可按照数值相加，来定制自定义周期定时关机，可填入0(代表执行一次)，填入127(代表每天)|
+|boolean |true(使能)/false(关闭)|
+**函数：**
+```java
+public void setPoweroffCustom(int hour, int minute, int weekDays, boolean bEnable)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setPoweroffCustom(12, 10, 62, true);
+```
+## 3.16.自定义周期定时开机
+**描述：**设置 Android 系统自定义定时开机。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |时(0 <= hour < 24)|
+|int |分(0 <= minute < 60)|
+|int |周期，计算周期方式：计算器-程序员-按位计算，一周为七天，第一位为周日(数值为1)，第二位为周一(数值为2)，第三位为周二(数值为4)，第四位为周三(数值为8)，第五位为周四(数值为16)，第六位为周五(数值为32)，第七位为周六(数值为64)，可按照数值相加，来定制自定义周期定时关机，可填入0(代表执行一次)，填入127(代表每天)|
+|boolean |true(使能)/false(关闭)|
+**函数：**
+```java
+public void setPoweronCustom(int hour, int minute, int weekDays, boolean bEnable)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setPoweronCustom(12, 11, 62, true);
+```
+
+## 3.17.定时重启
+**描述：**设置 Android 系统定时重启，可自选周期。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |时(0 <= hour < 24)|
+|int |分(0 <= minute < 60)|
+|int |周期，计算周期方式：计算器-程序员-按位计算，一周为七天，第一位为周日(数值为1)，第二位为周一(数值为2)，第三位为周二(数值为4)，第四位为周三(数值为8)，第五位为周四(数值为16)，第六位为周五(数值为32)，第七位为周六(数值为64)，可按照数值相加，来定制自定义周期定时关机，可填入0(代表执行一次)，填入127(代表每天)|
+|boolean |true(使能)/false(关闭)|
+**函数：**
+```java
+public void timingReboot(int hour, int minute, int week, boolean enable)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().timingReboot(12, 0, 62, true);
+```
+## 3.18.设置系统指定某天定时重启
+**描述：**设置 Android 系统定时重启，执行一次。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |年|
+|int |月|
+|int |日|
+|int |时|
+|int |分|
+|boolean |true(使能)/false(关闭)|
+**函数：**
+```java
+public void timingRebootAlarm(int year, int month, int day, int hour, int minute, boolean enable)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().timingRebootAlarm(2021, 5, 1, 12, 0, true);
+```
+
+## 3.19.设置时区
+**描述：**手动设置时区，需要填地址例如：Asia/Shanghai。
+**备注：** 需要助手版本20250829后
+**参数：** 时区地址
+**函数：**
+```java
+public void setTimeZone(String timeZone)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setTimeZone("Asia/Shanghai");
+```
+
+
+# 4.显示相关API
+## 4.1.获取屏幕分辨率
+**描述：**获取 Android 系统的屏幕分辨率。
+**函数：**
+```java
+public String getDisplayMode()
+```
+**使用示例：**
+```java
+String displayMode = ZtlManager.GetInstance().getDisplayMode();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String |获取Android设备的屏幕分辨率|
+
+## 4.2.获取屏幕分辨率Y轴像素
+**描述：**获取 Android 设备显示分辨率 Y 轴像素。
+**函数：**
+```java
+public int getDisplayHeight()`
+```
+**使用示例：**
+```java
+int screenHeight = ZtlManager.GetInstance().getDisplayHeight()
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int |Android设备的分辨率Y轴像素|
+
+## 4.3.获取屏幕分辨率X轴像素
+**描述：**获取 Android 设备显示分辨率 X 轴像素。
+**函数：**
+```java
+public int getDisplayWidth()
+```
+**使用示例：**
+```java
+int screenWidth = ZtlManager.GetInstance().getDisplayWidth();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int |Android设备的分辨率X轴像素|
+
+## 4.4.获取屏幕显示密度
+**描述：**获取 Android 设备屏幕显示密度(dpi)。
+**函数：**
+```java
+public int getDisplayDensity()
+```
+**使用示例：**
+```java
+int screenDpi = ZtlManager.GetInstance().getDisplayDensity();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int |Android设备显示密度|
+
+## 4.5.设置屏幕显示密度
+**描述：**设置 Android 设备屏幕显示密度(dpi)。
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int |dpis：支持120；160；240；320；或其他自定义值|
+**函数：**
+```java
+public void setDisplayDensity(int dips)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setDisplayDensity(120);
+```
+## 4.6.是否设置背光反向
+**描述：**设置背光是否反向。
+**备注：**如果出现背光反向问题(即为调整亮度，调整越亮实际变暗，或者调整亮度越暗实际 变亮)，可使用该接口来调整背光问题。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean |true:调整背光为反向；false：不调整|
+**函数：**
+```java
+public void reverseBrighness(boolean true_or_false)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().reverseBrighness(true);
+```
+## 4.7.获取背光是否已反向
+**描述：**获取 Android 设备背光是否已方向。
+**函数：**
+```java
+public boolean isReverseBrighness()
+```
+**使用示例：**
+```java
+boolean isReverse = ZtlManager.GetInstance().isReverseBrighness();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean |true:已反向；false：未反向|
+## 4.8.获取当前亮度
+**描述：**获取 Android 设备系统当前亮度。
+**函数：**
+```java
+public int getSystemBrightness()
+```
+**使用示例：**
+```java
+int systemBri = ZtlManager.GetInstance().getSystemBrightness();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int |Android系统亮度|
+## 4.9.获取最大亮度值
+**描述：**获取 Android 设备系统最大亮度值。
+**函数：**
+```java
+public int getSystemMaxBrightness()
+```
+**使用示例：**
+```java
+int maxBrightness = ZtlManager.GetInstance().getSystemMaxBrightness();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int |Android系统最大亮度值|
+
+## 4.10.增大亮度值
+**描述：**设置系统亮度+1。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**函数：**
+```java
+public void increaseBrightness()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().increaseBrightness();
+```
+## 4.11.降低亮度值
+**描述：**设置系统亮度-1。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**函数：**
+```java
+public void decreaseBrightness()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().decreaseBrightness();
+```
+## 4.12.设置系统亮度
+**描述：**设置系统亮度。
+**备注：**HDMI 和 VGA 暂不支持调整，需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |亮度值：0-255|
+**函数：**
+```java
+public void setBrightness(int brightness)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setBrightness(200);
+```
+## 4.13.设置屏幕方向
+**描述：**设置 Android 系统显示方向。
+**备注：**一般用于固件默认方向和实际屏幕不一致时使用。当 app 需要适应屏幕方向时，推荐 app 做处理而不是旋转整个系统。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |0：0度；90：90度(默认角度旋转90度)；180：180度(默认角度旋转180度)；270：270度(默认角度旋转270度)|
+
+**函数：**
+```java
+public void setDisplayOrientation(int rotation)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setDisplayOrientation(90);
+```
+## 4.14.设置副屏方向
+**描述：**设置 Android 系统副屏显示方向。
+**备注：**一般用于固件默认方向和实际屏幕不一致时使用。当 app 需要适应屏幕方向时，推荐 app 做处理而不是旋转整个系统。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int |0：0度；90：90度(默认角度旋转90度)；180：180度(默认角度旋转180度)；270：270度(默认角度旋转270度)|
+**函数：**
+```java
+public void setExtendDisplayOrientation(int rotation)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setExtendDisplayOrientation(90)
+```
+## 4.15.设置多屏幕方向
+**描述：**设置 Android 系统多屏幕方向。
+**备注：**一般用于固件默认方向和实际屏幕不一致时使用。当 app 需要适应屏幕方向时，推荐 app 做处理而不是旋转整个系统。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|要设置的屏幕：0：主屏；1：副屏1；2：副屏2...以此类推，-1为同时显示|
+|int |0：0度；90：90度(默认角度旋转90度)；180：180度(默认角度旋转180度)；270：270度(默认角度旋转270度)|
+**函数：**
+```java
+public int setDisplayOrientation(int screen, int rotation)
+```
+**使用示例：**
+```java
+int value = ZtlManager.GetInstance().setDisplayOrientation(-1, 90);
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|-1：不支持；0：设置成功|
+
+## 4.16.获取屏幕方向1
+**描述：**获取 Android 系统屏幕显示方向。
+**用途：**可以写一些监听内存的代码，转换 GB 需要将返回的结果/1024/1024/1024。
+**函数：**
+```java
+public int getDisplayOrientation()
+```
+**使用示例：**
+```java
+int rotation = ZtlManager.GetInstance().getDisplayOrientation();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|0：当前屏幕方向为0度；90：当前屏幕方向为90度；180：当前屏幕方向为180度；270：当前屏幕方向为270度|
+
+## 4.17.获取屏幕方向2
+**描述：**获取 Android 系统指定屏幕显示方向。
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|-1：不支持此功能；0：当前屏幕方向为0度；90：当前屏幕方向为90度；180：当前屏幕方向为180度；270：当前屏幕方向为270度|
+**函数：**
+```java
+public int getDisplayOrientation(int screen)
+```
+**使用示例：**
+```java
+int rotation = ZtlManager.GetInstance().getDisplayOrientation(0);
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|0：获取主屏方向；1：获取副屏1屏幕方向；2：获取副屏2屏幕方向|
+
+## 4.18.设置触摸方向
+**描述：**设置 Android 系统触摸方向(重启生效)。
+**备注：**仅限于触摸屏上下左右同时互反的时候设置起作用。如设置完仍不起作用，请联系厂 家技术支持。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|0：触摸方向顺时针旋转0度；90：触摸方向顺时针旋转90度；180：触摸方向顺时针旋转180度；270：触摸方向顺时针旋转270度|
+|boolean|true：执行重启；false：不执行重启|
+**函数：**
+```java
+public void setTouchOrientation(int orientation, boolean rebootnow)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setTouchOrientation(90,true);
+```
+
+## 4.19.获取触摸方向
+**描述：**获取 Android 设备触摸方向。
+**函数：**
+```java
+public int getTouchOrientation()
+```
+**使用示例：**
+```java
+int TpOrientation = ZtlManager.GetInstance().getTouchOrientation();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|0：当前触摸方向为0度；90：当前触摸方向为90度；180：当前触摸方向为180度；270当前触摸方向为270度|
+
+## 4.20.获取支持的分辨率列表
+**描述：**获取 Android 支持的分辨率列表。
+**注意：**3288-5.1 与 3288-7.1 此接口返回 null，暂不支持获取分辨率列表，如果其他版型获取到的分辨率列表为空，请检查 HDMI 连接是否正常。
+**函数：**
+```java
+public String[] getScreenModes()
+```
+**使用示例：**
+```java
+String modes[] = ZtlManager.GetInstance().getScreenModes()
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|Array|屏幕支持的分辨率列表|
+
+## 4.21.设置分辨率
+**描述：**设置 Android 系统输出分辨率，系统将进入重启。(重启生效)。
+**说明：**此接口适用于 lvds，替换屏参的一种方式。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|需要设置的分辨率，具体参考系统支持的分辨率|
+**函数：**
+```java
+public void setScreenMode(String mode)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setScreenMode("1920x1080@60p");
+```
+
+## 4.22.设置桌面壁纸
+**描述：**设置Android系统桌面壁纸，需要固件支持。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|壁纸所在路径，如"/sdcard/1.png"|
+**函数：**
+```java
+public void setWallpaper(String filePath)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstace().setWallpaper("/sdcard/1.png");
+```
+## 4.23.设置字体大小
+**描述：**设置Android系统字体大小。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|1：较小; 2：正常; 3：较大; 4：最大|
+**函数：**
+```java
+public void setFontSize(int index)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstace().setFontSize(4);
+```
+
+## 4.24.获取固件所支持的屏幕个数
+**描述：**获取固件所支持的屏幕个数。
+**用途：**可以写一些监听内存的代码，转换 GB 需要将返回的结果/1024/1024/1024。
+**函数：**
+```java
+public int getDisplayCount()
+```
+**使用示例：**
+```java
+int count = ZtlManager.GetInstace().getDisplayCount();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|获取支持显示屏幕个数|
+
+# 5.网络相关API
+## 5.1.获取MAC地址
+**描述：**获取 Android 系统 MAC 地址。这里获取的是 eth0 节点的 mac。
+**函数：**
+```java
+public String getMacAddress()
+```
+**使用示例：**
+```java
+String MacAddress = ZtlManager.GetInstance().getMacAddress();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|Android设备MAC地址|
+
+## 5.2.获取IPv4地址
+**描述：**获取 Android 系统 IPv4 地址。
+**备注：**需要申请权限：
+```java
+android:name="android.permission.ACCESS_NETWORK_STATE"
+```
+**函数：**
+```java
+public String getLocalIpAddress()
+```
+**使用示例：**
+```java
+String IPv4Address = ZtlManager.GetInstance().getLocalIpAddress();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|Android设备APv4地址|
+
+## 5.3.获取当前连接的网络类型
+**描述：**获取 Android 系统当前连接的网络类型。
+**备注：**一般用于检测 wifi 和以太网同时连接时判断连接的是哪个网络。需要申请权限：
+```java
+android:name="android.permission.ACCESS_NETWORK_STATE"
+```
+**函数：**
+```java
+public int getNetWorkType()
+```
+**使用示例：**
+```java
+int netWorkType = ZtlManager.GetInstance().getNetWorkType();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|-1：未知网络；0：以太网；1：wifi；2：2g；3：3g；4：4g；5：5g|
+
+## 5.4.指定wifi掉线重连
+**描述：**连接指定 wifi 断线重连。由于 wifi 信号强度差或所连的 wifi 网络不可达等原因， 系统有时不会重连到指定网络。启用这个功能后，系统会保持连接到指定 wifi。请确保所 用的 wifi 在信号范围内，且能正常连接。如果启用该功能后，锁定的 wifi 不在信号范围内， 可以正常连接其他 wifi。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|WiFi名称|
+|String|WiFi密码|
+**函数：**
+```java
+public void keepWifiConnect(String SSID, String password)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().keepWifiConnect("ZTLDZ","12345678");
+```
+
+## 5.5.指定wifi停止掉线重连
+**描述：**将 keepWifiConnect 配置的 wifi 不自动重连。此功能不会导致当前的 wifi 断开或关闭。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**函数：**
+```java
+public void stopKeepWifiConnect()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().stopKeepWifiConnect();
+```
+
+## 5.6.禁用或启用网络ADB
+**描述：**启用：在没有 OTG 线的情况下，可启用网络 adb 连接网线进行调试。禁用：可保护主板信息不外泄。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolea|true：启用网络adb调试；false：不启用网络adb调试|
+**函数：**
+```java
+public void setNetAdb(boolea bEnable)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setNetAdb(true);
+```
+
+## 5.7.打开热点
+**描述：**设置 Android 设备打开热点。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**说明：**API 设置的热点名称如果小于6位，会自动在后面添加6位MAC地址，如果热点名称大于6位，不会自动加任何东西。
+可通过固件修改工具修改 build.prop 来设置开机启动热点功能，用法如下： persist.ztl.openap=ZTL/123456789 就会生成 ZTL-MAC(后三位)的热点，密码 123456789
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|热点名称|
+|String|热点密码|
+**函数：**
+```java
+public void openAp(String ssid, String psw)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().openAp("Ztl-test","123456789");
+```
+
+## 5.8.关闭热点
+**描述：**关闭已打开的 Android 设备热点。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**函数：**
+```java
+public void closeAp()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().closeAp();
+```
+
+## 5.9.获取指定网络的IPv4地址
+**描述：**获取 Android 设备指定网络的 IPv4 地址。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|ech0：以太网；wlan0：wifi；ppp0：电话卡|
+**函数：**
+```java
+public String getIPv4(String nettype)
+```
+**使用示例：**
+```java
+String getIPv4address = ZtlManager.GetInstance().getIPv4("wlan0");
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|获取到的IPv4地址|
+
+## 5.10.设置以太网配置信息
+**描述：**设置 Android 设备以太网模式与配置信息，如以太网 ip 地址等。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**说明：**如果需要设置静态获取，第一个参数传入true，其他参数按类型传入即可。如果需要设置动态获取，第一个参数传入false，其他参数传入null即可
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：静态地址；false：动态获取|
+|String|需要设置的IP地址|
+|String|需要设置的子网掩码|
+|String|需要设置的网关|
+|String|需要设置的dns1|
+|String|需要设置的dns2|
+**函数：**
+```java
+public void setEthIP(boolean bStatic, String ip, String mask, String gate， String dns, String dns2)
+```
+**动态使用示例：**
+```java
+ZtlManager.GetInstance().setEthIP(false, null, null,null, null, null);
+```
+**静态使用示例：**
+```java
+ZtlManager.GetInstance().setEthIP(true, "192.168.101.112", "255.255.255.0", "192.168.101.5", "192.168.101.1", "192.168.101.2");
+```
+
+## 5.11.设置以太网配置信息多网卡设置
+**描述：**设置 Android 设备以太网模式与配置信息，如以太网 ip 地址等。
+**备注：**需系统固件支持。（设置，其他设置，检测更新，版本大于等20220121）。
+**说明：**如果需要设置静态获取，第一个参数传入true和第二个参数网卡名称，其他参数按类型传入即可。如果需要设置动态获取，第一个参数传入false和第二个参数网卡名称，其他参数传入null即可
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：静态地址；false：动态获取|
+|String|网卡名称|
+|String|需要设置的IP地址|
+|String|需要设置的子网掩码|
+|String|需要设置的网关|
+|String|需要设置的dns1|
+|String|需要设置的dns2|
+**函数：**
+```java
+public void setEthIP(boolean bStatic,String name, String ip, String mask, String gate， String dns, String dns2)
+```
+**动态使用示例：**
+```java
+ZtlManager.GetInstance().setEthIP(false,"eth0", null, null, null, null, null);
+```
+**静态使用示例：**
+```java
+ZtlManager.GetInstance().setEthIP(true,"eth0", "192.168.101.112", "255.255.255.0", "192.168.101.5", "192.168.101.1", "192.168.101.2");
+```
+
+## 5.12.设置WIFI配置信息
+**描述：**设置 Android 设备 wifi 配置信息，如：ip 地址等。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**说明：**如果未连接 wifi，第一个第二个参数传入 wifi 名称和密码会自动连接该 wifi。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|wifi名称|
+|String|wifi密码|
+|boolean|true：静态地址；false：动态获取|
+|String|需要设置的IP地址|
+|String|需要设置的子网掩码|
+|String|需要设置的网关|
+|String|需要设置的dns1|
+|String|需要设置的dns2|
+**函数：**
+```java
+public void setWifiIP(String ssid, String psw, boolean bStatic, String ip, String mask, String gate, String dns, String dns2)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setWifiIP("ztldz","12345678", true, "192.168.101.111", "255.255.255.0", "192.168.101.5", "192.168.101.1", "192.168.101.2");
+```
+
+## 5.13.设置WIFI热点
+**描述：**设置 Android 设备 wifi 热点配置信息。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|热点名称|
+|String|热点密码|
+|String|频段设置，如149；153；157；161；165|
+|String|设置WiFi频段，如：0：2.4G 。 1：5G|
+|boolean|打开热点；false：关闭热点|
+**函数：**
+```java
+public void setWifiApConfig(String SSID, String Password, int channel, int WifiMode, boolean enable)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setWifiApConfig("ztldz","12345678", 157, 1, true);
+```
+
+## 5.14.启用或禁用4G模块断线自动重连
+**描述：**启用或禁用 4G 模块断线自动重连。
+**备注：**需系统固件支持。 验证方法见文末附注。一般用于没有 4G 模块掉线自动重连的固件。批量生产请在 build.prop 中添加：persist.ztl.4greset=0/1。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：使能4G模块掉线重连；false：不使能4G模块掉线重连|
+**函数：**
+```java
+public void enable4GReset(boolean bEnable)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().enable4GReset(true);
+```
+
+## 5.15.获取4G模块IMEI信息
+**描述：**获取 Android 系统 4G 模块的国际移动用户识别码(IMEI)。
+**备注：**需要 app 申请权限：android.permission.READ_PHONE_STATE。
+**函数：**
+```java
+public String getImei()
+```
+**使用示例：**
+```java
+String getImei = ZtlManager.GetInstance().getImei();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|4G模块IMEI信息|
+
+## 5.16.获取SIM卡TEL信息
+**描述：**获取 Android 系统 SIM 卡的号码信息。
+**备注：**需要 app 申请权限：android.permission.READ_PHONE_STATE。
+**函数：**
+```java
+public String getSimTel()
+```
+**使用示例：**
+```java
+String simtel = ZtlManager.GetInstance().getSimTel();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|SIM 卡的号码信息|
+
+## 5.17.获取SIM卡ICCID信息
+**描述：**获取 Android 系统 SIM 卡的 Iccid 信息。
+**备注：**需要 app 申请权限：android.permission.READ_PHONE_STATE。
+**函数：**
+```java
+public String getSimIccid()
+```
+**使用示例：**
+```java
+String simIccid = ZtlManager.GetInstance().getSimIccid();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|SIM 卡的 ICCID 信息|
+
+## 5.18.获取SIM卡IMSI信息
+**描述：**获取 Android 系统 SIM 卡的国际移动用户识别码(IMSI)。
+**备注：**需要 app 申请权限：android.permission.READ_PHONE_STATE。
+**函数：**
+```java
+public String getSimImsi()
+```
+**使用示例：**
+```java
+String simIMSI = ZtlManager.GetInstance().getSimImsi();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|SIM 卡的 IMSI 信息|
+
+## 5.19.获取SIM卡运营商信息
+**描述：**获取 Android 系统 SIM 卡的运营商信息。
+**备注：**需要 app 申请权限：android.permission.READ_PHONE_STATE。
+**函数：**
+```java
+public String getSimOperator()
+```
+**使用示例：**
+```java
+String simOperator = ZtlManager.GetInstance().getSimOperator();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|SIM 卡的运营商信息|
+
+## 5.20.获取4G模块基带版本信息
+**描述：**获取4G模块基带版本信息。
+**函数：**
+```java
+public String getBaseBand()
+```
+**使用示例：**
+```java
+String strBand = ZtlManager.GetInstance().getBaseBand();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|4G模块基带版本信息|
+
+## 5.21.设置APN
+**描述：**设置指定的APN。
+**备注：**设置前应使用hasAPN接口查询系统是否支持这个接口和是否已存在此APN。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|要设置的APN|
+**函数：**
+```java
+public void setAPN(String apn)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setAPN("cnmet");
+```
+
+## 5.22.查询APN是否存在
+**描述：**查询指定的APN是否存在。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|查询的APN|
+**函数：**
+```java
+public String hasAPN(String apn)
+```
+**使用示例：**
+```java
+String flag = ZtlManager.GetInstance().hasAPN("cnmet");
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|null表示没有初始化API或系统没有这接口,“-1”，不存在，其他已存在|
+
+# 6.文件相关API
+## 6.1.获取文件后缀名
+**描述：**获取指定文件的后缀名。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|文件路径|
+**函数：**
+```java
+public String getFileType(String filePath)
+```
+**使用示例：**
+```java
+String fileType = ZtlManager.GetInstance().getFileType("/sdcard/test.apk");
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|文件后缀名|
+
+## 6.2.判断文件是否存在
+**描述：**获取指定路径文件的后缀名。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|文件路径|
+**函数：**
+```java
+public boolean isExist(String path)
+```
+**使用示例：**
+```java
+boolean isExist = ZtlManager.GetInstance().isExist("/sdcard/test.apk");
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：文件存在；false：文件不存在|
+
+## 6.3.计算GPIO值
+**描述：**计算指定 GPIO 值。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|GPIO口|
+**函数：**
+```java
+public int gpioStringToInt(String port)
+```
+**使用示例：**
+```java
+int gpiovalue = ZtlManager.GetInstance().gpioStringToInt("GPIO7_A5");
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|GPIO值|
+
+## 6.4.设置GPIO输出值1
+**描述：**将对应的 GPIO 设置为输出模式，并设置输出电平。
+**备注：**这只是个简易接口，为了更方便控制 GPIO 对象和提高执行效率，推荐使用 Gpio 类。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|GPIO口 具体IO口号参考IO口对应列表|
+|int|1：输出高电平；0：输出低电平|
+**函数：**
+```java
+public void setGpioValue(String port, int value)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setGpioValue("GPIO7_A5 ",1);
+```
+
+## 6.5.设置GPIO输出值2
+**描述：**设置IO口的方向并设置值。
+**备注：**这只是个简易接口，为了更方便控制 GPIO 对象和提高执行效率，推荐使用 Gpio 类。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|GPIO口，对应规格书中的编号，如1、2、3等|
+|boolean|true：设置输入模式；false：设置输出模式|
+|boolean|true：设置高电平；false：设置低电平|
+**函数：**
+```java
+public int setGpioValue(int type, boolean bIn, boolean bHigh)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setGpioValue(1, false, true);
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|-1：IO口输入错误或IO口打开失败；-2：系统不支持该接口；1：设置成功|
+
+## 6.6.获取GPIO值1
+**描述：**获取指定 GPIO 的值。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|GPIO口，具体IO口号参考IO口对应列表|
+|String|in：输入；out：输出|
+**函数：**
+```java
+public int getGpioValue(String port, String direction)
+```
+**使用示例：**
+```java
+int value = ZtlManager.GetInstance().getGpioValue("GPIO7_A5", "out");
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|返回对应GPIO输入或者输出的值|
+
+## 6.7.获取GPIO值2
+**描述：**获取指定GPIO口的值。
+**备注：**这只是个简易接口，为了更方便控制 GPIO 对象和提高执行效率，推荐使用 Gpio 类。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|GPIO口，对应规格书中的编号，如1、2、3等|
+**函数：**
+```java
+public int getGpioValue(int type)
+```
+**使用示例：**
+```java
+int value = ZtlManager.GetInstance().getGpioValue(1);
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|-1：IO口输入错误或IO口打开失败；-2：系统不支持该接口；1：输入模式高电平；2：输入模式低电平；3：输出模式高电平；4：输出模式低电平|
+
+## 6.8.设置GPIO方向
+**描述：**设置 GPIO 的方向。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|GPIO口，具体IO口号参考IO口对应列表|
+|String|in：输入；out：输出|
+**函数：**
+```java
+public void setGpioDirection(String port, String direction)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setGpioDirection("GPIO7_A5", "in");
+```
+
+## 6.9.获取GPIO方向
+**描述：**获取 GPIO 的方向值。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|GPIO口，具体IO口号参考IO口对应列表|
+**函数：**
+```java
+public String getGpioDirection(String port)
+```
+**使用示例：**
+```java
+String direction = ZtlManager.GetInstance().getGpioDirection("GPIO7_A5");
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|String|in：输入；out：输出|
+
+## 6.10.打开器件存储器
+**描述：**打开器件存储器。
+**备注：**这只是个简易接口，如需提高执行效率，推荐使用ZtlI2C类。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|器件存储器节点名称，如："/dev/i2c-1"|
+|int|写入的i2c器件地址，注意不要跟系统的起冲突，否则会导致系统加密校验失败起不来|
+|int|写入的地址长度，比如RC16就是1位地址长度(支持读取8位地址，也就是你只能在read接口和write接口参数1里传入0-255),RC128就是2位地址长度.具体看器件文档)|
+**函数：**
+```java
+public boolean openZtlI2C(String filePath, int chipID, int addrLen)
+```
+**使用示例：**
+```java
+boolean openI2C = ZtlManager.GetInstance().openZtlI2C("/dev/i2c-1", 0x30, 1);
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：打开成功；false：打开失败|
+
+## 6.11.铁电存储器专用写接口
+**描述：**铁电存储器专用写接口，使用前需要先调用：openZtlI2C()接口。
+**备注：**这只是个简易接口，如需提高执行效率，推荐使用ZtlI2C类。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|写入的地址，如：0xa1、0xa2...等|
+|byte[]|写入内容，如：0x11，0x22，0x33...等|
+|int|写入内容长度，如：1，代表读取存储器长度，需要和写入内容长度一致|
+**函数：**
+```java
+public void flashWrite(int addr, byte[]data, int nCount)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().flashWrite(0xa1, 0x11，1);
+```
+
+## 6.12.铁电存储器专用读接口
+**描述：**铁电存储器专用读接口，使用前需要先调用：openZtlI2C()接口。
+**备注：**这只是个简易接口，如需提高执行效率，推荐使用ZtlI2C类。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|读地址，地址长度为1时，请不要传入大于255的值，否则一切后果自负|
+|int|需要读取的内容长度|
+**函数：**
+```java
+public byte[] flashRead(int addr, int nCount)
+```
+**使用示例：**
+```java
+byte[] bRead = ZtlManager.GetInstance().flashRead(0xa1, 12);
+```
+
+## 6.13.加密芯片专用写接口
+**描述：**加密芯片专用写接口，使用前需要先调用：openZtlI2C()接口。
+**备注：**这只是个简易接口，如需提高执行效率，推荐使用ZtlI2C类。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|芯片中程序代码的命令码|
+|byte[]|数据内容，如：0x11，0x22，0x33...等|
+|int|写入内容长度，如：1，代表读取存储器长度，需要和写入内容长度一致|
+**函数：**
+```java
+public void chipWrite(int cmd, byte[] data, int nCount)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().chipWrite(0xb1, 0x11，1);
+```
+
+## 6.14.加密芯片专用读接口
+**描述：**加密芯片专用读接口，如果调用写接口后需要马上读取，建议间隔时间为10ms或以上；使用前需要先调用：openZtlI2C()接口。
+**备注：**这只是个简易接口，如需提高执行效率，推荐使用ZtlI2C类。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|需要读取的内容，如芯片中代码的命令码，根据命令码返回的数据，如果要直接读取(如上次调用写接口后需要直接获取返回)，需要传入-1|
+|int|需要读取的内容长度|
+**函数：**
+```java
+public byte[] chipRead(int cmd, int ncount)
+```
+**使用示例：**
+```java
+ byte[] bRead = ZtlManager.GetInstance().chipRead(0xb1, 12);
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|byte[]|数据内容，如：0x11，0x22，0x33...等|
+
+## 6.15.关闭器件存储器
+**描述：**关闭器件存储器。
+**备注：**这只是个简易接口，如需提高执行效率，推荐使用ZtlI2C类。
+**函数：**
+```java
+public void closeI2C()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().closeI2C();
+```
+
+## 6.16.禁止卸载app
+**描述：**设置后，不可将app拖动至卸载框卸载。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|APP包名|
+**函数：**
+```java
+public int setUninstallPackage(String packageS)
+```
+**使用示例：**
+```java
+int installok = ZtlManager.GetInstance().setUninstallPackage("com.ztl.test");
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|-1：系统不支持；1：设置成功；-2：设置失败；-3：异常错误|
+
+## 6.17.获取禁止卸载APP的包名
+**描述：**获取setUninstallPackage()接口设置的不可卸载app的包名。
+**函数：**
+```java
+public String getUninstallPackage()
+```
+**使用示例：**
+```java
+string uninstallpkg = ZtlManager.GetInstance().getUninstallPackage();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|string|卸载app包名；1：系统不支持；error：异常错误|
+
+## 6.18.获取ADC数值
+**描述：**获取ADC数值。
+**函数：**
+```java
+public String getADCValue()
+```
+**使用示例：**
+```java
+string ADCValue = ZtlManager.GetInstance().getADCValue();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|string|ADC数值|
+
+# 7.媒体相关API
+## 7.1.获取系统最大音量
+**描述：**获取 Android 系统最大媒体音量值。
+**函数：**
+```java
+public int getSystemMaxVolume()
+```
+**使用示例：**
+```java
+int maxVolume = ZtlManager.GetInstance().getSystemMaxVolume();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|Android系统最大媒体音量|
+
+## 7.2.获取系统当前音量
+**描述：**获取 Android 系统当前媒体音量值。
+**用途：**可以写一些监听内存的代码，转换 GB 需要将返回的结果/1024/1024/1024。
+**函数：**
+```java
+public int getSystemCurrenVolume()
+```
+**使用示例：**
+```java
+int currenVolume = ZtlManager.GetInstance().getSystemCurrenVolume();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|Android系统当前媒体音量|
+
+## 7.3.增大音量
+**描述：**设置 Android 系统媒体音量值+1。
+**函数：**
+```java
+public int setRaiseSystemVolume()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setRaiseSystemVolume();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|0：设置成功；-1：设置失败|
+
+## 7.4.降低音量
+**描述：**设置 Android 系统媒体音量值-1。
+**函数：**
+```java
+public int setLowerSystemVolume()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setLowerSystemVolume();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|0：设置成功；-1：设置失败|
+
+## 7.5.设置媒体音量值
+**描述：**设置 Android 系统媒体音量值。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|Android系统媒体音量值|
+**函数：**
+```java
+public int setSystemVolumeIndex(int index)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setSystemVolumeIndex(10);
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|0：设置成功；-1：设置失败|
+
+## 7.6.设置指定音量的音量值
+**描述：**设置 Android 系统指定音量的音量值。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|填入需要调整的音量，如：2：铃声音量 3：媒体音量 4：闹钟音量|
+|int|设置Android系统铃声音量值|
+**函数：**
+```java
+public void setVolume(int streamType, int value)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setVolume(2, 5);
+```
+
+## 7.7.获取指定音量的音量值
+**描述：**获取 Android 系统指定音量的音量值。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|填入需要调整的音量，如：2：铃声音量 3：媒体音量 4：闹钟音量|
+**函数：**
+```java
+public int getVolume(int streamType)
+```
+**使用示例：**
+```java
+int value = ZtlManager.GetInstance().getVolume(2);
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|获取到的Android对应的音量值|
+
+## 7.8.获取指定音量的最大音量值
+**描述：**获取 Android 系统指定音量的最大音量值。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|填入需要调整的音量，如：2：铃声音量 3：媒体音量 4：闹钟音量|
+**函数：**
+```java
+public int getMaxVolume(int streamType)
+```
+**使用示例：**
+```java
+int maxValue = ZtlManager.GetInstance().getMaxVolume(2);
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|获取到的Android对应的音量值|
+
+## 7.9.设置相机方向
+**描述：**仅对 Android 系统相机 app 有效。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|int|0：0度；90：相机方向顺时针旋转90度；180：相机方向顺时针旋转180度；270：相机方向顺时针旋转270度|
+**函数：**
+```java
+public void setCameraOrientation(int orientation)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setCameraOrientation(90);
+```
+
+## 7.10.获取相机方向
+**描述：**获取系统相机方向。
+**函数：**
+```java
+public int getCameraOrientation()
+```
+**使用示例：**
+```java
+int orientation = ZtlManager.GetInstance().getCameraOrientation();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|int|0：0度；90：相机方向顺时针旋转90度；180：相机方向顺时针旋转180度；270：相机方向顺时针旋转270度|
+
+## 7.11.判断相机是否镜像
+**描述：**判断 Android 系统相机是否镜像。
+**函数：**
+```java
+public boolean isCameraMirror()
+```
+**使用示例：**
+```java
+boolean cameraIsMirror = ZtlManager.GetInstance().isCameraMirror();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：镜像；false：非镜像|
+
+## 7.12.设置相机是否镜像
+**描述：**设置相机是否镜像。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|boolean|true：镜像；false：非镜像|
+**函数：**
+```java
+public void setCameraMirror(boolean bMisrror)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setCameraMirror(true);
+```
+# 8.其他相关API
+## 8.1.打开性能监控小程序
+**描述：**打开性能监控，用于方便检查设备当前状态。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**函数：**
+```java
+public void openMonitor()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().openMonitor();
+```
+
+## 8.2.获取CPU可用频率
+**描述：**获取 Android 系统 CPU 可用频率。
+**备注：**需系统固件支持。 验证方法见文末附注。
+**函数：**
+```java
+public String[] getCPUFreq()
+```
+**使用示例：**
+```java
+String[] CPUFreq = ZtlManager.GetInstance().getCPUFreq();
+```
+**返回：**
+
+|参数类型|说明|
+|:--|:--|
+|array|Android系统CPU可用频率|
+
+## 8.3.设置CPU频率
+**描述：**设置 Android 系统 CPU 频率。
+**备注：**必须是 getCPUFreq 返回的值其中一个。否则不起作用。设置过低可能会导致系统很卡。
+**参数：**
+
+|参数类型|说明|
+|:--|:--|
+|String|设置Android系统CPU频率|
+**函数：**
+```java
+public void setCPUFreq(String cpuFreq)
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().setCPUFreq("1008000");
+```
+## 8.4.获取cpu的使用率
+**描述：**获取CPU总使用率（百分比）。
+**备注：**
+**参数：** 返回：float类型
+**函数：**
+```java
+public void getCPUUsage()
+```
+**使用示例：**
+```java
+float usage = ZtlManager.GetInstance().getCPUUsage();
+```
+
+## 8.5.获取当前进程的cpu的使用率
+**描述：**获取当前进程CPU使用率（百分比）。
+**备注：**
+**参数：** 返回：float类型
+**函数：**
+```java
+public void getProcessCpuUsage()
+```
+**使用示例：**
+```java
+float usage = ZtlManager.GetInstance().getProcessCpuUsage();
+```
+
+## 8.6.获取内存的使用率
+**描述：**获取内存使用率（百分比）。
+**备注：**
+**参数：** 返回：float类型
+**函数：**
+```java
+public void getMemoryUsage()
+```
+**使用示例：**
+```java
+float usage = ZtlManager.GetInstance().getMemoryUsage();
+```
+
+## 8.7.获取npu的使用率
+**描述：**获取内存使用率（百分比）。
+**备注：**
+**参数：** 返回：float类型
+**函数：**
+```java
+public void getNpuUsage()
+```
+**使用示例：**
+```java
+float usage = ZtlManager.GetInstance().getNpuUsage();
+```
+
+## 8.8.更新助手
+**描述：**调用后自动获取是否要更新新的助手。
+**备注：** 公版（定制板不能线上更新）需要助手版本20251021后
+**参数：** 
+**函数：**
+```java
+public void doUpdateHelper()
+```
+**使用示例：**
+```java
+ZtlManager.GetInstance().doUpdateHelper();
+```
+
+# 9.附注
+**用途：**需要验证系统是否支持的API验证方法。
+**描述：**
+```
+使用adb命令：adb shell pm path com.ztl.helper 
+如果出现：package:/data/app/com.ztl.helper-1/base.apk，或其他路径，则系统支持。
+如果为空，请联系厂家技术支持。
+```
+</textarea>
+                    </div>
+                    <script>
+                    mdnum=mdnum+1;
+                    console.log('mdnum='+mdnum);
+                                        function glarticlenr0fc(){
+                        var glarticlenr0md;
+                        glarticlenr0md = editormd("glarticlenr0", {
+                                path : '../laohongseo/editormd/lib/',
+                                tocDropdown          : false,
+                                tocContainer         : "#glarticlebar0",
+                                tocStartLevel        : 1,
+                                htmlDecode : true,
+                                onload : function() {
+                                    const imgElement0 = document.querySelectorAll('#glarticlenr0 .markdown-body.editormd-preview-container img');
+                                                imgElement0.forEach((li) => {
+                                                        // 获取src属性值
+                                                    li.setAttribute('loading', 'lazy');
+                                                    // console.log(li);
+                                                });
+                                    mdoknum=mdoknum+1;
+                                                                        console.log('mdoknum='+mdoknum);
+                                    glarticlenr1fc();                                    if(mdoknum>allhbnum){
+                                        pushforeach();
+                                    }
+                                },
+                                onpreviewed : function() {
+                                   
+                                }
+                        });
+                    }
+                    </script>
+                                    </div>
+                            <div class="glarticlebarnr keyindiv" id="glarticlebarnr">
+                                        <div id="glarticlenr1">
+                        <textarea style="display:None;"># 1.使用说明
+```
+新建一个文件名固定为：ztlconfig.txt
+在文档里填入下面你需要配置的功能配置
+把配置好的文件复制到U盘根目录
+把设备系统先开机
+把U盘接入板子的USB接口，注意：使用OTG口，需要到设置先关闭USB调试功能
+等待配置完成，如果有显示屏，屏幕会有相应提示，没有显示屏可以等待一段时间，具体时间要看配置内容
+```
+**警告：**<span style="color:#ff6600;">解析配置文件是从上到下的，配置时，需要注意先后顺序
+注释以#号开头</span>
+
+|  Android版本 | 助手版本 | 支持情况  | 维护情况 |
+| ------------ | ------------ | ------------ | ------------ |
+|  Android4以上 | v1.0 | √ | 维护 |
+
+# 2.功能配置列表
+## 2.1.更新参数密码
+**描述：**第一次更新不需要密码,后面都要验证这个密码才能更新下面的参数
+**功能：**
+```
+update_mm=12345678
+```
+## 2.2.修改参数密码
+**描述：**如果是空，表示清除密码；注意：要旧密码认证通过后，才能修改，或者原本没有密码
+**功能：**
+```
+update_mm_edit=12345678
+```
+## 2.3.显示隐藏导航栏和状态栏
+**描述：**0=隐藏导航栏和状态栏 1= 显示导航栏和状态栏
+**功能：**
+```
+state_bar=0
+```
+## 2.4.多屏（暂不支持）
+**描述：**0 不多屏 1=上下分屏 2=左右分屏
+**功能：**
+```
+multi_display=0
+```
+## 2.5.分辨率
+**描述：**这里的x是小写的x字母  设置的是wm size 暂不支持
+**功能：**
+```
+resolution=800x600
+```
+## 2.6.屏幕方向(角度。顺时针)
+**描述：**0=横屏或固件默认方向 90=竖屏 180=反向横屏 270=反向竖屏
+**功能：**
+```
+display_orientation = 0
+```
+## 2.7.触摸屏旋转角
+**描述：**0 90 180 270
+**功能：**
+```
+touch_orientation = 0
+```
+## 2.8.替换开机logo
+**描述：**传入实际的zip路径名称即可。比如 bootanimation.zip 此时，该zip文件就在你U盘根目录下（<span style="color:#ff6600;">注意：定制系统的，可能会导致bootanimation.zip路径用不了，如果用不了 需要咨询售后。</span>）
+**功能：**
+```
+boot_logo=
+```
+## 2.9.开机启动的APP
+**描述：**比如com.unity.test/com.player3d.UnityActivity 其中前半段是包名 后半段是类名,用/分隔（<span style="color:#ff6600;">注意：要设置开机启动的app 不能是已经设置过或者自带有开机启动或者已经是桌面程序，否则会多次启动引起莫名其妙的问题</span>）
+**功能：**
+```
+boot_app=
+```
+## 2.10.取消开机自启动的app
+**描述：**
+**功能：**
+```
+cancelBoot_app=
+```
+## 2.11.安装是否启动
+**描述：**1不启动，0启动或不配置是启动
+**功能：**
+```
+no_run_after_install=
+```
+## 2.12.安装
+**描述：**
+```
+插U盘时自动安装apk，此apk安装完后会立即启动（no_run_after_install=1 不启动 20230718） 可在boot_app配置成每次开机启动
+自动检查apk是不是加密过。如果加密过，自动解密 加密工具在源码目录下的External\EncFile里面
+如果是目录，会安装目录里面的所有.apk后缀的文件（20220413）
+```
+**功能：**install_apk=
+## 2.13.锁定wifi自动重连（如果名称有空格就有问题（20230607））
+**描述：**开启此功能后，扫描到这个wifi名称存在系统会保持对这个wifi的连接。如果不存在 则可以正常使用，wifissid和密码分开。比如lock_wifi=ztl 122333213
+**功能：**
+```
+lock_wifi=
+```
+## 2.14.新增锁定wifi自动重连
+**描述：**两个要同时使用，都不能为空，否则视为无效，关掉wifi锁定
+**功能：**
+```
+lock_wifi_ssid=
+lock_wifi_pwd=
+```
+## 2.15.USB调试功能
+**描述：**1是开 0是关.此功能位于开发者选项中
+**功能：**
+```
+usb_adb=1
+```
+## 2.16.USB OTG功能
+**描述：**1是开 0是关 此功能位于系统设置-USB中
+**功能：**
+```
+usb_otg=1
+```
+## 2.17.网络ADB功能
+**描述：**此功能位于开发者选项中
+**功能：**
+```
+net_adb=1
+```
+## 2.18.恢复出厂设置
+**描述：**
+**功能：**
+```
+sys_reset=1
+```
+## 2.19.替换桌面
+**描述：**要换成桌面的app的启动类必须拥有如下属性：
+```java
+<category android:name="android.intent.category.DEFAULT" />
+<category android:name="android.intent.category.HOME" />
+```
+**功能：**
+```
+launcher=com.android.launcher3/com.android.launcher3.Launcher
+```
+## 2.20.定时开机
+**描述：**
+**功能：**
+```
+timing_on=19:30
+```
+## 2.21.定时关机
+**描述：**
+**功能：**
+```
+timing_off=19:31
+```
+## 2.22.定时重启
+**描述：**
+**功能：**
+```
+timing_reboot=3:00
+```
+## 2.23.修改SN 微信刷脸用
+**描述：**
+**功能：**
+```
+build_serial=
+```
+## 2.24.改APN
+**描述：**cat /system/etc/apns-conf.xml;如：cmiot或cnmet
+**功能：**
+```
+apn=
+```
+## 2.25.设置dpi
+**描述：**格式为 dpi=160
+**功能：**
+```
+dpi=
+```
+## 2.26.设置dpi
+**描述：**格式为 dpi=2,160,2为屏幕ID，160是dpi值，id如果为-1，表示同时设定 注意：需要android 系统11或以上才支持(20230701)
+**功能：**
+```
+dpi=
+```
+## 2.27.设置桌面壁纸
+**描述：**timg.jpg图片名称
+**功能：**
+```
+Wallpaper=timg.jpg
+```
+## 2.28.设置usb触摸屏
+**描述：**第一个true:表示打开关闭，true打开，false关闭，第二个true：表示重启是否保存，true保存，false不保存
+**功能：**
+```
+UsbTouch=true:true
+```
+## 2.29.设置保活应用包名
+**描述：**取消可以设置一个不存在的包名
+**功能：**
+```
+keepActivity=包名
+```
+## 2.30.设置保活时间单位秒
+**描述：**
+**功能：**
+```
+keepTime=*
+```
+## 2.31.修改系统的序列号（3588、3568、s905d3、a311d不支持）
+**描述：**
+**功能：**
+```
+buildSi=新的序列号
+```
+## 2.32.加密APK使用固件解密的密钥
+**描述：**固定长度32个字符 需要使用encfile.exe固件加密apk，并将其中密钥复制到本项 41b13eb6e7ce246e9000a309155863c9
+**功能：**
+```
+app_key=
+```
+## 2.33.卸载APP
+**描述：**比如com.unity.test
+**功能：**
+```
+remove_apk=
+```
+## 2.34.资源拷贝
+**描述：**U盘文件名(可以是压缩包或者文件夹),拷贝到内部SD卡目录(U盘路径：/aa.txt，内部SD路径：/mu/)
+**功能：**
+```
+res_from_u_to_sd=/aa.txt,/mu/
+```
+## 2.35.资源拷贝,内部SD盘
+**描述：**内部SD盘文件名(可以是压缩包或者文件夹),拷贝到U盘卡目录(内部SD路径：/aa.txt，U盘路径：/mu/)
+**功能：**
+```
+res_from_sd_to_u=/aa.txt,/mu/
+```
+## 2.36.U盘增加设置禁止卸载
+**描述：**要支持的系统才有
+**功能：**
+```
+forbituninstall=com.example.hellotestdemo;com.yian.serialtest；
+```
+## 2.37.U盘增加设置USB触摸主副屏交换(需重启生效)
+**描述：**true是交换，false是不交换
+**功能：**
+```
+swap_touch=false
+```
+## 2.38.设置亮度
+**描述：**0~255
+**功能：**
+```
+brightness=128
+```
+## 2.39.设置默认输入法
+**描述：**如搜狗：com.sohu.inputmethod.sogou/.SogouIME
+**功能：**
+```
+default_input_method=com.sohu.inputmethod.sogou/.SogouIME
+```
+## 2.40.设置系统时间
+**描述：**12或24
+**功能：**
+```
+time_12_24=24
+```
+## 2.41.自动确定时区功能
+**描述：**1是开 0是关
+**功能：**
+```
+auto_time_zone=1
+```
+## 2.42.自动确定日期和时间功能
+**描述：**1是开 0是关
+**功能：**
+```
+auto_time=1
+```
+## 2.43.设置以太网IP
+**描述：**格式为：网口名称，是否为静态ip，IP地址，默认网关，子网掩码，DNS1,DNS2 如果不知道网口名称，就写eth0
+**功能：**
+```
+set_ethip=eth0,true,192.168.0.200,192.168.0.1,255.255.255.0,8.8.8.8,8.8.4.4
+```
+## 2.44.U盘配置完成之后是否提示完成
+**描述：**true或false,默认是true
+**功能：**
+```
+is_tip=false
+```
+## 2.45.设置音量
+**描述：**
+```
+0,15：0是声音类型（声音类型可能跟系统版本不同），15是声音大小
+类型：0是通话音量（0~5），1是通知音量（0~7），2是铃声音量（0~7），3是媒体音量（0~15），4是闹钟音量（0~7），5是铃声音量（0~7）
+如果不知道类型就每个类型都设置一次
+如：#sound=0,5 #sound=1,7 #sound=2,7 #sound=3,15 #sound=4,7 #sound=5,7
+```
+**功能：**
+```
+sound=3,15
+```
+## 2.46.启动某个APP
+**描述：**
+```
+意思就是 启动包名为 com.game.hello1的app
+setBootPackageActivity跟这个API一样的功能
+注意两个要同时使用（20220413）
+```
+**功能：**
+```
+persist.ztl.apppre=com.ztl.helpe
+persist.ztl.appappend=r
+```
+## 2.47.设置背光反向 需要系统支持(20220519)
+**描述：**0正常模式，1反向模式
+**功能：**
+```
+reverseBri=1
+```
+## 2.48.设置自动隐藏导航栏包名
+**描述：**比如com.unity.test1 20220720  com.unity.test1#com.unity.test2 20220827
+**功能：**
+```
+hide_bar_apk=
+```
+## 2.49.设置隐藏微信sn修改
+**描述：**1为隐藏，其他值为显示，默认显示(20220729)
+**功能：**
+```
+hide_sn=1
+```
+## 2.50.log开关
+**描述：**0关闭；1-1M，2-10M,3-100M,4-1000M
+**功能：**
+```
+log_cat=0
+```
+## 2.51.执行shell命令
+**描述：**
+```
+格式为shell=pm install  /sdcard/app-debug.apk （20230523）
+命令出现./字符，会自动替换成u盘路径
+多条命令，可以写多行
+```
+**功能：**
+```
+shell=ls
+```
+## 2.52.设置背光最小值
+**描述：**格式为minBri=0
+**功能：**
+```
+minBri=
+```
+## 2.53.设置背光最大值
+**描述：**格式为maxBri=255
+**功能：**
+```
+maxBri=
+```
+## 2.54.资源拷贝
+**描述：**U盘文件名(可以是压缩包或者文件夹),拷贝到内部SD卡目录(U盘路径：/app/，内部SD路径：/app/)复制完后发广播"com.ztl.app" 参数path=/sdcard/app/
+**功能：**
+```
+app_mm=/app/,/app/
+```
+## 2.55.串口映射配置
+**描述：**serial=1,":把系统的串口映射清除;"serial=3,55"把系统的串口3,映射为55；后面的只能数字
+**功能：**
+```
+serial=1
+serial=1,3
+```
+## 2.56.日志到导出到U盘
+**描述：**内部SD盘文件名(可以是压缩包或者文件夹)路径比如：/sdcard/log,拷贝到U盘卡目录(内部SD路径：/sdcard/log，U盘路径：/mu/)
+**功能：**
+```
+res_from_sd_to_u=/sdcard/log,/mu/
+```</textarea>
+                    </div>
+                    <script>
+                    mdnum=mdnum+1;
+                    console.log('mdnum='+mdnum);
+                                        function glarticlenr1fc(){
+                        var glarticlenr1md;
+                        glarticlenr1md = editormd("glarticlenr1", {
+                                path : '../laohongseo/editormd/lib/',
+                                tocDropdown          : false,
+                                tocContainer         : "#glarticlebar1",
+                                tocStartLevel        : 1,
+                                htmlDecode : true,
+                                onload : function() {
+                                    const imgElement1 = document.querySelectorAll('#glarticlenr1 .markdown-body.editormd-preview-container img');
+                                                imgElement1.forEach((li) => {
+                                                        // 获取src属性值
+                                                    li.setAttribute('loading', 'lazy');
+                                                    // console.log(li);
+                                                });
+                                    mdoknum=mdoknum+1;
+                                                                        console.log('mdoknum='+mdoknum);
+                                    glarticlenr2fc();                                    if(mdoknum>allhbnum){
+                                        pushforeach();
+                                    }
+                                },
+                                onpreviewed : function() {
+                                   
+                                }
+                        });
+                    }
+                    </script>
+                                    </div>
+                            <div class="glarticlebarnr keyindiv" id="glarticlebarnr">
+                                        <div id="glarticlenr2">
+                        <textarea style="display:None;"># 1.版本
+| 版本 | 支持情况  | 维护情况 |
+| ------------ | ------------ | ------------ |
+| 2021/10/8 | √ | 维护 |
+# 2.系统
+![](/uploads/mdwendangimages/20250318/e861510c8e92578a2cb5a316b4430e0a.png)
+- 隐藏状态栏与导航栏
+```
+可选择隐藏或显示系统状态栏与导航栏，读取当前状态栏与导航栏是否隐藏或显示。
+```
+- USB OTG
+```
+打开可进行USB调试，如打开不能进行调试，请在设置-关于设备-连续点击版本号10此，开启开发者选项，进入开发者选项中打开USB调试。可读取当前OTG是否打开或关闭。
+```
+- 触摸屏方向
+```
+可设置0,90,180,270。设置后触摸可旋转至相应的角度。
+```
+- 桌面选项
+```
+可选择带有桌面属性的APP作为桌面启动。
+```
+- 录屏
+```
+点击可选择录制条件，如标清或高清，是否录制声音，可选择录制屏幕致内部SD卡、外部TF卡、U盘。
+```
+- 设置CPU工作模式
+```
+可按照需求设置CPU工作模式，可选省电模式、按需模式、活跃模式、性能模式、定频模式。
+```
+- 设置CPU频率
+```
+需要先设置CPU工作模式为定频模式，再设置CPU频率(定频)。
+```
+- 设置CPU最大频率
+```
+常用频率由系统决定，设置最高频率后，系统使用的频率不会超过设置的最高频率。
+```
+- 关机/重启
+```
+点击后会弹出选项：关机或重启，选择后即可执行相关操作。
+```
+- 自动更新
+```
+打开后每隔12小时之后的下一次开机，才会检查更新，必须要为开机状态，并且需要在以太网或wifi的状态下才会进行更新。
+```
+- 检查更新
+```
+点击后会进行版本检查，如果没有新版本，会提示无需更新，如果检查到新版本，在以太网或wifi的状态下会自动下载并安装。
+```
+- 日志记录缓冲区大小
+```
+默认日志保存大小为100M。可选：关闭(不记录日志)；1M 记录日志大小限制为1M；10M 记录日志大小限制为10M；100M 记录日志大小限制为100M；1000M 记录日志大小限制为1000M。文件保存在/sdcard/log/目录下，保存日志有：dmesg、kmsg、logcat -b、logcta -v。
+```
+- 导出保存日志
+1. 保存日志到本地
+```
+点击后会把系统日志保存在/sdcard/Download/目录下，文件名称为log_MAC地址_日期与时间，保存成功会有提示，文件格式为zip压缩文件，方便在出问题时查看log等是否有重要信息，用于排查问题
+```
+2. 保存日志到U盘
+```
+与”保存日志到本地”一致，导出的路径为U盘根目录
+```
+3. 提交日志到网络
+```
+提交地址为定昌服务器，地址为：
+http://up.gzdcsmt.com:2300/OtaUpdater/log_926580E83558_2020_09_22_14_55.zip
+解析：
+http://up.gzdcsmt.com:2300/OtaUpdater/：服务器地址
+log_926580E83558_2020_09_22_14_55.zip：log_MAC地址_年_月_日_时_分.zip
+```
+# 3.显示
+![](/uploads/mdwendangimages/20250318/441f7486e40f0c1db2999d87a698dd95.png)
+- HDMI屏幕分辨率
+```
+可设置当前HDMI显示分辨率，分辨率列表和屏幕显示器相关
+```
+- DPI
+```
+设置DPI，可选：120、160、213、240、320、480、560、640，屏幕越小，DPI越大，计算公式为：对角像素数/对角英寸
+```
+- 屏幕方向
+```
+可设置主屏屏幕方向、副屏屏幕方向与同时设置。横屏：0；竖屏：90；反向横屏：180；反向竖屏：270(单独旋转主屏或副屏需要系统支持)
+```
+- 背光反向
+```
+当系统背光调整反向时，可开启此选项，调整为正常方向(需要系统支持)
+```
+- 屏幕缩放
+```
+跳转至屏幕缩放界面，可调整屏幕显示大小
+```
+# 4.应用
+![](/uploads/mdwendangimages/20250318/f55ecf5cae6d48881570ce6c1d416677.png)
+- 设置自启动应用
+```
+设置后应用可进行开机自启动，只能设置一个，设置完成后，重启系统，设置的APP会在开机时启动
+```
+- 设置应用保活置顶状态
+```
+设置某个app保活(注释：比如app需要一直保持在前台，可设置app保活，在保活app退出顶部显示时，可自动拉回至顶部显示)
+```
+# 5.摄像头
+![](/uploads/mdwendangimages/20250318/538e4366a2bf16d12a51264611031d0f.png)
+<span style="color:#ff6600;">**备注：**目前仅对系统相机有效</span>
+- 镜像
+```
+开启：相机中的预览画面与实际动作一致
+关闭：相机中的预览画面与实际动作相反
+```
+- 旋转
+```
+0：不旋转 
+90：旋转90度
+180：旋转180度
+270：旋转270度
+```
+# 6.串口
+![](/uploads/mdwendangimages/20250318/37fe5efd10b15a7aec7de21b59b90a1e.png)
+- 选择串口
+```
+串口节点名称一般为：/dev/ttyS*(3399串口节点为：/dev/ttySWK*)
+```
+- 选择波特率
+```
+可在波特率列表选需要测试的波特率
+```
+- Test、Hex
+```
+可选发送text或者16进制数据
+```
+- 自动发送
+```
+勾选可自动发送
+```
+- 间隔
+```
+可选发送间隔，单位ms
+```
+- 发送内容
+```
+默认内容为hello，可自行输入发送内容
+```
+- 发送、接收字节
+```
+可查看发送、接收数据是否一致
+```
+- 清除
+```
+清除发送、接收字节数
+```
+- 打开
+```
+打开串口，可进行发送、接收
+```
+- 存为预设配置
+```
+发送内容可保存，以便下次测试
+```
+- 绿色模块为提示框
+```
+打开串口，成功或失败都有显示
+```
+# 7.调试
+![](/uploads/mdwendangimages/20250318/19408e5ca184bb2348fa982899e4217d.png)
+**性能监控开启页面：**
+![](/uploads/mdwendangimages/20250318/dc7b0277349c6a0043aa358830df7e5a.png)
+**解析：**
+```cpu个数：主板CPU个数
+温度：CPU温度
+使用率：CPU使用率
+CPU0-3：CPU编号
+1608/(816-1608)MHZ：目前CPU频率/(最小频率/最高频率)
+性能：性能模式
+Mali-T76x MP4 r1p0 0x0750：GPU型号
+99/480Mhz：99：目前GPU频率480：GPU最高频率
+负载：GPU负载
+温度：GPU温度
+内存：设备运行内存 可用内存/总内存
+FPS：设备每秒传输帧率
+com.ztl.helper：顶层APP包名
+内存：当前APP使用内存
+存储：设备存储大小
+```
+**开机自启动性能监控解析：**
+```
+开启此选项，开机性能监控可自行启动，不影响设置开机自启动APP
+```
+**网络adb解析：**
+```
+在没有USB线用来调试时，可开启此选项并连接wifi进行程序调试，不使用时建议关闭。连接方法：adb connect ip地址。示例：adb connect 192.168.101.111
+```
+# 8.网络
+![](/uploads/mdwendangimages/20250318/fb6e1a62a9c34ad40ce218f28be95e5f.png)
+**4G模块断线自动重连 描述：**
+```
+可在4G掉线时进行4G重连操作，3分钟左右重连一次，默认打开
+```
+**保持连接至指定wif 描述：**
+**选项开启页面：**
+![](/uploads/mdwendangimages/20250318/c10e6624663922574f516595db4bfed9.png)
+```
+已保存的wifi：如有连接过的wifi，可以在此浏览并选择需要保持连接的wifi，选择好之后点击确定即可进行wifi掉线重连。
+如未保存wifi，需要手动输入wifi名称与wifi密码，输入完成后点击确定即可进行wifi掉线重连
+```
+**联网控制 描述：**
+![](/uploads/mdwendangimages/20250318/4e2d8473505669a8479fbbd521f72892.png)
+```
+该功能可遍历出系统所有APP，进行联网控制，在有4G模块和4G卡插入时，上方会出现一列数据，以用来控制数据的连网。
+```
+**联网方式 描述：**
+![](/uploads/mdwendangimages/20250318/130ec5b48d6010de7fc5b4af5381b183.png)
+```
+该功能能检查当前连网方式、连网优先级、以及网络是否可用。可用此功能来检查连网优先级以及网络是否可用
+```
+# 9.时间
+![](/uploads/mdwendangimages/20250318/3b49209195262622ea39960dcd6e2d16.png)
+**当前时间与网络时间 描述：**
+![](/uploads/mdwendangimages/20250318/7435fb69781789b8374b30f28fb65ec7.png)
+```
+当前时间：系统当前时间
+网络时间：获取的时间网站的时间
+立即同步：与获取的网络时间同步
+```
+**定时开关机 描述：**
+![](/uploads/mdwendangimages/20250318/65af03412a310fc61f1da319c94bfbc6.png)
+```
+定时开机：在指定时间进行开机
+定时关机：在指定时间进行关机
+定时重启：在指定时间进行重启
+```
+**点击定时开机后弹出时间选择框 描述：**
+![](/uploads/mdwendangimages/20250318/e2866210bbae492afa3ba9c354dfb1c6.png)
+```
+只有一次：例如选择时间为2021.1.18 08:00，在选择的这个时间执行一次开机之后，该时间就过期，永不执行
+每天：例如选择时间为08:00，在选择这个时间执行一次后，之后的每天此时依旧会执行一次
+自定义：例如选择时间为周一到周五的08:00，执行时间为周一到周五的08:00，周六周日不执行
+```
+**同步周期 描述：**
+![](/uploads/mdwendangimages/20250318/499465a9a51e02d92100cc3eb0f2291c.png)
+```
+点击同步周期弹出此选项框。
+默认30分钟同步一次网络时间
+不同步：不同步网络时间
+10分钟：每10分钟同步一次网络时间
+20分钟：每20分钟同步一次网络时间
+以此类推
+```
+# 10.更多
+![](/uploads/mdwendangimages/20250318/46df44c069c5f2f1bfe3e21ddb9f24a5.png)
+**CPU唯一ID 描述：**
+```
+显示主板CPU唯一ID
+```
+**微信SN 描述：**
+```
+一般用于微信刷脸固件，可设置序列号。需要重启生效
+```
+**序列号 描述：**
+```
+可设置主板序列号，需要系统支持
+```
+**返回主界面 描述：**
+```
+点击可返回系统桌面
+```
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- </textarea>
+                    </div>
+                    <script>
+                    mdnum=mdnum+1;
+                    console.log('mdnum='+mdnum);
+                                        function glarticlenr2fc(){
+                        var glarticlenr2md;
+                        glarticlenr2md = editormd("glarticlenr2", {
+                                path : '../laohongseo/editormd/lib/',
+                                tocDropdown          : false,
+                                tocContainer         : "#glarticlebar2",
+                                tocStartLevel        : 1,
+                                htmlDecode : true,
+                                onload : function() {
+                                    const imgElement2 = document.querySelectorAll('#glarticlenr2 .markdown-body.editormd-preview-container img');
+                                                imgElement2.forEach((li) => {
+                                                        // 获取src属性值
+                                                    li.setAttribute('loading', 'lazy');
+                                                    // console.log(li);
+                                                });
+                                    mdoknum=mdoknum+1;
+                                                                        console.log('mdoknum='+mdoknum);
+                                                                        if(mdoknum>allhbnum){
+                                        pushforeach();
+                                    }
+                                },
+                                onpreviewed : function() {
+                                   
+                                }
+                        });
+                    }
+                    </script>
+                                    </div>
+                        </div>
+            
+            <div class="downloadnr keyindiv" id="downloadnr">
+                <div class="downloadnr-main">
+                                    <div class="downloadnr-main-item">
+                    <ul>
+                      <p>
+                                                <img src="/uploads/scimg/20250118/0a6e2e3d5ee65770c253da35042a15c8.png" alt="工具">
+                                                
+                        <span>工具</span>
+                      </p>
+                                            <li class="downloadli clearboth">
+                        <div class="downloadnrs-left">
+                          <span>Android jar包</span>
+                          <p>ZtlApi.jar 20251101支持助手更新api</p>
+                        </div>
+                        <div class="downloadnrs-right">
+                          <a class="downabtn" data-id="11" data-url1="/uploads/download/20251104/ZtlApi.jar" data-url2="" data-url3=""><img src="/laohongseo/img/download/download.png" alt="Android jar包"></a>
+                        </div>
+                      </li>
+                                          </ul>
+                  </div>
+                                    <div class="downloadnr-main-item">
+                    <ul>
+                      <p>
+                                                <img src="/laohongseo/img/download/工具.png" alt="文档">
+                                                
+                        <span>文档</span>
+                      </p>
+                                            <li class="downloadli clearboth">
+                        <div class="downloadnrs-left">
+                          <span>Android ztlconfig文档</span>
+                          <p>ztlconfig.txt</p>
+                        </div>
+                        <div class="downloadnrs-right">
+                          <a class="downabtn" data-id="11" data-url1="/uploads/download/20250319/ztlconfig.txt" data-url2="" data-url3=""><img src="/laohongseo/img/download/download.png" alt="Android ztlconfig文档"></a>
+                        </div>
+                      </li>
+                                            <li class="downloadli clearboth">
+                        <div class="downloadnrs-left">
+                          <span>Android 助手说明文档</span>
+                          <p>助手说明文档.docx</p>
+                        </div>
+                        <div class="downloadnrs-right">
+                          <a class="downabtn" data-id="11" data-url1="/uploads/download/20250319/智通利助手使用说明.docx" data-url2="" data-url3=""><img src="/laohongseo/img/download/download.png" alt="Android 助手说明文档"></a>
+                        </div>
+                      </li>
+                                          </ul>
+                  </div>
+                                  </div>
+            </div>
+            
+            <div class="search-results" id="searchresults">
+                <h2>搜索结果</h2>
+                <p class="search-summary">搜索完成，有 <span id="keynum"></span> 个内容匹配。</p>
+                <hr>
+                <div class="search-resultsul"></div>
+            </div>
+            
+            <div class="wendangfooter">
+                <footer>
+                    <!--<div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">-->
+                    <!--    -->
+                    <!--    <a href="/wendang_id_10.html" class="btn btn-neutral" title="DC-RK3288系列" accesskey="p" rel="prev">Previous <span class="fa fa-arrow-circle-left"></span></a>-->
+                    <!--    -->
+                    <!--    -->
+                    <!--    <a href="/wendang_id_12.html" class="btn btn-neutral float-right" title="DC-RK3128系列" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>-->
+                    <!--    -->
+                    <!--</div>-->
+                    <hr>
+                </footer>
+                <p>Copyright ©2023-2026 广州市定昌电子科技有限公司/广州市智通利电子有限公司（同一家公司） 版权所有 | <a href="https://beian.miit.gov.cn/" target="_blank" style="color:#7c7a7a;">粤ICP备14028163号</a></p>
+            </div>
+            
+        </div>
+    </div>
+</section>
+  </div>
+  </div>
+  
+<script>
+//下载列表
+const downloadli = document.querySelectorAll('.downloadli');
+const downloadlia = document.querySelectorAll('.downloadli a');
+if(downloadli&&downloadlia){
+    downloadli.forEach(function (ctop, cindex) {
+        ctop.dataset.value =cindex;
+        downloadlia[cindex].dataset.value =cindex;
+    });  
+}
+$('.downloadli a').click(function(){
+    var idss=$(this).attr('data-value');
+    var did=$(this).attr('data-id');
+    var url1=$(this).attr('data-url1');
+    var url2=$(this).attr('data-url2');
+    var url3=$(this).attr('data-url3');
+    var zturl1='';
+    var zturl2='';
+    var zturl3='';
+    if(!url1){zturl1='disabled="disabled"';}
+    if(!url2){zturl2='disabled="disabled"';}
+    if(!url3){zturl3='disabled="disabled"';}
+    
+    // console.log(idss);
+    var spanText = downloadli[idss].querySelector('span').innerText || downloadli[idss].querySelector('span').textContent;
+    // 获取p标签里面的纯文本内容
+    var pText = downloadli[idss].querySelector('p').innerText || downloadli[idss].querySelector('p').textContent;
+    // console.log("span标签内容: " + spanText);
+    // console.log("p标签内容: " + pText);
+    if(window.screen.width<750){
+        layer.open({
+            type: 1,
+            title: "资源下载目录",
+            // area: ['495px', '193px'], // 宽高
+            content: '<div class="downloadtc"><div class="downloadtc-body-main"><div class="title">'+spanText+'</div><div class="desc">'+pText+'</div></div><div class="downloadtc-btn"><button class="gf_down" '+zturl1+' data-url="'+url1+'">官方下载</button><button class="baidu_down" '+zturl2+' data-url="'+url2+'">百度云</button><button class="google_down" '+zturl3+' data-url="'+url3+'">Google</button></div></div>',
+            success: function(layero, index, that){
+                // 弹层的最外层元素的 jQuery 对象
+                // console.log(layero);
+                // // 弹层的索引值
+                // console.log(index);
+                // // 弹层内部原型链中的 this --- 2.8+
+                // console.log(that);
+                $('.downloadtc-btn button').click(function(){
+                    var ddurl=$(this).attr('data-url');
+                    // console.log('do',ddurl);
+                    if(ddurl!==''&&ddurl!=='NULL'){
+                        // console.log('ok',ddurl);
+                        // window.open(ddurl, "", null);
+
+                        // 创建一个隐藏的<a>标签
+                        var dda = $('<a>').attr('href', ddurl).attr('download', '');
+                        // 将<a>标签添加到页面中
+                        $('body').append(dda);
+                        // 模拟点击<a>标签
+                        dda[0].click();
+                        // 移除添加的<a>标签
+                        dda.remove();
+                    }
+                });
+            }
+            
+        });  
+    }else{
+        layer.open({
+            type: 1,
+            title: "资源下载目录",
+            area: ['515px', '193px'], // 宽高
+            content: '<div class="downloadtc"><div class="downloadtc-body-main"><div class="title">'+spanText+'</div><div class="desc">'+pText+'</div></div><div class="downloadtc-btn"><button class="gf_down" '+zturl1+' data-url="'+url1+'">官方下载</button><button class="baidu_down" '+zturl2+' data-url="'+url2+'">百度云</button><button class="google_down" '+zturl3+' data-url="'+url3+'">Google</button></div></div>',
+            success: function(layero, index, that){
+                // 弹层的最外层元素的 jQuery 对象
+                // console.log(layero);
+                // // 弹层的索引值
+                // console.log(index);
+                // // 弹层内部原型链中的 this --- 2.8+
+                // console.log(that);
+                $('.downloadtc-btn button').click(function(){
+                    var ddurl=$(this).attr('data-url');
+                    // console.log('do',ddurl);
+                    if(ddurl!==''&&ddurl!=='NULL'){
+                        // console.log('ok',ddurl);
+                        // window.open(ddurl, "", null);
+
+                        // 创建一个隐藏的<a>标签
+                        var dda = $('<a>').attr('href', ddurl).attr('download', '');
+                        // 将<a>标签添加到页面中
+                        $('body').append(dda);
+                        // 模拟点击<a>标签
+                        dda[0].click();
+                        // 移除添加的<a>标签
+                        dda.remove();
+                    }
+                });
+            }
+            
+        });  
+    }
+    
+});
+
+
+
+</script>
+<script type="text/javascript" src="/laohongseo/js/gzdc.js?t=1768466257"></script>
+<script type="text/javascript">
+function pushforeach(){
+    // 选取所有的 img 元素
+    //     const aaimages = document.querySelectorAll('.editormd-preview-container img');
+    //     // 遍历每个 img 元素
+    //     aaimages.forEach((aimage) => {
+    //         // 为每个 img 元素添加 loading="lazy" 属性
+    //         aimage.setAttribute('loading', 'lazy');
+    //     });
+        
+    // const bbimages = document.querySelectorAll('img[loading="lazy"]');
+    //     bbimages.forEach((bbimage) => {
+    //         bbimage.addEventListener('load', () => {
+    //             console.log(`Image loaded: ${bbimage.src}`);
+    //         });
+    //         bbimage.addEventListener('error', () => {
+    //             console.error(`Image failed to load: ${bbimage.src}`);
+    //         });
+    //     });
+    console.log('执行了');
+    // 获取指定class下的所有h1-h8标题元素
+    const headings = document.querySelectorAll('.editormd-preview-container h1,.editormd-preview-container h2,.editormd-preview-container h3,.editormd-preview-container h4,.editormd-preview-container h5,.editormd-preview-container h6,.editormd-preview-container h7,.editormd-preview-container h8');
+    const headingsa = document.querySelectorAll('.reference-link');
+    // console.log(headings);
+    const ctocItems = document.querySelectorAll('.markdown-toc-list a');
+    // console.log(ctocItemlis);
+    // 遍历标题元素数组
+    headings.forEach(function (heading, index) {
+        // 添加指定的class，例如添加名为'modified-heading'的class
+        heading.classList.add('sonheaderitem');
+        // 添加指定的dataset值，例如添加名为'data-custom'，值为'some-value'的dataset
+        heading.dataset.value =index;
+        headingsa[index].dataset.value =index;
+        heading.id ='son'+index;
+        // console.log('ctocItems['+index+']');
+        ctocItems[index].classList.add('toc-item');
+        ctocItems[index].classList.add('active');
+        ctocItems[index].dataset.value =index;
+        ctocItems[index].id='menusonheader'+index;
+        ctocItems[index].href='#son'+index;
+    });
+    
+    // 获取.markdown-toc-list下的所有li元素
+    const tocLiElements = document.querySelectorAll('.markdown-toc-list li');
+    // 遍历li元素，判断是否为直接子元素，若是则添加class
+    tocLiElements.forEach(function (li, index) {
+        if (li.parentNode.matches('.markdown-toc-list')) {
+            li.classList.add('topli');
+            li.dataset.livalue =index;
+            
+            const tocLiElementsa =li.querySelectorAll('a');
+            tocLiElementsa.forEach((lia, indexa) => {
+                lia.dataset.livalue = index;
+            });
+        }
+    });
+    
+    // 获取.markdown-toc-list下的所有li元素
+    const currentElements = document.querySelectorAll('.toc-item');
+    // 遍历li元素，判断是否为直接子元素，若是则添加class
+    currentElements.forEach(function (ctop, cindex) {
+        // $('.toc-item').removeClass('active');
+        // console.log(parseInt(ctop.getAttribute('level')));
+        if(parseInt(ctop.getAttribute('level'))<2){
+            ctop.classList.add('active');
+        }else{
+            ctop.classList.remove('active');
+        }
+        
+        
+    });
+    
+    //清除空的ul
+    document.querySelectorAll('ul').forEach(ul => {
+        if (ul.childNodes.length === 0 || Array.from(ul.childNodes).every(node => node.nodeType === 3 && node.textContent.trim() === '')) {
+          ul.parentNode.removeChild(ul);
+        }
+    });
+    
+    $('ul li').each(function () {
+        var $aTag = $(this).children('a');
+        var $siblingUl = $(this).children('ul');
+        if ($siblingUl.length > 0) {
+            $aTag.parent('li').addClass('haveson');
+        }
+    });
+    // 在添加了haveson类的li下的第一个a标签内插入<span class="toc-icon"></span>
+    $('.haveson').each(function () {
+        var firstATag = $(this).find('a').first();
+        firstATag.prepend('<span class="toc-icon"></span>');
+    });
+    
+    $('.sidebarglaul li a.toc-item').removeClass('active');
+    
+    $('.sonheaderitem .reference-link').on('click',function() {
+        console.log('点击了sonheaderitem');
+        const targetId = $(this).data('value');//.attr('data-value');
+        // $('.markdown-toc-list a').removeClass('current');
+        $('*').removeClass('current');
+        var menuids="menusonheader"+targetId;
+        const myDivElement = document.getElementById(menuids);
+        myDivElement.classList.add('current');
+        
+        
+        
+        if(myDivElement.parentNode.nodeName === 'LI'){
+          myDivElement.parentNode.classList.add('current');
+          if(myDivElement.parentNode.parentNode.nodeName === 'UL'){
+              myDivElement.parentNode.parentNode.classList.add('current'); 
+              if(myDivElement.parentNode.parentNode.parentNode.nodeName === 'LI'){
+                  myDivElement.parentNode.parentNode.parentNode.classList.add('current'); 
+                  if(myDivElement.parentNode.parentNode.parentNode.parentNode.nodeName === 'UL'){
+                        myDivElement.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                        if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'LI'){
+                            myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                            if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'UL'){
+                                myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'LI'){
+                                    myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                    if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'UL'){
+                                        myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                        if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'LI'){
+                                            myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                            if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'UL'){
+                                                myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                                if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'LI'){
+                                                    myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                  }
+              }
+          }
+        }
+        
+        if ($('#'+menuids).hasClass('toplidel')) {
+            if($('#'+menuids).hasClass('toc-level-1')){
+              $('.toc-level-1').removeClass('toplidel'); 
+              $('.toc-level-1.toplidel').trigger('click');
+            }
+            if($('#'+menuids).hasClass('toc-level-2')){
+              $('.toc-level-2').removeClass('toplidel');
+              $('.toc-level-2.toplidel').trigger('click');
+            }
+            if($('#'+menuids).hasClass('toc-level-3')){
+              $('.toc-level-3').removeClass('toplidel');
+              $('.toc-level-3.toplidel').trigger('click');
+            }
+            if($('#'+menuids).hasClass('toc-level-4')){
+              $('.toc-level-4').removeClass('toplidel');
+              $('.toc-level-4.toplidel').trigger('click');
+            }
+            if($('#'+menuids).hasClass('toc-level-5')){
+              $('.toc-level-5').removeClass('toplidel');
+              $('.toc-level-5.toplidel').trigger('click');
+            }
+            if($('#'+menuids).hasClass('toc-level-6')){
+              $('.toc-level-6').removeClass('toplidel');
+              $('.toc-level-6.toplidel').trigger('click');
+            }
+            // 如果有toplidel样式，则移除
+            myDivElement.classList.remove('toplidel');
+            if(myDivElement.parentNode.nodeName === 'LI'){
+                myDivElement.parentNode.classList.remove('current');
+            }
+            // 获取子toplidel元素
+            const childElements = myDivElement.querySelectorAll('.toplidel');
+            // 遍历子元素并修改样式
+            childElements.forEach(child => {
+                child.classList.remove('toplidel');
+            });
+        } else {
+            if($('#'+menuids).hasClass('toc-level-1')){
+              $('.toc-level-1').removeClass('toplidel'); 
+              $('.toc-level-1.toplidel').trigger('click');
+            }
+            if($('#'+menuids).hasClass('toc-level-2')){
+              $('.toc-level-2').removeClass('toplidel');
+              $('.toc-level-2.toplidel').trigger('click');
+            }
+            if($('#'+menuids).hasClass('toc-level-3')){
+              $('.toc-level-3').removeClass('toplidel');
+              $('.toc-level-3.toplidel').trigger('click');
+            }
+            if($('#'+menuids).hasClass('toc-level-4')){
+              $('.toc-level-4').removeClass('toplidel');
+              $('.toc-level-4.toplidel').trigger('click');
+            }
+            if($('#'+menuids).hasClass('toc-level-5')){
+              $('.toc-level-5').removeClass('toplidel');
+              $('.toc-level-5.toplidel').trigger('click');
+            }
+            if($('#'+menuids).hasClass('toc-level-6')){
+              $('.toc-level-6').removeClass('toplidel');
+              $('.toc-level-6.toplidel').trigger('click');
+            }
+            // 如果没有toplidel样式，则添加
+            myDivElement.classList.add('toplidel');
+            if(myDivElement.parentNode.nodeName === 'LI'){
+                myDivElement.parentNode.classList.add('current');
+            }
+        }
+        myDivElement.classList.add('active');
+        // const targetlevel = myDivElement.level;
+        
+        $('*').removeClass('displaycurrentson');
+        // $('.markdown-toc-list li.displaycurrentson').removeClass('displaycurrentson');
+        
+        //找到livalue
+        const targetIdlivalue = $('#'+menuids).data('livalue');//.attr('data-value');
+        const targetIdlevel = $('#'+menuids).attr('level');//.attr('data-value');
+        // 获取.markdown-toc-list下的所有li元素
+        const currentElements = document.querySelectorAll('.toc-item');
+        // 遍历li元素，判断是否为直接子元素，若是则添加class
+        currentElements.forEach(function (ctop, cindex) {
+            ctop.classList.remove('displaycurrentson');
+            if(parseInt(ctop.getAttribute('level'))-1<=parseInt(targetIdlevel)&&parseInt(ctop.dataset.livalue)===parseInt(targetIdlivalue)){
+                // console.log(parseInt(ctop.getAttribute('level')));
+                // console.log(ctop.dataset.livalue);
+                ctop.classList.add('active');
+                if(parseInt(ctop.getAttribute('level'))===parseInt(targetIdlevel)&&parseInt(ctop.dataset.livalue)===parseInt(targetIdlivalue)){
+                    if(!ctop.classList.contains('current')){
+                        ctop.classList.add('displaycurrentson');
+                        // 使用jQuery选择器获取符合条件的a标签
+                        var siblingUL = ctop.parentNode;
+                        console.log(ctop.parentNode);
+                        siblingUL.classList.add('displaycurrentson');
+                        
+                        const subLiListul = siblingUL.querySelectorAll('ul');
+                        if(!subLiListul){
+                            if (subLiListul.length > 0) {
+                                // 给同级ul元素添加指定class
+                                for (let i = subLiListul.length - 1; i >= 0; i--) {
+                                   subLiListul[i].addClass('displaycurrentson');
+                                }
+                            }
+                        }
+                    }
+                }
+            }else{
+                ctop.classList.remove('active');
+            }
+            if(parseInt(ctop.dataset.livalue)===parseInt(targetIdlivalue)){
+                if(ctop.classList.contains('active')){
+                    ctop.classList.add('toplidel');
+                }
+                if(ctop.classList.contains('displaycurrentson')){
+                    ctop.classList.remove('active'); 
+                }
+                // 获取所有li元素
+                const liElements = document.querySelectorAll('li');
+                liElements.forEach((li) => {
+                    if (li.classList.contains('haveson') &&!li.classList.contains('current')) {
+                      const aTags = li.querySelectorAll('a');
+                      aTags.forEach((aTag) => {
+                        aTag.classList.remove('toplidel');
+                      });
+                    }else if(li.classList.contains('haveson') &&li.classList.contains('current')){
+                      const aTags = li.querySelectorAll('a');
+                      aTags.forEach((aTag) => {
+                        aTag.classList.add('toplidel');
+                      });
+                    }
+                });
+            }
+            if(parseInt(ctop.getAttribute('level'))>parseInt(targetIdlevel)+1){
+                // console.log('level='+parseInt(ctop.getAttribute('level')));
+              ctop.classList.remove('active'); 
+            }else{
+              ctop.classList.add('active');
+            }
+            if(parseInt(ctop.getAttribute('level'))<2){
+                ctop.classList.add('active');
+            }
+
+        });
+        
+        
+
+        
+        
+        //页面滚动
+        const targetElement = $('#son'+targetId);
+        $('html, body').animate({
+            scrollTop: targetElement.offset().top
+        }, {
+            // duration: 80, // 滚动动画持续时间，单位为毫秒，可根据需要调整
+            duration: 0, // 滚动动画持续时间，单位为毫秒，可根据需要调整
+            easing: 'swing' // 滚动动画的缓动效果，可选择其他效果，如'linear'等
+        });
+    });
+    
+    
+    
+    $('.toc-item').on('click',function(e) {
+
+        console.log('点击了toc-item');
+        const targetId = $(this).data('value');
+
+        $('*').removeClass('current');
+        
+        // $(this).removeClass('toplidel');
+
+        var menuids="menusonheader"+targetId;
+        console.log('targetId='+targetId);
+        const myDivElement = document.getElementById(menuids);
+        myDivElement.classList.add('current');
+
+        if(myDivElement.parentNode.nodeName === 'LI'){
+          myDivElement.parentNode.classList.add('current');
+          if(myDivElement.parentNode.parentNode.nodeName === 'UL'){
+              myDivElement.parentNode.parentNode.classList.add('current'); 
+              if(myDivElement.parentNode.parentNode.parentNode.nodeName === 'LI'){
+                  myDivElement.parentNode.parentNode.parentNode.classList.add('current'); 
+                  if(myDivElement.parentNode.parentNode.parentNode.parentNode.nodeName === 'UL'){
+                        myDivElement.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                        if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'LI'){
+                            myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                            if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'UL'){
+                                myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'LI'){
+                                    myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                    if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'UL'){
+                                        myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                        if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'LI'){
+                                            myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                            if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'UL'){
+                                                myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current');
+                                                if(myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName === 'LI'){
+                                                    myDivElement.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList.add('current'); 
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                  }
+              }
+          }
+        }
+        
+        
+        if (myDivElement.classList.contains('toplidel')) {
+            if($(this).hasClass('toc-level-1')){
+              $('.toc-level-1').removeClass('toplidel'); 
+            }
+            if($(this).hasClass('toc-level-2')){
+              $('.toc-level-2').removeClass('toplidel'); 
+            }
+            if($(this).hasClass('toc-level-3')){
+              $('.toc-level-3').removeClass('toplidel'); 
+            }
+            if($(this).hasClass('toc-level-4')){
+              $('.toc-level-4').removeClass('toplidel'); 
+            }
+            if($(this).hasClass('toc-level-5')){
+              $('.toc-level-5').removeClass('toplidel'); 
+            }
+            if($(this).hasClass('toc-level-6')){
+              $('.toc-level-6').removeClass('toplidel'); 
+            }
+            // 如果有toplidel样式，则移除
+            myDivElement.classList.remove('toplidel');
+            if(myDivElement.parentNode.nodeName === 'LI'){
+                myDivElement.parentNode.classList.remove('current');
+            }
+            // 获取子toplidel元素
+            const childElements = myDivElement.querySelectorAll('.toplidel');
+            // 遍历子元素并修改样式
+            childElements.forEach(child => {
+                child.classList.remove('toplidel');
+            });
+        } else {
+            if($(this).hasClass('toc-level-1')){
+              $('.toc-level-1').removeClass('toplidel'); 
+            }
+            if($(this).hasClass('toc-level-2')){
+              $('.toc-level-2').removeClass('toplidel'); 
+            }
+            if($(this).hasClass('toc-level-3')){
+              $('.toc-level-3').removeClass('toplidel'); 
+            }
+            if($(this).hasClass('toc-level-4')){
+              $('.toc-level-4').removeClass('toplidel'); 
+            }
+            if($(this).hasClass('toc-level-5')){
+              $('.toc-level-5').removeClass('toplidel'); 
+            }
+            if($(this).hasClass('toc-level-6')){
+              $('.toc-level-6').removeClass('toplidel'); 
+            }
+            // 如果没有toplidel样式，则添加
+            myDivElement.classList.add('toplidel');
+            if(myDivElement.parentNode.nodeName === 'LI'){
+                myDivElement.parentNode.classList.add('current');
+            }
+        }
+        
+        
+        
+        myDivElement.classList.add('active');
+        $('*').removeClass('displaycurrentson');
+        
+        const targetIdlivalue = $(this).data('livalue');//.attr('data-value');
+        const targetIdlevel = $(this).attr('level');//.attr('data-value');
+        
+        // 获取.markdown-toc-list下的所有li元素
+        const currentElements = document.querySelectorAll('.toc-item');
+        // 遍历li元素，判断是否为直接子元素，若是则添加class
+        currentElements.forEach(function (ctop, cindex) {
+            ctop.classList.remove('displaycurrentson');
+            if(parseInt(ctop.getAttribute('level'))-1<=parseInt(targetIdlevel)&&parseInt(ctop.dataset.livalue)===parseInt(targetIdlivalue)){
+                // console.log(parseInt(ctop.getAttribute('level')));
+                // console.log(ctop.dataset.livalue);
+                ctop.classList.add('active');
+                // ctop.classList.add('current');
+                if(parseInt(ctop.getAttribute('level'))===parseInt(targetIdlevel)&&parseInt(ctop.dataset.livalue)===parseInt(targetIdlivalue)){
+                    if(!ctop.classList.contains('current')){
+                        ctop.classList.add('displaycurrentson');
+                        // 使用jQuery选择器获取符合条件的a标签
+                        var siblingUL = ctop.parentNode;
+                        console.log(ctop.parentNode);
+                        siblingUL.classList.add('displaycurrentson');
+                        
+                        const subLiListul = siblingUL.querySelectorAll('ul');
+                        if(!subLiListul){
+                            if (subLiListul.length > 0) {
+                                // 给同级ul元素添加指定class
+                                for (let i = subLiListul.length - 1; i >= 0; i--) {
+                                  subLiListul[i].addClass('displaycurrentson');
+                                }
+                            }
+                        }
+                    }
+                }
+            }else{
+                ctop.classList.remove('active');
+            }
+            // var targetIdlevels=parseInt(targetIdlevel)+3;
+            // console.log('targetIdlevel='+targetIdlevels);
+            if(parseInt(ctop.getAttribute('level'))>parseInt(targetIdlevel)+1){
+                // console.log('level='+parseInt(ctop.getAttribute('level')));
+              ctop.classList.remove('active'); 
+            }
+            if(parseInt(ctop.getAttribute('level'))<2){
+                ctop.classList.add('active');
+            }
+
+        });
+        
+        //以下代码是显示隐藏第I个富文本内容
+        // 获取所有 .markdown-toc 元素
+        const markdownTocElements = document.querySelectorAll('.markdown-toc');
+        // 获取所有 .editormd-vertical 元素
+        const editormdVerticalElements = document.querySelectorAll('.editormd-vertical');
+
+        // 输出 .markdown-toc 和 .editormd-vertical 的数量
+        // console.log(`.markdown-toc 的数量: ${markdownTocElements.length}`);
+        // console.log(`.editormd-vertical 的数量: ${editormdVerticalElements.length}`);
+
+        // 为每个 .markdown-toc 元素添加点击事件监听器
+        markdownTocElements.forEach((tocElement, index) => {
+            tocElement.addEventListener('click', () => {
+                // 隐藏所有 .editormd-vertical 元素
+                editormdVerticalElements.forEach(verticalElement => {
+                    verticalElement.style.display = 'none';
+                });
+                // 显示当前点击的 .markdown-toc 对应的 .editormd-vertical 元素
+                editormdVerticalElements[index].style.display = 'block';
+                // 延迟 0.5 秒
+                setTimeout(() => {
+                    //页面滚动
+                    const targetElement = $('#son'+targetId);
+                    $('html, body').animate({
+                        scrollTop: targetElement.offset().top
+                                }, {
+                        // duration: 80, // 滚动动画持续时间，单位为毫秒，可根据需要调整
+                        duration: 0, // 滚动动画持续时间，单位为毫秒，可根据需要调整
+                        easing: 'swing' // 滚动动画的缓动效果，可选择其他效果，如'linear'等
+                    });
+                // }, 500);
+                }, 0);
+            });
+        });
+        
+        // 获取当前顶级菜单项下的子菜单（这里假设二级菜单作为其子菜单示例，你可按需调整获取层级）
+            // const subMenuy = this.querySelector('ul');
+            // if (subMenuy.style.display === 'block') {
+            //   // 如果当前是显示的，点击则隐藏
+            //   subMenuy.style.display = 'none';
+            // } else {
+            //   // 如果当前是隐藏的，点击则显示
+            //   subMenuy.style.display = 'block';
+            // }
+        
+        //页面滚动
+        // const targetElement = $('#son'+targetId);
+        // $('html, body').animate({
+        //     scrollTop: targetElement.offset().top
+        //             }, {
+        //     duration: 80, // 滚动动画持续时间，单位为毫秒，可根据需要调整
+        //     easing: 'swing' // 滚动动画的缓动效果，可选择其他效果，如'linear'等
+        // });
+    });
+    
+    $('.hbmenu .glarticlebar .toc-item').on('click',function(e) {
+        $('.hbcontent').show();
+        $('.glarticlebarnr').show();
+    });
+    $('.hbmenu .zdysidebar .toc-item').on('click',function(e) {
+        $('.hbcontent').show();
+        $('.zdysidebarnr').show();
+    });
+    // $('.hbmenu .glarticlebar .toc-item').on('click',function(e) {
+    //     $('.hbcontent').show();
+    //     $('.glarticlebarnr').show();
+    // });
+     // 为所有.ctcaption 元素绑定点击事件20250411
+        $('.fastmulutop').on('click', function () {
+            console.log("main被点击");
+            $('.editormd-vertical').css('display','none');
+            $('#mainsidebarnr .editormd-vertical').css('display','block');
+            // $('.keyindiv').show();
+        });
+        $('#mainsidebar .ctcaption').on('click', function () {
+            // 获取当前点击元素在所有.ctcaption 元素中的索引
+             console.log("main2被点击");
+            const index = $('#mainsidebar .ctcaption').index(this);
+            // 切换 ctoplidel 样式
+            $(this).toggleClass('ctoplidel');
+            // $(this).addClass('ctoplidel');
+            // 判断是否存在 ctoplidel 样式
+            if ($(this).hasClass('ctoplidel')) {
+                // 若存在 ctoplidel 样式，隐藏第 index 个.ctcaptions
+                // $('#mainsidebar .toc-item').removeClass('ctoplidel');
+                // $(this).addClass('ctoplidel');
+                $('#mainsidebar .ctcaptions').eq(index).hide();
+            } else {
+                // 若不存在 ctoplidel 样式，显示第 index 个.ctcaptions
+                // $('.hbmenu .glarticlebar .toc-item').removeClass('ctoplidel');
+                // $(this).addClass('ctoplidel');
+                $('#mainsidebar .ctcaptions').eq(index).show();
+            }
+        });
+        $('.hbmenu .glarticlebar .ctcaption').on('click', function () {
+            // 获取当前点击元素在所有.ctcaption 元素中的索引
+            const index = $('.hbmenu .glarticlebar .ctcaption').index(this);
+            // 切换 ctoplidel 样式
+            $(this).toggleClass('ctoplidel');
+            // $(this).addClass('ctoplidel');
+            // 判断是否存在 ctoplidel 样式
+            if ($(this).hasClass('ctoplidel')) {
+                // 若存在 ctoplidel 样式，隐藏第 index 个.ctcaptions
+                $('.hbmenu .glarticlebar .toc-item').removeClass('ctoplidel');
+                $(this).addClass('ctoplidel');
+                $('.hbmenu .glarticlebar .ctcaptions').eq(index).hide();
+            } else {
+                // 若不存在 ctoplidel 样式，显示第 index 个.ctcaptions
+                $('.hbmenu .glarticlebar .toc-item').removeClass('ctoplidel');
+                // $(this).addClass('ctoplidel');
+                $('.hbmenu .glarticlebar .ctcaptions').eq(index).show();
+            }
+            
+            
+            // console.log('关联文章被点击');
+            // console.log(`第 ${index + 1} 个.ctcaption 被点击`);
+            //以下代码是显示隐藏第I个富文本内容
+            // 获取所有 .markdown-toc 元素
+            $('.hbcontent').show();
+            $('.editormd-vertical').css('display','none');
+            $('.glarticlebarnr .editormd-vertical').eq(index).css('display','block');
+            // $('.ctcaptions').eq(index).find('.toc-item:first').trigger('click');
+            // 找到第 index 个.ctcaptions 下的第一个.topli 元素
+                const $targetTopli = $('.hbmenu .glarticlebar .ctcaptions').eq(index).find('.toc-item:first');
+                if ($targetTopli.length > 0) {
+                        // 如果存在，则显示 .editormd-vertical 元素
+                    // 触发点击事件
+                    $targetTopli.trigger('click');
+                    // 获取 data-value 属性的值
+                    const dataValue = $targetTopli.data('value');
+                    // console.log(`对应的.toc-item 的 data - value 值为: ${dataValue}`);
+                    // 延迟 0.5 秒
+                    setTimeout(() => {
+                        //页面滚动
+                        const targetElement = $('#son'+dataValue);
+                        $('html, body').animate({
+                            scrollTop: targetElement.offset().top
+                                    }, {
+                            duration: 0, // 滚动动画持续时间，单位为毫秒，可根据需要调整
+                            easing: 'swing' // 滚动动画的缓动效果，可选择其他效果，如'linear'等
+                        });
+                    }, 0);
+                }else{
+                    // console.log('没有东西2');
+                    // console.log(index);
+                    $('.glarticlebarnr').eq(index).show();
+                }
+                
+        });
+        
+        $('.hbmenu .zdysidebar .ctcaption').on('click', function () {
+            // 获取当前点击元素在所有.ctcaption 元素中的索引
+            const index = $('.hbmenu .zdysidebar .ctcaption').index(this);
+            console.log(index);
+            // 切换 ctoplidel 样式
+            $(this).toggleClass('ctoplidel');
+            // $(this).addClass('ctoplidel');
+            // 判断是否存在 ctoplidel 样式
+            if ($(this).hasClass('ctoplidel')) {
+                // 若存在 ctoplidel 样式，隐藏第 index 个.ctcaptions
+                $('.hbmenu .sidebarglaul .toc-item').removeClass('ctoplidel');
+                
+                $('.hbmenu .zdysidebar .zctcaptions > li.wtopli.current > .ctcaption').removeClass('ctoplidel');
+                $('.hbmenu .zdysidebar .zctcaptions > li.wtopli > .ctcaption').addClass('ctoplidel');
+                $('.hbmenu .zdysidebar .zctcaptions > li.wtopli .markdown-toc-list').removeClass('current');
+                $('.hbmenu .zdysidebar .zctcaptions > li.wtopli.current .markdown-toc-list').addClass('current');
+                
+                // $(this).addClass('ctoplidel');
+                $('.hbmenu .zdysidebar .ctcaptions').eq(index).hide();
+            } else {
+                // 若不存在 ctoplidel 样式，显示第 index 个.ctcaptions
+                $('.hbmenu .sidebarglaul .toc-item').removeClass('ctoplidel');
+                
+                $('.hbmenu .zdysidebar .zctcaptions > li.wtopli > .ctcaption').removeClass('ctoplidel');
+                $('.hbmenu .zdysidebar .zctcaptions > li.wtopli > .ctcaption').addClass('ctoplidel');
+                $(this).removeClass('ctoplidel');
+                
+                $('.hbmenu .zdysidebar .ctcaptions').eq(index).show();
+            }
+            console.log($('.hbmenu .zdysidebar .zctcaptions  > li.wtopli'));
+            $('.hbmenu .zdysidebar .zctcaptions > li.wtopli').removeClass('current');
+            $('.hbmenu .zdysidebar .zctcaptions > li.wtopli').eq(index).addClass('current');
+            
+            // $('.hbmenu .zdysidebar .zctcaptions > li.wtopli > .ctcaption').removeClass('ctoplidel');
+            // $('.hbmenu .zdysidebar .zctcaptions > li.wtopli > .ctcaption').addClass('ctoplidel');
+            // $('.hbmenu .zdysidebar .zctcaptions > li.wtopli > .ctcaption').eq(index).removeClass('ctoplidel');
+            
+            // console.log(`第 ${index + 1} 个.ctcaption 被点击`);
+            //以下代码是显示隐藏第I个富文本内容
+            // 获取所有 .markdown-toc 元素
+            
+            $('.editormd-vertical').css('display','none');
+            $('.hbmenu .zdysidebar .zctcaptions .markdown-toc-list').eq(index).css('display','block!important');
+            // $('.keyindiv').show();
+            
+            $('.zdysidebarnr .editormd-vertical').css('display','none');
+            $('.zdysidebarnr .editormd-vertical').eq(index).css('display','block');
+            
+            
+            // $('.ctcaptions').eq(index).find('.toc-item:first').trigger('click');
+            // 找到第 index 个.ctcaptions 下的第一个.topli 元素
+                const $targetToplis = $('.hbmenu .zdysidebar .ctcaptions').eq(index).find('.toc-item:first');
+                
+                if ($targetToplis.length > 0) {
+                        // 如果存在，则显示 .editormd-vertical 元素
+                    // 触发点击事件
+                    $targetToplis.trigger('click');
+                    // 获取 data-value 属性的值
+                    const dataValues = $targetToplis.data('value');
+                    console.log(`对应的.toc-item 的 data - value 值为: ${dataValues}`);
+                    // 延迟 0.5 秒
+                    setTimeout(() => {
+                        //页面滚动
+                        const targetElement = $('#son'+dataValues);
+                        $('html, body').animate({
+                            scrollTop: targetElement.offset().top
+                                    }, {
+                            duration: 0, // 滚动动画持续时间，单位为毫秒，可根据需要调整
+                            easing: 'swing' // 滚动动画的缓动效果，可选择其他效果，如'linear'等
+                        });
+                    }, 0);
+                }else{
+                    console.log('没有东西');
+                }
+                
+        });
+        $('.zctcaption').on('click', function () {
+            // 获取当前点击元素在所有.ctcaption 元素中的索引
+            const zindex = $('.zctcaption').index(this);
+            // 切换 ctoplidel 样式
+            $(this).toggleClass('zctoplidel');
+            // 判断是否存在 ctoplidel 样式
+            if ($(this).hasClass('zctoplidel')) {
+                // 若存在 ctoplidel 样式，隐藏第 index 个.ctcaptions
+                $('.zctcaptions').eq(zindex).hide();
+            } else {
+                // 若不存在 ctoplidel 样式，显示第 index 个.ctcaptions
+                $('.zctcaptions').eq(zindex).show();
+            }
+            console.log(`第 ${zindex + 1} 个.zctcaption 被点击`);
+            //以下代码是显示隐藏第I个富文本内容
+            // 获取所有 .markdown-toc 元素
+            // $('.editormd-vertical').css('display','none');
+            // $('.editormd-vertical').eq(zindex).css('display','block');
+            // $('.keyindiv').hide();
+            // $('.keyindiv').eq(zindex).show();
+            // $('.ctcaptions').eq(index).find('.toc-item:first').trigger('click');
+            // 找到第 index 个.ctcaptions 下的第一个.topli 元素
+                const $targetTopli = $('.zctcaptions').eq(zindex).find('.ctcaption:first');
+                // 触发点击事件
+                $targetTopli.trigger('click');
+        });
+        
+        const tocList = $('#fastmulu .markdown-toc-list');
+        if (tocList.length === 0) {
+            console.log('隐藏');
+            $('.fastmulutop .ctoc-icon').remove();
+        }
+        // 选择所有 .glarticlebar 元素并遍历
+        $('.glarticlebar').each(function () {
+            // 在当前 .glarticlebar 元素内部查找 .markdown-toc-list 元素
+            const atocList = $(this).find('.markdown-toc-list');
+            // 检查是否找到了 .markdown-toc-list 元素
+            if (atocList.length === 0) {
+                // 如果没有找到，则隐藏当前 .glarticlebar 元素下的 .ctoc-icon 元素
+                $(this).find('.ctoc-icon').css('opacity','0');
+            }
+        });
+        $('.toc-level-1.toplidel').on('click',function(e) {
+            $('*').removeClass('toplidel');
+            $(this).addClass('toplidel');
+            $('.toc-level-2').removeClass('toplidel');
+            $('.toc-level-3').removeClass('toplidel');
+            $('.toc-level-4').removeClass('toplidel');
+            $('.toc-level-5').removeClass('toplidel');
+            $('.toc-level-6').removeClass('toplidel');
+            $('.toc-level-1.displaycurrentson').removeClass('toplidel');
+        });
+        $('.toc-level-2.toplidel').on('click',function(e) {
+            $('.toc-level-2').removeClass('toplidel');
+            $(this).addClass('toplidel');
+            $('.toc-level-3').removeClass('toplidel');
+            $('.toc-level-4').removeClass('toplidel');
+            $('.toc-level-5').removeClass('toplidel');
+            $('.toc-level-6').removeClass('toplidel');
+            $('.toc-level-2.displaycurrentson').removeClass('toplidel');
+        });
+        $('.toc-level-3.toplidel').on('click',function(e) {
+            $('.toc-level-3').removeClass('toplidel');
+            $(this).addClass('toplidel');
+            $('.toc-level-4').removeClass('toplidel');
+            $('.toc-level-5').removeClass('toplidel');
+            $('.toc-level-6').removeClass('toplidel');
+            $('.toc-level-3.displaycurrentson').removeClass('toplidel');
+        });
+        $('.toc-level-4.toplidel').on('click',function(e) {
+            $('.toc-level-4').removeClass('toplidel');
+            $(this).addClass('toplidel');
+            $('.toc-level-5').removeClass('toplidel');
+            $('.toc-level-6').removeClass('toplidel');
+            $('.toc-level-4.displaycurrentson').removeClass('toplidel');
+        });
+        $('.toc-level-5.toplidel').on('click',function(e) {
+            $('.toc-level-5').removeClass('toplidel');
+            $(this).addClass('toplidel');
+            $('.toc-level-6').removeClass('toplidel');
+            $('.toc-level-5.displaycurrentson').removeClass('toplidel');
+        });
+        $('.toc-level-6.toplidel').on('click',function(e) {
+            $('.toc-level-6').removeClass('toplidel');
+            $(this).addClass('toplidel');
+            $('.toc-level-6.displaycurrentson').removeClass('toplidel');
+        });
+        
+        $('.toc-level-1').on('click',function(e) {
+            $('.toc-level-1.displaycurrentson').removeClass('toplidel');
+        });
+        $('.toc-level-2').on('click',function(e) {
+            $('.toc-level-2.displaycurrentson').removeClass('toplidel');
+        });
+        $('.toc-level-3').on('click',function(e) {
+            $('.toc-level-3.displaycurrentson').removeClass('toplidel');
+        });
+        $('.toc-level-4').on('click',function(e) {
+            $('.toc-level-4.displaycurrentson').removeClass('toplidel');
+        });
+        $('.toc-level-5').on('click',function(e) {
+            $('.toc-level-5.displaycurrentson').removeClass('toplidel');
+        });
+        $('.toc-level-6').on('click',function(e) {
+            $('.toc-level-6.displaycurrentson').removeClass('toplidel');
+        });
+    
+    // 获取所有具有指定class的元素
+    const relements = document.getElementsByClassName('editormd-toolbar');
+    while (relements.length > 0) {
+        relements[0].parentNode.removeChild(relements[0]);
+    }
+    const relements2 = document.getElementsByClassName('CodeMirror');
+    while (relements2.length > 0) {
+        relements2[0].parentNode.removeChild(relements2[0]);
+    }
+    const relements3 = document.getElementsByClassName('editormd-preview-close-btn');
+    while (relements3.length > 0) {
+        relements3[0].parentNode.removeChild(relements3[0]);
+    }
+    
+    layui.use(function(){
+        var layer = layui.layer;
+        // 图片层
+        layer.photos({
+            photos: '#mainsidebarnr'
+        }); 
+    });
+    layui.use(function(){
+        var layer = layui.layer;
+        // 图片层
+        layer.photos({
+            photos: '#zdysidebarnr'
+        }); 
+    });
+    layui.use(function(){
+        var layer = layui.layer;
+        // 图片层
+        layer.photos({
+            photos: '#glarticlebarnr'
+        }); 
+    });
+    const imgElement = document.querySelectorAll('.markdown-body.editormd-preview-container img');
+    imgElement.forEach((li) => {
+        // 获取src属性值
+        // li.addEventListener('load', () => {
+            console.log('找到了');
+            // console.log(li);
+            const src = li.src;
+            // console.log(src);
+            // 查找#号的位置
+            const hashIndex = src.indexOf('#');
+            if (hashIndex!== -1) {
+                // 提取#号后面的内容
+                const styleContent = src.substring(hashIndex + 1).trim();
+                // console.log(styleContent);
+                // 判断提取的内容是否不为空
+                if (styleContent) {
+                    // 设置到style属性中
+                    li.style.cssText = styleContent;
+                    // li.style.cssText="width:100px;";
+                }
+            }
+        // });
+    });
+    // 获取链接中的#号内容
+        const hashValue = window.location.hash;
+        // 选择 ID 为 son6 的元素
+        const targetToplihash = $(hashValue);
+            // 检查元素是否存在
+        if (targetToplihash.length > 0) {
+                // 触发 click 事件
+                // $('a[href="'+hashValue+'"]').trigger('click');
+                const allLinks = document.querySelectorAll('a');
+                allLinks.forEach(link => {
+                    if (link.getAttribute('href') === hashValue) {
+                        link.click();
+                    }
+                });
+                console.log("ID 为 "+hashValue+" 的元素存在");
+        } else {
+                console.log("ID 为 "+hashValue+" 的元素不存在");
+        }
+}
+    
+window.onload=function(){
+    mainwendangnrfc();
+    // 全局变量，用于生成唯一的id
+    let idCounter = 0;
+    let keywordCount = 0; 
+    // 获取表单元素
+    const searchForm = document.getElementById('gzdcsearch-form');
+    // 获取输入框元素
+    const searchInput = searchForm.querySelector('input');
+    // 给表单添加提交事件监听器
+    searchForm.addEventListener('submit', function (e) {
+ 
+        e.preventDefault(); // 阻止表单默认提交行为，避免页面刷新
+
+            const keyword = searchInput.value.trim(); // 获取输入框中的关键词并去除空白字符
+            if (keyword === '') {
+                return; // 如果关键词为空，不进行后续操作
+            }
+            
+            $('#downloadnr').hide();
+            $('#mainsidebarnr').hide();
+            $('.zdysidebarnr').hide();
+            $('.glarticlebarnr').hide();
+            $('.hbcontent').hide();
+            
+            $('#searchresults').show();
+            
+            // 先清空之前的高亮状态（如果有）
+            $('.editormd-preview-container').find('span.highlight').contents().unwrap();
+            $('.search-resultsul').empty();
+            
+            // 重置关键词出现次数统计
+            keywordCount = 0;
+
+            // 遍历所有目标div内的元素文本进行处理
+            $('div.editormd-preview-container *').each(function () {
+                const divText = $(this).text();
+                const regex = new RegExp(keyword, "gi");
+                const highlightedText = divText.replace(regex, `<span class="highlight">$&</span>`);
+                $(this).html(highlightedText);
+
+                // 查找当前元素内的高亮span元素
+                $(this).find('span.highlight').each(function () {
+                    // 为每个高亮span元素添加唯一id
+                    const elementId = `result_${idCounter++}`;
+                    $(this).attr('id', elementId);
+
+                    // 每找到一个高亮span元素（即关键词出现一次），次数加1
+                    keywordCount++;
+
+                    // 获取包含高亮span元素的父元素（如<p>等）
+                    const parentElement = $(this).parent();
+                    const parentText = parentElement.text();
+                    const index = parentText.indexOf($(this).text());
+                    const beforeText = parentText.substring(0, index).trim();
+                    const afterText = parentText.substring(index + $(this).text().length).trim();
+
+                    // 限制前后文展示的字数（可根据实际需求调整）
+                    const maxLength = 20;
+                    const truncatedBefore = beforeText.length > maxLength? '...'+beforeText.substring(beforeText.length - maxLength) : beforeText;
+                    const truncatedAfter = afterText.length > maxLength? afterText.substring(0, maxLength)+'...' : afterText;
+
+                    // 创建搜索结果列表项，包含关键词前后文信息
+                    const listItem = `<li data-id="${elementId}" data-type="">${truncatedBefore} <span class="highlight">${$(this).text()}</span> ${truncatedAfter}</li>`;
+
+                    // 在原有内容基础上添加新的搜索结果项，不覆盖
+                    
+                    $('.search-resultsul').append(listItem);
+                    // $('.search-results').find('p').last().after(listItem);
+                });
+            });
+
+            // 将统计的关键词出现次数更新到id为num的元素内
+            $('#keynum').text(keywordCount);
+
+            // 为搜索结果列表项添加点击事件，实现跳转功能
+            $('.search-results li').click(function () {
+                // $('#downloadnr').show();
+                // $('#mainsidebarnr').show();
+                // $('#zdysidebarnr').show();
+                // $('#glarticlebarnr').show();
+                // $('#searchresults').show();
+                $('.keyindiv').hide();
+                $('.editormd-vertical').hide();
+                const targetId = $(this).data('id');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    
+                    // 向上遍历DOM树，查找所属的editormd-preview-container元素
+                    let currentElement = targetElement;
+                    let containerIndex = 0;
+                    while (currentElement && currentElement.tagName.toLowerCase()!== 'body') {
+                        if (currentElement.classList.contains('keyindiv')) {
+                            break;
+                        }
+                        currentElement = currentElement.parentNode;
+                    }
+                    const editormdContainers = document.querySelectorAll('.keyindiv');
+                    for (let i = 0; i < editormdContainers.length; i++) {
+                        if (editormdContainers[i] === currentElement) {
+                            // containerIndex = i + 1;
+                            containerIndex = i;
+                            break;
+                        }
+                    }
+                    
+                    $('.hbcontent').show();
+                    // 获取第 containerIndex 个 .keyindiv 元素
+                    const keyindivElement = $('.keyindiv').eq(containerIndex);
+                    // 检查该元素内是否存在 .editormd-vertical 元素
+                    const editorElement = keyindivElement.find('.editormd-vertical');
+                    if (editorElement.length > 0) {
+                        // 如果存在，则显示 .editormd-vertical 元素
+                        editorElement.show();
+                    }
+                    // 显示第 containerIndex 个 .keyindiv 元素
+                    keyindivElement.show();
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    // if(containerIndex===1){
+                    //   $('#mainsidebarnr').show(); 
+                    // }
+                    // if(containerIndex===2){
+                    //   $('#zdysidebarnr').show(); 
+                    //   $('.hbcontent').show();
+                    // }
+                    // if(containerIndex===3){
+                    //   $('#glarticlebarnr').show(); 
+                    //   $('.hbcontent').show();
+                    // }
+                    // if(containerIndex===4){
+                    //   $('#downloadnr').show(); 
+                    // }
+                    $('#searchresults').hide();
+                    console.log(`被点击的关键词属于第${containerIndex}个keyindiv`);
+                }
+            });
+    });
+    
+    
+}
+
+ 
+
+$('.gzdc-nav-content').click(function(){
+    $(".gzdc-nav-side").removeClass('open');
+    $(".gzdc-nav-content-wrap").removeClass('open');
+});
+// $('.gzdc-nav-top').click(function(){
+//     $(".gzdc-nav-side").removeClass('open');
+//     $(".gzdc-nav-content-wrap").removeClass('open');
+// });
+$('.gzdc-nav-top .fa-bars').click(function(){
+    // console.log('.gzdc-nav-top被点击');
+    $(".gzdc-nav-side").toggleClass('open');
+    $(".gzdc-nav-content-wrap").toggleClass('open');
+});
+
+    $('#downloadnr').hide();
+    $('#mainsidebarnr').show();
+    $('.zdysidebarnr').hide();
+    $('.glarticlebarnr').hide();
+    $('.hbcontent').hide();
+    $('#searchresults').hide();
+    $(".gzdc-nav-side").removeClass('open');
+    $(".gzdc-nav-content-wrap").removeClass('open');
+$('#downloadbk').on('click',function(){
+    $('#downloadnr').show();
+    $('#mainsidebarnr').hide();
+    // $('.zdysidebarnr').hide();
+    // $('.glarticlebarnr').hide();
+    $('#searchresults').hide();
+    $('.hbcontent').hide();
+    $('*').removeClass('displaycurrentson');
+    $('*').removeClass('current');
+    $(".gzdc-nav-side").removeClass('open');
+    $(".gzdc-nav-content-wrap").removeClass('open');
+})
+$('#mainsidebar').on('click',function(){
+    $('#downloadnr').hide();
+    $('#mainsidebarnr').show();
+    $('.zdysidebarnr').hide();
+    $('.glarticlebarnr').hide();
+    $('#searchresults').hide();
+    $('.hbcontent').hide();
+    $(".gzdc-nav-side").removeClass('open');
+    $(".gzdc-nav-content-wrap").removeClass('open');
+})
+$('#zdysidebar').on('click',function(){
+    $('#downloadnr').hide();
+    $('#mainsidebarnr').hide();
+    $('.hbcontent').show();
+    $('.zdysidebarnr').show();
+    $('.glarticlebarnr').hide();
+    $('#searchresults').hide();
+    $(".gzdc-nav-side").removeClass('open');
+    $(".gzdc-nav-content-wrap").removeClass('open');
+})
+$('#glarticlebar').on('click',function(){
+    $('#downloadnr').hide();
+    $('#mainsidebarnr').hide();
+    $('.zdysidebarnr').hide();
+    $('.hbcontent').show();
+    $('.glarticlebarnr').show();
+    $('#searchresults').hide();
+    $(".gzdc-nav-side").removeClass('open');
+    $(".gzdc-nav-content-wrap").removeClass('open');
+})
+function returnmain(){
+    $('#downloadnr').hide();
+    $('#mainsidebarnr').show();
+    $('.zdysidebarnr').hide();
+    $('.hbcontent').hide();
+    $('.glarticlebarnr').hide();
+    $('#searchresults').hide();
+    $(".gzdc-nav-side").removeClass('open');
+    $(".gzdc-nav-content-wrap").removeClass('open');
+}
+
+</script> 
+<div id="tyxuanfuanniu">
+  <ul>
+    <li class="gzdc_consuling">
+      <div class="flex-center">
+        <img src="/static/img/zixun2.png" alt="咨询客服" style="width:100%;"/>
+      </div>
+      <div class="gzdc_line"></div>
+      <div class="gzdc_contact_mode">
+        <div class="can_title">微信客服</div>
+        <div class="cen_contact">
+          <img src="/uploads/Photo/20250415/bffe7c68f3fbf4689aad54c5c2498260.png" alt="客服二维码">
+        </div>
+
+        <div class="work_time">工作时间</div>
+        <div class="juti_time">
+          周一至周六 9:00-18:00        </div>
+        <div class="contact_photo">
+          <div class="phone_title">服务热线：020-39029825</div>
+        </div>
+      </div>
+    </li>
+    <li class="gzdc_weixin">
+      <div style="text-align: center;height: 22px">
+        <img src="/static/img/erweima.png?t=1" alt="抖音二维码" style="width:100%;"/>
+      </div>
+      <div class="gzdc_line"></div>
+      <div class="weixin_back">
+        <div class="fllow-title">联系销售</div>
+        <div class="weixin_back2">
+            <img src="/uploads/Photo/20250415/451bc69112374c0c87530f2db5ef6f53.png" alt="客服二维码" style="width: 98px;">
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div id="back-top">
+  <img src="/static/img/top2.png?t=1" alt="返回顶部"/>
+</div>
+<script>
+    //回到顶部
+    $('#back-top').click(function(){
+       // html，body取并级，处理浏览器兼容
+        $("html,body").animate({
+         scrollTop: 0,
+        screenLeft: 0,
+        }, 400); 
+    });
+</script>
+<!-- 百度统计 -->
+<script></script><!-- 百度统计end -->
+<!-- 在线客服代码end -->
+<!-- 百度自动推送内容 -->
+<!-- 百度自动推送内容end -->
+<!-- 360自动推送内容 -->
+<!-- 360自动推送内容end -->
+<!-- 今日头条自动推送内容 -->
+<!-- 今日头条自动推送内容 -->
+</body>
+</html>

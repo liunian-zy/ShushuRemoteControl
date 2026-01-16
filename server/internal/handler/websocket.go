@@ -311,9 +311,20 @@ func (h *WebSocketHandler) handleControllerMessages(controller *model.Controller
 		case protocol.TypeStreamStart, protocol.TypeStreamStop:
 			h.forwardToDevice(controller, message)
 
+		// 隐私模式消息转发
+		case protocol.TypePrivacyEnable, protocol.TypePrivacyDisable, protocol.TypePrivacyToggle:
+			h.forwardToDevice(controller, message)
+
 		// WebRTC 信令转发（控制端 -> 设备）
 		case protocol.TypeWebRTCOffer, protocol.TypeWebRTCAnswer, protocol.TypeWebRTCIce, protocol.TypeWebRTCReady:
 			h.forwardWebRTCSignalingToDevice(controller, message)
+
+		// Ping/Pong 延迟测量
+		case protocol.TypePing:
+			controller.SendJSON(map[string]interface{}{
+				"type":      protocol.TypePong,
+				"timestamp": time.Now().UnixMilli(),
+			})
 		}
 	}
 }

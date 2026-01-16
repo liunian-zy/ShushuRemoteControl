@@ -13,6 +13,10 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
+
+        ndk {
+            abiFilters += "arm64-v8a"
+        }
     }
 
     // 系统签名配置
@@ -54,6 +58,9 @@ android {
 }
 
 dependencies {
+    // 定昌主板 API
+    implementation(files("libs/ZtlApi.jar"))
+
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")

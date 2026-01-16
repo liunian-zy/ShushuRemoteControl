@@ -4,11 +4,13 @@ import android.util.Log
 import com.shushu.remote.capture.ScreenCapture
 import com.shushu.remote.clipboard.ClipboardSync
 import com.shushu.remote.input.InputInjector
+import com.shushu.remote.privacy.PrivacyScreenManager
 
 class MessageHandler(
     private val inputInjector: InputInjector,
     private val clipboardSync: ClipboardSync,
-    private val screenCapture: ScreenCapture
+    private val screenCapture: ScreenCapture,
+    private val privacyScreenManager: PrivacyScreenManager?
 ) {
     companion object {
         private const val TAG = "MessageHandler"
@@ -38,6 +40,10 @@ class MessageHandler(
             "webrtc.offer", "webrtc.answer", "webrtc.ice", "webrtc.ready" -> {
                 webRTCSignalingHandler?.invoke(type, msg)
             }
+            // 隐私模式命令
+            "privacy.enable" -> handlePrivacyEnable()
+            "privacy.disable" -> handlePrivacyDisable()
+            "privacy.toggle" -> handlePrivacyToggle()
             else -> Log.w(TAG, "Unknown message type: $type")
         }
     }
@@ -140,5 +146,21 @@ class MessageHandler(
         when (command) {
             "hide_keyboard" -> inputInjector.hideKeyboard()
         }
+    }
+
+    // 隐私模式处理
+    private fun handlePrivacyEnable() {
+        Log.d(TAG, "Enabling privacy mode")
+        privacyScreenManager?.enable()
+    }
+
+    private fun handlePrivacyDisable() {
+        Log.d(TAG, "Disabling privacy mode")
+        privacyScreenManager?.disable()
+    }
+
+    private fun handlePrivacyToggle() {
+        Log.d(TAG, "Toggling privacy mode")
+        privacyScreenManager?.toggle()
     }
 }

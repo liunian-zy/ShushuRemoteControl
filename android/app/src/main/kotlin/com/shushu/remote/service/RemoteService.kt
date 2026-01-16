@@ -21,6 +21,7 @@ import com.shushu.remote.clipboard.ClipboardSync
 import com.shushu.remote.input.InputInjector
 import com.shushu.remote.network.WebSocketClient
 import com.shushu.remote.network.MessageHandler
+import com.shushu.remote.privacy.PrivacyScreenManager
 import com.shushu.remote.webrtc.WebRTCClient
 import com.shushu.remote.webrtc.SignalingClient
 import kotlinx.coroutines.*
@@ -54,6 +55,10 @@ class RemoteService : Service() {
     private var currentControllerId: String? = null
     private var mediaProjectionIntent: Intent? = null
 
+    // 隐私屏幕
+    private var privacyScreenManager: PrivacyScreenManager? = null
+    private var wasWebRTCMode = false
+
     private var screenWidth = 1080
     private var screenHeight = 1920
     private var screenDensity = 1
@@ -63,6 +68,7 @@ class RemoteService : Service() {
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "Service created")
+        RemoteApplication.isServiceRunning = true
 
         // 获取屏幕参数
         val windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -75,6 +81,12 @@ class RemoteService : Service() {
         // 初始化组件
         inputInjector = InputInjector()
         clipboardSync = ClipboardSync(this)
+        privacyScreenManager = PrivacyScreenManager(this)
+
+        // 设置隐私模式回调
+        privacyScreenManager?.onPrivacyModeChanged = { enabled ->
+            handlePrivacyModeChanged(enabled)
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -120,7 +132,8 @@ class RemoteService : Service() {
             messageHandler = MessageHandler(
                 inputInjector!!,
                 clipboardSync!!,
-                screenCapture!!
+                screenCapture!!,
+                privacyScreenManager
             )
 
             // 设置 WebRTC 信令处理
@@ -351,6 +364,13 @@ class RemoteService : Service() {
     }
 
     /**
+     * 处理隐私模式变化 - 已禁用
+     */
+    private fun handlePrivacyModeChanged(enabled: Boolean) {
+        Log.d(TAG, "Privacy mode is disabled")
+    }
+
+    /**
      * 清理旧连接（在重新连接前调用）
      */
     private fun cleanupOldConnection() {
@@ -396,12 +416,14 @@ class RemoteService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG, "Service destroyed")
+        RemoteApplication.isServiceRunning = false
 
         serviceScope.cancel()
         screenCapture?.stopCapture()
         webSocketClient?.disconnect()
         webRTCClient?.release()
         clipboardSync?.stopListening()
+        privacyScreenManager?.release()
         mediaProjection?.stop()
     }
 }

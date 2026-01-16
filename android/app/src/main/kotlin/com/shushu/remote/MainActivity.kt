@@ -41,8 +41,13 @@ class MainActivity : AppCompatActivity() {
 
         mediaProjectionManager = getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
 
-        // 自动启动连接（静默模式）
-        autoStartService()
+        // 更新服务状态显示
+        updateServiceStatus()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateServiceStatus()
     }
 
     private fun initViews() {
@@ -54,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         btnStart = findViewById(R.id.btn_start)
         btnStop = findViewById(R.id.btn_stop)
 
-        btnStart.setOnClickListener { startServiceWithProjection() }
+        btnStart.setOnClickListener { startService() }
         btnStop.setOnClickListener { stopService() }
     }
 
@@ -79,10 +84,9 @@ class MainActivity : AppCompatActivity() {
         val deviceId = savedDeviceId ?: generateDeviceId()
         Log.d(TAG, "Final device_id: $deviceId")
 
-        etServerUrl.setText(prefs.getString("server_url", "ws://rc.local-test.sqaigc.com/ws/device"))
-//        etServerUrl.setText(prefs.getString("server_url", "wss://rc.photo.sqaigc.com/ws/device"))
+        etServerUrl.setText(prefs.getString("server_url", "wss://rc.photo.sqaigc.com/ws/device"))
         etDeviceId.setText(deviceId)
-        etDeviceName.setText(prefs.getString("device_name", "工业设备-${android.os.Build.MODEL}"))
+        etDeviceName.setText(prefs.getString("device_name", "${android.os.Build.MODEL}"))
         etToken.setText(prefs.getString("token", "Vh2Zzjtb3NIUk1X6rbfzKAEsFGk/ASX3"))
     }
 
@@ -97,63 +101,37 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateServiceStatus() {
+        tvStatus.text = if (RemoteApplication.isServiceRunning) {
+            "状态: 运行中"
+        } else {
+            "状态: 已停止"
+        }
+    }
+
     /**
-     * 自动启动服务 - 静默模式（使用系统权限，无需用户授权）
+     * 启动服务（静默模式，使用系统权限）
      */
-    private fun autoStartService() {
+    private fun startService() {
         saveConfig()
-        Log.d(TAG, "Auto starting service in silent mode...")
+        Log.d(TAG, "Starting service in silent mode...")
 
         val serviceIntent = Intent(this, RemoteService::class.java).apply {
             putExtra("server_url", etServerUrl.text.toString())
             putExtra("device_id", etDeviceId.text.toString())
             putExtra("device_name", etDeviceName.text.toString())
             putExtra("token", etToken.text.toString())
-            // 不传 result_code 和 result_data，让服务使用系统权限模式
         }
 
         startForegroundService(serviceIntent)
         tvStatus.text = "状态: 运行中"
-    }
-
-    /**
-     * 手动启动服务（请求 MediaProjection 授权，作为备用）
-     */
-    private fun startServiceWithProjection() {
-        saveConfig()
-
-        // 请求屏幕录制权限
-        mediaProjectionManager?.createScreenCaptureIntent()?.let { intent ->
-            startActivityForResult(intent, REQUEST_MEDIA_PROJECTION)
-        }
+        Toast.makeText(this, "服务已启动", Toast.LENGTH_SHORT).show()
     }
 
     private fun stopService() {
         val intent = Intent(this, RemoteService::class.java)
         stopService(intent)
         tvStatus.text = "状态: 已停止"
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_MEDIA_PROJECTION) {
-            if (resultCode == Activity.RESULT_OK && data != null) {
-                // 启动服务（带 MediaProjection 授权）
-                val serviceIntent = Intent(this, RemoteService::class.java).apply {
-                    putExtra("server_url", etServerUrl.text.toString())
-                    putExtra("device_id", etDeviceId.text.toString())
-                    putExtra("device_name", etDeviceName.text.toString())
-                    putExtra("token", etToken.text.toString())
-                    putExtra("result_code", resultCode)
-                    putExtra("result_data", data)
-                }
-
-                startForegroundService(serviceIntent)
-                tvStatus.text = "状态: 运行中（MediaProjection）"
-            } else {
-                Toast.makeText(this, "需要屏幕录制权限", Toast.LENGTH_SHORT).show()
-            }
-        }
+        Toast.makeText(this, "服务已停止", Toast.LENGTH_SHORT).show()
     }
 }

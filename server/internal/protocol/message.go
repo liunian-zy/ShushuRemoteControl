@@ -17,6 +17,7 @@ const (
 	TypeClipboardSet   = "clipboard.set"
 	TypeStreamStart    = "stream.start"
 	TypeStreamStop     = "stream.stop"
+	TypePing           = "ping"
 
 	// 服务端消息
 	TypeControlGranted = "control.granted"
@@ -25,12 +26,18 @@ const (
 	TypeDeviceOnline   = "device.online"
 	TypeDeviceOffline  = "device.offline"
 	TypeError          = "error"
+	TypePong           = "pong"
 
 	// WebRTC 信令消息
 	TypeWebRTCOffer  = "webrtc.offer"
 	TypeWebRTCAnswer = "webrtc.answer"
 	TypeWebRTCIce    = "webrtc.ice"
 	TypeWebRTCReady  = "webrtc.ready"
+
+	// 隐私模式消息
+	TypePrivacyEnable  = "privacy.enable"
+	TypePrivacyDisable = "privacy.disable"
+	TypePrivacyToggle  = "privacy.toggle"
 )
 
 // 二进制消息类型

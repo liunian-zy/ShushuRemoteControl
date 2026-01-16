@@ -30,6 +30,10 @@ export class WebSocketService {
   private maxReconnectAttempts: number = 50
   private reconnectDelay: number = 2000
 
+  // 延迟测量
+  private pingTime: number = 0
+  private _latency: number = 0
+
   on(event: string, handler: MessageHandler) {
     if (!this.handlers.has(event)) {
       this.handlers.set(event, [])
@@ -97,6 +101,13 @@ export class WebSocketService {
           // JSON消息
           try {
             const msg = JSON.parse(event.data)
+
+            // 处理 pong 响应，计算延迟
+            if (msg.type === 'pong' && this.pingTime > 0) {
+              this._latency = Date.now() - this.pingTime
+              this.pingTime = 0
+            }
+
             this.emit(msg.type, msg)
           } catch (e) {
             console.error('Failed to parse message:', e)
@@ -143,5 +154,18 @@ export class WebSocketService {
 
   isConnected(): boolean {
     return this.ws?.readyState === WebSocket.OPEN
+  }
+
+  // 发送 ping 测量延迟
+  ping() {
+    if (this.ws?.readyState === WebSocket.OPEN) {
+      this.pingTime = Date.now()
+      this.ws.send(JSON.stringify({ type: 'ping', timestamp: this.pingTime }))
+    }
+  }
+
+  // 获取最近测量的延迟
+  get latency(): number {
+    return this._latency
   }
 }
