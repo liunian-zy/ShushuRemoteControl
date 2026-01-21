@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.media.projection.MediaProjectionManager
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -13,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.shushu.remote.service.RemoteService
+import com.shushu.remote.util.DeviceIdProvider
 
 class MainActivity : AppCompatActivity() {
 
@@ -63,28 +63,12 @@ class MainActivity : AppCompatActivity() {
         btnStop.setOnClickListener { stopService() }
     }
 
-    private fun generateDeviceId(): String {
-        // 优先使用 Android ID
-        val androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        Log.d(TAG, "Android ID: $androidId")
-        if (!androidId.isNullOrEmpty() && androidId != "9774d56d682e549c") {
-            return androidId
-        }
-        // 回退到设备型号 + 随机后缀
-        val fallbackId = "DEVICE_${android.os.Build.MODEL.replace(" ", "_")}_${System.currentTimeMillis() % 10000}"
-        Log.d(TAG, "Fallback ID: $fallbackId")
-        return fallbackId
-    }
-
     private fun loadConfig() {
         val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val savedDeviceId = prefs.getString("device_id", null)
-        Log.d(TAG, "Saved device_id from prefs: $savedDeviceId")
+        val deviceId = DeviceIdProvider.getDeviceId(this)
+        Log.d(TAG, "Generated device_id: $deviceId")
 
-        val deviceId = savedDeviceId ?: generateDeviceId()
-        Log.d(TAG, "Final device_id: $deviceId")
-
-        etServerUrl.setText(prefs.getString("server_url", "wss://rc.photo.sqaigc.com/ws/device"))
+        etServerUrl.setText(prefs.getString("server_url", BuildConfig.DEFAULT_SERVER_URL))
         etDeviceId.setText(deviceId)
         etDeviceName.setText(prefs.getString("device_name", "${android.os.Build.MODEL}"))
         etToken.setText(prefs.getString("token", "Vh2Zzjtb3NIUk1X6rbfzKAEsFGk/ASX3"))
@@ -94,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs.edit().apply {
             putString("server_url", etServerUrl.text.toString())
-            putString("device_id", etDeviceId.text.toString())
+            remove("device_id")
             putString("device_name", etDeviceName.text.toString())
             putString("token", etToken.text.toString())
             apply()
@@ -118,7 +102,7 @@ class MainActivity : AppCompatActivity() {
 
         val serviceIntent = Intent(this, RemoteService::class.java).apply {
             putExtra("server_url", etServerUrl.text.toString())
-            putExtra("device_id", etDeviceId.text.toString())
+            putExtra("device_id", DeviceIdProvider.getDeviceId(this@MainActivity))
             putExtra("device_name", etDeviceName.text.toString())
             putExtra("token", etToken.text.toString())
         }

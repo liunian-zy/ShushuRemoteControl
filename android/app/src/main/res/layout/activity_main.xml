@@ -38,7 +38,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="设备ID"
+        android:text="设备ID(自动)"
         android:textColor="#888888"
         android:textSize="14sp"
         android:layout_marginBottom="8dp" />
@@ -48,6 +48,9 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/edit_text_bg"
+        android:enabled="false"
+        android:focusable="false"
+        android:cursorVisible="false"
         android:paddingHorizontal="16dp"
         android:textColor="#ffffff"
         android:textColorHint="#666666"

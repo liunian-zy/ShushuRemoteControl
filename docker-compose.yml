@@ -8,7 +8,7 @@
 #   停止服务:   docker compose down
 #   重启服务:   docker compose restart
 #
-# 重要: 请修改 AUTH_TOKEN 为你的安全密钥！
+# 重要: 请配置 MySQL_DSN 和 DEVICE_TOKEN！
 # ============================================
 
 version: '3.8'
@@ -21,17 +21,26 @@ services:
     image: shushu-remote:latest
     container_name: shushu-remote
     ports:
-      - "${SERVER_PORT:-9222}:9222"
+      - "${SERVER_PORT:-9222}:${SERVER_PORT:-9222}"
     environment:
-      - TZ=Asia/Shanghai
-    # 修改 token 为你的安全密钥（建议16位以上随机字符串）
+      - TZ=${TZ:-Asia/Shanghai}
+      - SERVER_PORT=${SERVER_PORT:-9222}
+      # DSN 需要包含 parseTime=true 以支持 DATETIME
+      - MYSQL_DSN=${MYSQL_DSN:-shushu:shushu123@tcp(host.docker.internal:3306)/shushu?parseTime=true}
+      - DEVICE_TOKEN=${DEVICE_TOKEN:-shushu123}
+      - WEB_DIR=${WEB_DIR:-./web/dist}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # 修改 device token 为你的安全密钥（建议16位以上随机字符串）
     command:
       - "-port"
-      - "9222"
-      - "-token"
-      - "${AUTH_TOKEN:-shushu123}"
+      - "${SERVER_PORT:-9222}"
+      - "-mysql"
+      - "${MYSQL_DSN:-shushu:shushu123@tcp(host.docker.internal:3306)/shushu?parseTime=true}"
+      - "-device-token"
+      - "${DEVICE_TOKEN:-shushu123}"
       - "-web"
-      - "./web/dist"
+      - "${WEB_DIR:-./web/dist}"
     restart: unless-stopped
     # 日志配置
     logging:
@@ -41,7 +50,7 @@ services:
         max-file: "3"
     # 健康检查
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:9222/api/health"]
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:${SERVER_PORT:-9222}/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3

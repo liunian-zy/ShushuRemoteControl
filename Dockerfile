@@ -83,8 +83,7 @@ EXPOSE 9222
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD wget -q --spider http://localhost:9222/api/health || exit 1
+    CMD-SHELL wget -q --spider "http://localhost:${SERVER_PORT:-9222}/api/health" || exit 1
 
 # 启动命令
 ENTRYPOINT ["./remote-server"]
-CMD ["-port", "9222", "-token", "shushu123", "-web", "./web/dist"]

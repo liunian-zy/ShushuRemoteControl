@@ -1,23 +1,5 @@
-export interface DeviceInfo {
-  deviceId: string
-  deviceName: string
-  screenWidth: number
-  screenHeight: number
-  online: boolean
-}
-
 type MessageHandler = (data: any) => void
 type BinaryHandler = (data: ArrayBuffer) => void
-
-// 获取存储的 token
-export function getAuthToken(): string | null {
-  return localStorage.getItem('auth_token')
-}
-
-// 清除 token（登出）
-export function clearAuthToken() {
-  localStorage.removeItem('auth_token')
-}
 
 export class WebSocketService {
   private ws: WebSocket | null = null
@@ -33,6 +15,31 @@ export class WebSocketService {
   // 延迟测量
   private pingTime: number = 0
   private _latency: number = 0
+
+  private buildQuery(query?: Record<string, string | undefined>): string {
+    if (!query) return ''
+    const params = new URLSearchParams()
+    Object.entries(query).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        params.set(key, value)
+      }
+    })
+    const qs = params.toString()
+    return qs ? `?${qs}` : ''
+  }
+
+  private closeMessage(code: number): string {
+    switch (code) {
+      case 4001:
+        return '链接已过期，请重新获取访问链接'
+      case 4002:
+        return '无效的访问链接'
+      case 4003:
+        return '设备不在线'
+      default:
+        return '连接已断开'
+    }
+  }
 
   on(event: string, handler: MessageHandler) {
     if (!this.handlers.has(event)) {
@@ -52,12 +59,12 @@ export class WebSocketService {
     }
   }
 
-  connect(path: string) {
-    // 构建WebSocket URL，携带 token
+  connect(path: string, query?: Record<string, string | undefined>) {
+    // 构建WebSocket URL
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
     const host = window.location.host
-    const token = getAuthToken()
-    this.url = `${protocol}//${host}${path}${token ? `?token=${encodeURIComponent(token)}` : ''}`
+    const queryString = this.buildQuery(query)
+    this.url = `${protocol}//${host}${path}${queryString}`
     this.shouldReconnect = true
     this.reconnectAttempts = 0
 
@@ -77,12 +84,11 @@ export class WebSocketService {
 
       this.ws.onclose = (event) => {
         console.log('WebSocket closed', event.code, event.reason)
-        this.emit('close')
+        this.emit('close', event)
 
-        // 如果是认证失败（4001），不重连，跳转到登录页
-        if (event.code === 4001) {
-          clearAuthToken()
-          window.location.href = '/login'
+        if (event.code >= 4000 && event.code < 5000) {
+          this.shouldReconnect = false
+          this.emit('error', { code: event.code, message: this.closeMessage(event.code) })
           return
         }
 

@@ -178,11 +178,10 @@ EXPOSE 9222
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD wget -q --spider http://localhost:9222/api/health || exit 1
+    CMD-SHELL wget -q --spider "http://localhost:${SERVER_PORT:-9222}/api/health" || exit 1
 
 # 启动命令
 ENTRYPOINT ["./remote-server"]
-CMD ["-port", "9222", "-token", "shushu123", "-web", "./web/dist"]
 ```
 
 ### 4. 创建 docker-compose.yml
@@ -203,8 +202,12 @@ services:
       - "9222:9222"
     environment:
       - TZ=Asia/Shanghai
-    # 修改下面的 token 为你的安全密钥
-    command: ["-port", "9222", "-token", "your-secure-token-here", "-web", "./web/dist"]
+      - MYSQL_DSN=shushu:shushu123@tcp(host.docker.internal:3306)/shushu?parseTime=true
+      - DEVICE_TOKEN=your-secure-token-here
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # 修改下面的 device token 为你的安全密钥
+    command: ["-port", "9222", "-mysql", "shushu:shushu123@tcp(host.docker.internal:3306)/shushu?parseTime=true", "-device-token", "your-secure-token-here", "-web", "./web/dist"]
     restart: unless-stopped
     logging:
       driver: "json-file"
@@ -227,8 +230,16 @@ services:
 # 服务端口
 SERVER_PORT=9222
 
-# 认证 Token（务必修改为强密码）
-AUTH_TOKEN=your-secure-token-here
+# MySQL 连接字符串（需要包含 parseTime=true）
+# Linux 宿主机 MySQL 示例:
+# shushu:shushu123@tcp(host.docker.internal:3306)/shushu?parseTime=true
+MYSQL_DSN=shushu:shushu123@tcp(host.docker.internal:3306)/shushu?parseTime=true
+
+# 设备连接 Token（务必修改为强密码）
+DEVICE_TOKEN=your-secure-token-here
+
+# Web 静态目录
+WEB_DIR=./web/dist
 
 # 时区
 TZ=Asia/Shanghai
@@ -247,10 +258,10 @@ services:
     image: shushu-remote:latest
     container_name: shushu-remote
     ports:
-      - "${SERVER_PORT:-9222}:9222"
+      - "${SERVER_PORT:-9222}:${SERVER_PORT:-9222}"
     env_file:
       - .env
-    command: ["-port", "9222", "-token", "${AUTH_TOKEN:-shushu123}", "-web", "./web/dist"]
+    command: ["-port", "${SERVER_PORT:-9222}", "-mysql", "${MYSQL_DSN}", "-device-token", "${DEVICE_TOKEN:-shushu123}", "-web", "${WEB_DIR:-./web/dist}"]
     restart: unless-stopped
     logging:
       driver: "json-file"
@@ -426,8 +437,8 @@ User=shushu
 Group=shushu
 WorkingDirectory=/opt/shushu-remote/server
 
-# 修改 token 为你的安全密钥
-ExecStart=/opt/shushu-remote/server/remote-server -port 9222 -token "your-secure-token-here" -web /opt/shushu-remote/web/dist
+# 修改 device token 为你的安全密钥
+ExecStart=/opt/shushu-remote/server/remote-server -port 9222 -mysql "user:pass@tcp(127.0.0.1:3306)/dbname?parseTime=true" -device-token "your-secure-token-here" -web /opt/shushu-remote/web/dist
 
 Restart=always
 RestartSec=5
@@ -658,11 +669,12 @@ sudo firewall-cmd --reload
 
 | 参数 | 说明 | 默认值 | 示例 |
 |------|------|--------|------|
+| `-mysql` | MySQL 连接字符串 | (必填) | `-mysql "user:pass@tcp(127.0.0.1:3306)/dbname?parseTime=true"` |
+| `-device-token` | 设备连接 Token | shushu123 | `-device-token "MySecureToken123!"` |
 | `-port` | 服务监听端口 | 9222 | `-port 8080` |
-| `-token` | 认证 Token | shushu123 | `-token "MySecureToken123!"` |
 | `-web` | Web 静态文件目录 | ./web/dist | `-web /opt/shushu-remote/web/dist` |
 
-**重要**: 生产环境务必修改默认 Token！建议使用 16 位以上的随机字符串。
+**重要**: 生产环境务必修改默认设备 Token！建议使用 16 位以上的随机字符串。
 
 生成随机 Token:
 ```bash
@@ -682,21 +694,21 @@ openssl rand -base64 24
 | 服务器地址 | `ws://your-server-ip:9222/ws/device` |
 | 设备 ID | 自定义唯一标识，如 `DEVICE_001` |
 | 设备名称 | 自定义显示名称，如 `工业设备-A01` |
-| 认证 Token | 与服务端 `-token` 参数一致 |
+| 设备 Token | 与服务端 `-device-token` 参数一致 |
 
 ### 通过 Nginx（HTTP）
 
 | 配置项 | 值 |
 |--------|-----|
 | 服务器地址 | `ws://your-domain.com/ws/device` |
-| 认证 Token | 与服务端配置一致 |
+| 设备 Token | 与服务端配置一致 |
 
 ### 通过 Nginx（HTTPS）
 
 | 配置项 | 值 |
 |--------|-----|
 | 服务器地址 | `wss://your-domain.com/ws/device` |
-| 认证 Token | 与服务端配置一致 |
+| 设备 Token | 与服务端配置一致 |
 
 ---
 

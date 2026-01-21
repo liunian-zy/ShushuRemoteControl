@@ -79,6 +79,7 @@ type ControlRequestMessage struct {
 type ControlGrantedMessage struct {
 	Type         string `json:"type"`
 	DeviceID     string `json:"deviceId"`
+	DeviceName   string `json:"deviceName,omitempty"`
 	SessionID    string `json:"sessionId"`
 	ScreenWidth  int    `json:"screenWidth"`
 	ScreenHeight int    `json:"screenHeight"`

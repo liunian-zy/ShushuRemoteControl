@@ -24,11 +24,13 @@ type Device struct {
 
 // Controller 控制端实体
 type Controller struct {
-	ID        string
-	Conn      *websocket.Conn
-	ConnMutex sync.Mutex
-	SessionID string // 当前控制的会话ID
-	DeviceID  string // 当前控制的设备ID
+	ID              string
+	Conn            *websocket.Conn
+	ConnMutex       sync.Mutex
+	SessionID       string // 当前控制的会话ID
+	DeviceID        string // 当前控制的设备ID
+	AllowedDeviceID string // Token允许控制的设备ID
+	DisplayName     string // 展示用设备名称（别名优先）
 }
 
 // Session 控制会话

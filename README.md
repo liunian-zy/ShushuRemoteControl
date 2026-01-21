@@ -30,17 +30,21 @@ cd server
 go mod tidy
 
 # 运行服务
-go run cmd/server/main.go -port 8080 -token shushu123
+go run cmd/server/main.go -mysql "user:pass@tcp(127.0.0.1:3306)/dbname?parseTime=true" -device-token shushu123
 
 # 或编译后运行
 go build -o remote-server cmd/server/main.go
-./remote-server -port 8080 -token shushu123
+./remote-server -mysql "user:pass@tcp(127.0.0.1:3306)/dbname?parseTime=true" -device-token shushu123
 ```
 
 服务端参数：
-- `-port`: 服务端口，默认 8080
-- `-token`: 认证 Token，默认 shushu123
+- `-mysql`: MySQL 连接字符串（必须包含 `parseTime=true`）
+- `-device-token`: 设备连接 Token，默认 shushu123
+- `-port`: 服务端口，默认 9222
 - `-web`: Web 静态文件目录，默认 ./web/dist
+
+支持环境变量（参数优先，未传读取环境变量）：
+- `MYSQL_DSN`、`DEVICE_TOKEN`、`SERVER_PORT`、`WEB_DIR`
 
 ### 2. 构建 Web 控制端
 
@@ -71,10 +75,10 @@ npm run build
 
 1. 启动服务端
 2. 在 Android 设备上安装并启动应用
-3. 配置服务器地址（如 `ws://192.168.1.100:8080/ws/device`）
+3. 配置服务器地址（如 `ws://192.168.1.100:9222/ws/device`）
 4. 点击"启动服务"，授权屏幕录制
-5. 在浏览器访问 `http://192.168.1.100:8080`
-6. 点击设备卡片进入远程控制
+5. 通过外部系统生成访问链接：`http://192.168.1.100:9222/remote/{deviceId}?token={token}`
+6. 浏览器打开链接进入远程控制
 
 ## 架构说明
 
@@ -134,8 +138,9 @@ npm run build
 
 | 参数 | 说明 | 默认值 |
 |------|------|--------|
-| -port | 服务端口 | 8080 |
-| -token | 认证 Token | shushu123 |
+| -mysql | MySQL 连接字符串 | (必填) |
+| -device-token | 设备连接 Token | shushu123 |
+| -port | 服务端口 | 9222 |
 | -web | Web 静态文件目录 | ./web/dist |
 
 ### Android 端配置
@@ -144,14 +149,14 @@ npm run build
 
 | 配置项 | 说明 | 示例 |
 |--------|------|------|
-| 服务器地址 | WebSocket 地址 | ws://192.168.1.100:8080/ws/device |
+| 服务器地址 | WebSocket 地址 | ws://192.168.1.100:9222/ws/device |
 | 设备ID | 唯一标识 | DEVICE_001 |
 | 设备名称 | 显示名称 | 工业设备-A01 |
-| 认证Token | 与服务端一致 | shushu123 |
+| 设备Token | 与服务端 `-device-token` 一致 | shushu123 |
 
 ## 安全建议
 
-1. **生产环境务必修改默认 Token**
+1. **生产环境务必修改默认设备 Token**
 2. 建议使用 HTTPS/WSS 加密传输
 3. 可配合 VPN 使用，限制访问范围
 4. 定期更换认证凭据

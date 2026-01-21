@@ -2,9 +2,6 @@
   <div class="remote-control">
     <!-- 顶部标题栏 -->
     <div class="header">
-      <button class="btn btn-icon" @click="goBack" title="返回">
-        ←
-      </button>
       <div class="device-title">
         <span class="status-dot" :class="status === 'connected' ? 'online' : 'offline'"></span>
         {{ deviceName || deviceId }}
@@ -21,7 +18,7 @@
 
     <!-- 连接质量监控 - 简洁版 -->
     <div
-      v-if="status === 'connected' && statsDisplayMode === 'compact'"
+      v-if="showStatsBar && status === 'connected' && statsDisplayMode === 'compact'"
       class="stats-compact"
       @click="statsDisplayMode = 'detailed'"
       title="点击查看详情"
@@ -34,7 +31,7 @@
 
     <!-- 连接质量监控 - 详情版 -->
     <div
-      v-if="status === 'connected' && statsDisplayMode === 'detailed'"
+      v-if="showStatsBar && status === 'connected' && statsDisplayMode === 'detailed'"
       class="stats-detailed"
     >
       <div class="stats-header">
@@ -86,43 +83,13 @@
 
     <!-- 隐藏时的小按钮 -->
     <button
-      v-if="status === 'connected' && statsDisplayMode === 'hidden'"
+      v-if="showStatsBar && status === 'connected' && statsDisplayMode === 'hidden'"
       class="stats-show-btn"
       @click="statsDisplayMode = 'compact'"
       title="显示连接状态"
     >
       📊
     </button>
-
-    <!-- 连接信息栏 -->
-    <div v-show="status === 'connected'" class="connection-bar">
-      <div class="conn-info">
-        <span class="conn-mode" :class="streamMode">
-          {{ streamMode === 'webrtc' ? 'WebRTC' : streamMode === 'h264' ? 'H264' : 'MJPEG' }}
-        </span>
-        <span class="conn-stats" v-if="connectionStats.fps > 0">
-          {{ connectionStats.fps }} FPS
-        </span>
-        <span class="conn-stats" v-if="connectionStats.bitrate > 0">
-          {{ formatBitrate(connectionStats.bitrate) }}
-        </span>
-        <span class="conn-stats" v-if="connectionStats.resolution">
-          {{ connectionStats.resolution }}
-        </span>
-        <span class="conn-latency" v-if="connectionStats.latency > 0" :class="getLatencyClass(connectionStats.latency)">
-          {{ connectionStats.latency }}ms
-        </span>
-      </div>
-      <div class="conn-quality">
-        <span class="quality-label">画质:</span>
-        <select v-model="currentQuality" @change="changeQuality" class="quality-select">
-          <option value="low">低 (省流)</option>
-          <option value="medium">中</option>
-          <option value="high">高</option>
-          <option value="ultra">超清</option>
-        </select>
-      </div>
-    </div>
 
     <!-- 连接状态 -->
     <div v-if="status === 'connecting'" class="status-overlay">
@@ -352,8 +319,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { WebSocketService } from '../services/websocket'
 import { WebRTCClient, createAnswerMessage, createIceCandidateMessage } from '../services/webrtc'
 import { MSEPlayer } from '../services/mse'
@@ -362,7 +329,7 @@ const props = defineProps<{
   deviceId: string
 }>()
 
-const router = useRouter()
+const route = useRoute()
 
 const status = ref<'connecting' | 'connected' | 'error'>('connecting')
 const errorMessage = ref('')
@@ -370,6 +337,14 @@ const deviceName = ref('')
 const screenWidth = ref(1920)
 const screenHeight = ref(1080)
 const streamMode = ref<'webrtc' | 'h264' | 'mjpeg'>('mjpeg')  // 当前流模式
+
+const accessToken = ref('')
+const rawToken = route.query.token
+if (Array.isArray(rawToken)) {
+  accessToken.value = rawToken[0] || ''
+} else if (typeof rawToken === 'string') {
+  accessToken.value = rawToken
+}
 
 const screenContainer = ref<HTMLDivElement>()
 const screenCanvas = ref<HTMLCanvasElement>()
@@ -437,7 +412,23 @@ let frameBytesTotal = 0
 let lastFrameCountTime = 0
 let droppedFrames = 0     // 丢帧计数
 
+watch(showStatsBar, (enabled) => {
+  if (!enabled) {
+    statsDisplayMode.value = 'hidden'
+    return
+  }
+  if (statsDisplayMode.value === 'hidden') {
+    statsDisplayMode.value = 'compact'
+  }
+})
+
 onMounted(() => {
+  if (!props.deviceId || !accessToken.value) {
+    status.value = 'error'
+    errorMessage.value = '无效的访问链接'
+    return
+  }
+
   ws = new WebSocketService()
 
   ws.on('open', () => {
@@ -556,7 +547,7 @@ onMounted(() => {
     renderFrame(frameData)
   })
 
-  ws.connect('/ws/controller')
+  ws.connect('/ws/controller', { deviceId: props.deviceId, token: accessToken.value })
 
   // 监听键盘事件
   window.addEventListener('keydown', onKeyDown)
@@ -876,14 +867,10 @@ async function copyToLocal() {
   }
 }
 
-function goBack() {
-  router.push('/')
-}
-
 function reconnect() {
   status.value = 'connecting'
   ws?.disconnect()
-  ws?.connect('/ws/controller')
+  ws?.connect('/ws/controller', { deviceId: props.deviceId, token: accessToken.value })
 }
 
 // 发送按键
@@ -1727,94 +1714,6 @@ function stopStatsUpdate() {
   gap: 8px;
 }
 
-/* 连接信息栏 */
-.connection-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 16px;
-  background-color: #12122a;
-  border-bottom: 1px solid #2a2a4a;
-  font-size: 12px;
-}
-
-.conn-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.conn-mode {
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 11px;
-}
-
-.conn-mode.webrtc {
-  background-color: #22c55e;
-  color: #000;
-}
-
-.conn-mode.h264 {
-  background-color: #3b82f6;
-  color: #fff;
-}
-
-.conn-mode.mjpeg {
-  background-color: #f59e0b;
-  color: #000;
-}
-
-.conn-stats {
-  color: #888;
-}
-
-.conn-latency {
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.conn-latency.good {
-  background-color: rgba(34, 197, 94, 0.2);
-  color: #22c55e;
-}
-
-.conn-latency.medium {
-  background-color: rgba(245, 158, 11, 0.2);
-  color: #f59e0b;
-}
-
-.conn-latency.poor {
-  background-color: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-}
-
-.conn-quality {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.quality-label {
-  color: #888;
-}
-
-.quality-select {
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid #444;
-  background-color: #1a1a2e;
-  color: #eee;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.quality-select:focus {
-  outline: none;
-  border-color: #3b82f6;
-}
-
 /* 设置面板 */
 .settings-panel {
   position: fixed;
@@ -2014,15 +1913,5 @@ function stopStatsUpdate() {
     grid-template-columns: 1fr;
   }
 
-  .connection-bar {
-    flex-direction: column;
-    gap: 8px;
-    padding: 8px 12px;
-  }
-
-  .conn-info {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 }
 </style>

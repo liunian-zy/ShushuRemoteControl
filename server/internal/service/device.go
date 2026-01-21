@@ -1,23 +1,27 @@
 package service
 
 import (
+	"log"
 	"sync"
 	"time"
 
 	"shushu-remote-control/internal/model"
 	"shushu-remote-control/internal/protocol"
+	"shushu-remote-control/internal/store"
 )
 
 // DeviceManager 设备管理器
 type DeviceManager struct {
 	devices map[string]*model.Device
 	mutex   sync.RWMutex
+	store   *store.DeviceStore
 }
 
 // NewDeviceManager 创建设备管理器
-func NewDeviceManager() *DeviceManager {
+func NewDeviceManager(deviceStore *store.DeviceStore) *DeviceManager {
 	return &DeviceManager{
 		devices: make(map[string]*model.Device),
+		store:   deviceStore,
 	}
 }
 
@@ -29,6 +33,15 @@ func (dm *DeviceManager) Register(device *model.Device) {
 	device.Online = true
 	device.LastSeen = time.Now()
 	dm.devices[device.ID] = device
+
+	if dm.store != nil {
+		if err := dm.store.UpsertDevice(device); err != nil {
+			log.Printf("设备信息写入数据库失败: %v", err)
+		}
+		if err := dm.store.SyncExternalDeviceID(device.ID); err != nil {
+			log.Printf("同步外部设备ID失败: %v", err)
+		}
+	}
 }
 
 // Unregister 注销设备
@@ -39,6 +52,12 @@ func (dm *DeviceManager) Unregister(deviceID string) {
 	if device, ok := dm.devices[deviceID]; ok {
 		device.Online = false
 		device.Conn = nil
+	}
+
+	if dm.store != nil {
+		if err := dm.store.SetOnline(deviceID, false); err != nil {
+			log.Printf("更新设备离线状态失败: %v", err)
+		}
 	}
 }
 
@@ -86,5 +105,11 @@ func (dm *DeviceManager) UpdateHeartbeat(deviceID string) {
 
 	if device, ok := dm.devices[deviceID]; ok {
 		device.LastSeen = time.Now()
+	}
+
+	if dm.store != nil {
+		if err := dm.store.SetOnline(deviceID, true); err != nil {
+			log.Printf("更新设备心跳失败: %v", err)
+		}
 	}
 }

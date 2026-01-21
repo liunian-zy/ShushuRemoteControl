@@ -12,12 +12,18 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0.0"
+        versionName = "1.0.1"
 
         ndk {
             abiFilters += "arm64-v8a"
         }
     }
+
+    val releaseServerUrl = "wss://rc.photo.sqaigc.com/ws/device"
+    val debugServerUrl = (project.findProperty("DEBUG_SERVER_URL") as String?)
+        ?.trim()
+        ?.takeIf { it.isNotEmpty() }
+        ?: releaseServerUrl
 
     // 系统签名配置
     signingConfigs {
@@ -32,10 +38,12 @@ android {
     buildTypes {
         debug {
             signingConfig = signingConfigs.getByName("platform")
+            buildConfigField("String", "DEFAULT_SERVER_URL", "\"$debugServerUrl\"")
         }
         release {
             isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("platform")
+            buildConfigField("String", "DEFAULT_SERVER_URL", "\"$releaseServerUrl\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -53,6 +61,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
 }

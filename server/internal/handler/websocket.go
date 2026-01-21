@@ -13,6 +13,7 @@ import (
 	"shushu-remote-control/internal/model"
 	"shushu-remote-control/internal/protocol"
 	"shushu-remote-control/internal/service"
+	"shushu-remote-control/internal/store"
 )
 
 const (
@@ -20,6 +21,12 @@ const (
 	pongWait       = 60 * time.Second    // Pong等待时间
 	pingPeriod     = (pongWait * 9) / 10 // Ping间隔（54秒）
 	maxMessageSize = 1024 * 1024         // 最大消息大小 1MB
+)
+
+const (
+	closeCodeTokenExpired  = 4001
+	closeCodeInvalidToken  = 4002
+	closeCodeDeviceOffline = 4003
 )
 
 var upgrader = websocket.Upgrader{
@@ -35,16 +42,18 @@ type WebSocketHandler struct {
 	deviceMgr     *service.DeviceManager
 	controllerMgr *service.ControllerManager
 	sessionMgr    *service.SessionManager
-	authToken     string // 简单的预共享密钥认证
+	deviceToken   string // 被控端固定token
+	store         *store.DeviceStore
 }
 
 // NewWebSocketHandler 创建WebSocket处理器
-func NewWebSocketHandler(authToken string) *WebSocketHandler {
+func NewWebSocketHandler(deviceToken string, deviceStore *store.DeviceStore) *WebSocketHandler {
 	return &WebSocketHandler{
-		deviceMgr:     service.NewDeviceManager(),
+		deviceMgr:     service.NewDeviceManager(deviceStore),
 		controllerMgr: service.NewControllerManager(),
 		sessionMgr:    service.NewSessionManager(),
-		authToken:     authToken,
+		deviceToken:   deviceToken,
+		store:         deviceStore,
 	}
 }
 
@@ -82,7 +91,7 @@ func (h *WebSocketHandler) HandleDevice(c *gin.Context) {
 	}
 
 	// 验证token
-	if registerMsg.Token != h.authToken {
+	if registerMsg.Token != h.deviceToken {
 		log.Printf("设备认证失败: %s", registerMsg.DeviceID)
 		conn.WriteJSON(protocol.ErrorMessage{
 			Type:    protocol.TypeError,
@@ -212,17 +221,40 @@ func (h *WebSocketHandler) handleClipboardFromDevice(device *model.Device, msg p
 
 // HandleController 处理控制端连接
 func (h *WebSocketHandler) HandleController(c *gin.Context) {
-	// 验证 token
+	deviceID := c.Query("deviceId")
 	token := c.Query("token")
-	if token != h.authToken {
-		log.Printf("控制端认证失败: token=%s", token)
-		c.JSON(401, gin.H{"error": "unauthorized"})
-		return
-	}
 
 	conn, err := upgrader.Upgrade(c.Writer, c.Request, nil)
 	if err != nil {
 		log.Printf("控制端WebSocket升级失败: %v", err)
+		return
+	}
+
+	if deviceID == "" || token == "" {
+		h.closeWithCode(conn, closeCodeInvalidToken, "missing deviceId or token")
+		return
+	}
+
+	if h.store == nil {
+		h.closeWithCode(conn, closeCodeInvalidToken, "store not configured")
+		return
+	}
+
+	deviceInfo, err := h.store.ValidateControlToken(deviceID, token)
+	if err != nil {
+		switch err {
+		case store.ErrTokenExpired:
+			h.closeWithCode(conn, closeCodeTokenExpired, "token expired")
+		case store.ErrInvalidToken, store.ErrDeviceNotFound:
+			h.closeWithCode(conn, closeCodeInvalidToken, "invalid token")
+		default:
+			h.closeWithCode(conn, closeCodeInvalidToken, "unauthorized")
+		}
+		return
+	}
+
+	if !deviceInfo.Online || h.deviceMgr.GetOnline(deviceID) == nil {
+		h.closeWithCode(conn, closeCodeDeviceOffline, "device offline")
 		return
 	}
 
@@ -236,18 +268,14 @@ func (h *WebSocketHandler) HandleController(c *gin.Context) {
 
 	controllerID := uuid.New().String()
 	controller := &model.Controller{
-		ID:   controllerID,
-		Conn: conn,
+		ID:              controllerID,
+		Conn:            conn,
+		AllowedDeviceID: deviceID,
+		DisplayName:     deviceInfo.Name,
 	}
 
 	h.controllerMgr.Register(controller)
 	log.Printf("控制端连接: %s", controllerID)
-
-	// 发送设备列表
-	conn.WriteJSON(protocol.DeviceListMessage{
-		Type:    protocol.TypeDeviceList,
-		Devices: h.deviceMgr.List(),
-	})
 
 	// 处理控制端消息
 	h.handleControllerMessages(controller)
@@ -331,7 +359,20 @@ func (h *WebSocketHandler) handleControllerMessages(controller *model.Controller
 
 // handleControlRequest 处理控制请求
 func (h *WebSocketHandler) handleControlRequest(controller *model.Controller, msg protocol.ControlRequestMessage) {
-	device := h.deviceMgr.GetOnline(msg.DeviceID)
+	deviceID := msg.DeviceID
+	if controller.AllowedDeviceID != "" {
+		if deviceID != "" && deviceID != controller.AllowedDeviceID {
+			controller.SendJSON(protocol.ErrorMessage{
+				Type:    protocol.TypeError,
+				Code:    "INVALID_TOKEN",
+				Message: "无效的访问链接",
+			})
+			return
+		}
+		deviceID = controller.AllowedDeviceID
+	}
+
+	device := h.deviceMgr.GetOnline(deviceID)
 	if device == nil {
 		controller.SendJSON(protocol.ErrorMessage{
 			Type:    protocol.TypeError,
@@ -355,6 +396,7 @@ func (h *WebSocketHandler) handleControlRequest(controller *model.Controller, ms
 	controller.SendJSON(protocol.ControlGrantedMessage{
 		Type:         protocol.TypeControlGranted,
 		DeviceID:     device.ID,
+		DeviceName:   h.displayName(controller, device.Name),
 		SessionID:    session.ID,
 		ScreenWidth:  device.ScreenWidth,
 		ScreenHeight: device.ScreenHeight,
@@ -369,6 +411,19 @@ func (h *WebSocketHandler) handleControlRequest(controller *model.Controller, ms
 	})
 
 	log.Printf("控制会话建立: %s -> %s", controller.ID, device.ID)
+}
+
+func (h *WebSocketHandler) closeWithCode(conn *websocket.Conn, code int, reason string) {
+	conn.SetWriteDeadline(time.Now().Add(writeWait))
+	_ = conn.WriteMessage(websocket.CloseMessage, websocket.FormatCloseMessage(code, reason))
+	_ = conn.Close()
+}
+
+func (h *WebSocketHandler) displayName(controller *model.Controller, fallback string) string {
+	if controller != nil && controller.DisplayName != "" {
+		return controller.DisplayName
+	}
+	return fallback
 }
 
 // handleTouchInput 处理触摸输入
